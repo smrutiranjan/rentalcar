@@ -2,7 +2,7 @@
 /*
 Plugin Name: Rentalcar
 Plugin URI:https://github.com/smrutiranjan/rentalcar
-Description: This is a custom widget allow to search rental carpervan or car and get quotation of each carpervan / car via rci api.
+Description: This is a custom widget allow to search rental carpervan or car and get quotation of each carpervan / car via rci api. <a href="https://github.com/smrutiranjan/rentalcar/archive/master.zip" target="_blank">click here to you can download latest update.</a>
 Author: Smrutiranjan
 Author URI: http://smrutiranjan.in
 Version: 1.1
