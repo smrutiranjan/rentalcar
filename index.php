@@ -7,7 +7,7 @@ Author: Smrutiranjan
 Author URI: http://smrutiranjan.in
 Version: 1.1
 */
-
+//ini_set('default_charset', 'utf-8');
 register_activation_hook(__FILE__,'rentalcar_install');
 function rentalcar_install()
 {
@@ -562,14 +562,14 @@ vertical-align:middle;
 					'header_img'=>'headlogo-fr.png',	
 					'searchbtn'=>'search_fr.png',
 					'searchbtn_ho'=>'search_fr_ho.png',
-					'emailmebtn'=>'emailme.png',
-					'emailmebtn_ho'=>'emailme_ho.png',
-					'continuebtn'=>'continue.png',
-					'continuebtn_ho'=>'continue_ho.png',
-					'checkavailbtn'=>'checkavailability.png',
-					'checkavailbtn_ho'=>'checkavailability_ho.png',
-					'emailquote'=>'quote.png',
-					'emailquote_ho'=>'quote_ho.png',					
+					'emailmebtn'=>'emailme-fr.png',
+					'emailmebtn_ho'=>'emailme_ho-fr.png',
+					'continuebtn'=>'continue-fr.png',
+					'continuebtn_ho'=>'continue_ho-fr.png',
+					'checkavailbtn'=>'checkavailability-fr.png',
+					'checkavailbtn_ho'=>'checkavailability_ho-fr.png',
+					'emailquote'=>'quote-fr.png',
+					'emailquote_ho'=>'quote_ho-fr.png',					
 					'pickuplocation'=>'Pickup Location',
 					'pickupdate'=>'Pickup Date',
 					'dropofflocation'=>'Dropoff Location',			
@@ -610,62 +610,14 @@ vertical-align:middle;
 					'header_img'=>'headlogo-ge.png',	
 					'searchbtn'=>'search_ge.png',
 					'searchbtn_ho'=>'search_ge_ho.png',
-					'emailmebtn'=>'emailme.png',
-					'emailmebtn_ho'=>'emailme_ho.png',
-					'continuebtn'=>'continue.png',
-					'continuebtn_ho'=>'continue_ho.png',
-					'checkavailbtn'=>'checkavailability.png',
-					'checkavailbtn_ho'=>'checkavailability_ho.png',
-					'emailquote'=>'quote.png',
-					'emailquote_ho'=>'quote_ho.png',					
-					'pickuplocation'=>'Pickup Location',
-					'pickupdate'=>'Pickup Date',
-					'dropofflocation'=>'Dropoff Location',			
-					'dropoffdate'=>'Dropoff Date',
-					'promocode'=>'Promo Code',					
-					'acrodian'=>'Click Here to Change Search Cities & Dates',
-					'step3tr1td3'=>'Red',
-					'step3tr2td3'=>'Orange',
-					'step3tr3td3'=>'Green',
-					'bookingfname'=>'First Name',
-					'bookinglname'=>'Last Name',
-					'bookingemail'=>'Email',
-					'step3th1'=>'Campervan Insurance',
-					'step3th2'=>'Bond',
-					'step3th3'=>'Select Insurance',
-					'step3trtd1'=>'Red Insurance $10 per day',
-					'step3trtd2'=>'Orange Insurance $15 per day',
-					'step3trtd3'=>'Green Insurance $25 per day',
-					'avgrate'=>'Average daily rate',
-					'step3quotetitle'=>'Campervan Hire Quote',
-					'vehicletype'=>'Vehicle Type',
-					'pickup'=>'Pickup',
-					'step3bookingtitle'=>'Enter your name & email to check availability',
-					'dropoff'=>'Dropoff',
-					'clickinfo'=>'Click for vehicle info',
-					'dailyrate'=>'Daily Rate',
-					'subtotal'=>'SUB TOTAL',
-					'insurance'=>'Insurance',
-					'totalcost'=>'Total Cost',
-					'back'=>'Back',
-					'step3title'=>'Campervan Insurance - please select one option Red, Orange or Green Insurance',
-					'step3moreinfo'=>'Click here for more information about Campervan insurance',					
-					'oneway'=>'One Way Fee','phone'=>'Phone','addition_details'=>'Special requests or additional details',
-					'wheredid'=>'Where did you hear about us',
-					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Your Booking'
-					);
-	$optionsarr['du']=array(					 
-					'header_img'=>'headlogo-du.png',	
-					'searchbtn'=>'search_du.png',
-					'searchbtn_ho'=>'search_du_ho.png',
-					'emailmebtn'=>'emailme.png',
-					'emailmebtn_ho'=>'emailme_ho.png',
-					'continuebtn'=>'continue.png',
-					'continuebtn_ho'=>'continue_ho.png',
-					'checkavailbtn'=>'checkavailability.png',
-					'checkavailbtn_ho'=>'checkavailability_ho.png',
-					'emailquote'=>'quote.png',
-					'emailquote_ho'=>'quote_ho.png',					
+					'emailmebtn'=>'emailme-da.png',
+					'emailmebtn_ho'=>'emailme_ho-da.png',
+					'continuebtn'=>'continue-da.png',
+					'continuebtn_ho'=>'continue_ho-da.png',
+					'checkavailbtn'=>'checkavailability-da.png',
+					'checkavailbtn_ho'=>'checkavailability_ho-da.png',
+					'emailquote'=>'quote-da.png',
+					'emailquote_ho'=>'quote_ho-da.png',		
 					'pickuplocation'=>'Pickup Location',
 					'pickupdate'=>'Pickup Date',
 					'dropofflocation'=>'Dropoff Location',			
@@ -702,7 +654,106 @@ vertical-align:middle;
 					'wheredid'=>'Where did you hear about us',
 					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Your Booking'
 					);
+	/*$optionsarr['da']=array(					 
+					'header_img'=>'headlogo-ge.png',	
+					'searchbtn'=>'search_ge.png',
+					'searchbtn_ho'=>'search_ge_ho.png',
+					'emailmebtn'=>'emailme-da.png',
+					'emailmebtn_ho'=>'emailme_ho-da.png',
+					'continuebtn'=>'continue-da.png',
+					'continuebtn_ho'=>'continue_ho-da.png',
+					'checkavailbtn'=>'checkavailability-da.png',
+					'checkavailbtn_ho'=>'checkavailability_ho-da.png',
+					'emailquote'=>'quote-da.png',
+					'emailquote_ho'=>'quote_ho-da.png',					
+					'pickuplocation'=>'Ort der Anmietung',
+					'pickupdate'=>'Anmietdatum',
+					'dropofflocation'=>'Ort der Rückgabe',			
+					'dropoffdate'=>'Rückgabedatum',
+					'promocode'=>'Promo Code',					
+					'acrodian'=>'Klicken Sie hier, um Ändern Sie suchen Städte & Termine',
+					'step3tr1td3'=>'Red',
+					'step3tr2td3'=>'Orange',
+					'step3tr3td3'=>'grün',
+					'bookingfname'=>'Vorname',
+					'bookinglname'=>'Nachname',
+					'bookingemail'=>'E-Mail',
+					'step3th1'=>'Wohnmobil-Versicherung',
+					'step3th2'=>'Bindung',
+					'step3th3'=>'Wählen Versicherung',
+					'step3trtd1'=>'Red Versicherung $10 pro Tag',
+					'step3trtd2'=>'Orange Versicherung $15 pro day',
+					'step3trtd3'=>'grün Versicherung $25 per day',
+					'avgrate'=>'Durchschnittliche Tagesrate',
+					'step3quotetitle'=>'Wohnmobilverleih Zitat',
+					'vehicletype'=>'Fahrzeugtyp',
+					'pickup'=>'Tonabnehmer',
+					'step3bookingtitle'=>'Geben Sie Ihren Namen und E-Mail, um die Verfügbarkeit zu überprüfen',
+					'dropoff'=>'Dropoff',
+					'clickinfo'=>'Klicken Sie für die Fahrzeug info',
+					'dailyrate'=>'Tagesrate',
+					'subtotal'=>'SUB TOTAL',
+					'insurance'=>'Versicherung',
+					'totalcost'=>'Gesamtkosten',
+					'back'=>'zurück',
+					'step3title'=>'Wohnmobil Versicherung - bitte wählen Sie eine Option Rot, orange oder grün-Versicherung',
+					'step3moreinfo'=>'Klicken Sie hier für weitere Informationen über Wohnmobil-Versicherung',					
+					'oneway'=>'Einweggebühr','phone'=>'Telefon','addition_details'=>'Sonderwünsche oder zusätzliche Details',
+					'wheredid'=>'Wo haben Sie von uns erfahren',
+					'subtotal_notes'=>'Dieses Zitat ist nur für den Fahrzeugverleih Mietkosten und keine geltenden Versicherungen oder zusätzliche Einzelkosten beinhalten','bookingsummary'=>'Ihre Buchung'
+					);*/
+	$optionsarr['du']=array(					 
+					'header_img'=>'headlogo-du.png',	
+					'searchbtn'=>'search_du.png',
+					'searchbtn_ho'=>'search_du_ho.png',
+					'emailmebtn'=>'emailme-du.png',
+					'emailmebtn_ho'=>'emailme_ho-du.png',
+					'continuebtn'=>'continue-du.png',
+					'continuebtn_ho'=>'continue_ho-du.png',
+					'checkavailbtn'=>'checkavailability-du.png',
+					'checkavailbtn_ho'=>'checkavailability_ho-du.png',
+					'emailquote'=>'quote-du.png',
+					'emailquote_ho'=>'quote_ho-du.png',					
+					'pickuplocation'=>'Pickup Location',
+					'pickupdate'=>'Pickup Date',
+					'dropofflocation'=>'Dropoff Location',			
+					'dropoffdate'=>'Dropoff Date',
+					'promocode'=>'Promo Code',					
+					'acrodian'=>'Click Here to Change Search Cities & Dates',
+					'step3tr1td3'=>'Red',
+					'step3tr2td3'=>'Orange',
+					'step3tr3td3'=>'Green',
+					'bookingfname'=>'First Name',
+					'bookinglname'=>'Last Name',
+					'bookingemail'=>'Email',
+					'step3th1'=>'Campervan Insurance',
+					'step3th2'=>'Bond',
+					'step3th3'=>'Select Insurance',
+					'step3trtd1'=>'Red Insurance $10 per day',
+					'step3trtd2'=>'Orange Insurance $15 per day',
+					'step3trtd3'=>'Green Insurance $25 per day',
+					'avgrate'=>'Average daily rate',
+					'step3quotetitle'=>'Campervan Hire Quote',
+					'vehicletype'=>'Vehicle Type',
+					'pickup'=>'Pickup',
+					'step3bookingtitle'=>'Enter your name & email to check availability',
+					'dropoff'=>'Dropoff',
+					'clickinfo'=>'Click for vehicle info',
+					'dailyrate'=>'Daily Rate',
+					'subtotal'=>'SUB TOTAL',
+					'insurance'=>'Insurance',
+					'totalcost'=>'Total Cost',
+					'back'=>'Back',
+					'step3title'=>'Campervan Insurance - please select one option Red, Orange or Green Insurance',
+					'step3moreinfo'=>'Click here for more information about Campervan insurance',
+					'oneway'=>'One Way Fee','phone'=>'Phone','addition_details'=>'Special requests or additional details',
+					'wheredid'=>'Where did you hear about us',
+					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Your Booking'
+					);
+	//global $wpdb;	
 	delete_option('rental_option_en');delete_option('rental_option_fr');delete_option('rental_option_da');delete_option('rental_option_du');
+	//mysql_set_charset('utf8', $wpdb);
+	//mysql_query("SET NAMES 'utf8'");
 	add_option('rental_option_en',$optionsarr['en']);add_option('rental_option_fr',$optionsarr['fr']);
 	add_option('rental_option_da',$optionsarr['da']);add_option('rental_option_du',$optionsarr['du']);
 	
@@ -1676,7 +1727,8 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 							<table cellpadding="2" cellspacing="2" border="0" width="100%">
 								<tr>
 									<td align="left" width="84">&nbsp;</td>
-									<td align="left"><a href="'.get_permalink().'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocationID"].'&DLocationID='.$_GET["DLocationID"].'&PickDate='.urlencode($_GET["PickDate"]).'&DropoffDate='.urlencode($_GET["DropoffDate"]).'&promo='.urlencode($_GET["promo"]).'&action=email"><img border="0" oldsrc="'.$emailme.'" srcover="'.$emailme_ho.'" src="'.$emailme.'" style="box-shadow:none;border:none;border-radius:none;"  onclick="validatebookingfrm()"/></a></td>
+									<td align="left">
+									<img border="0" oldsrc="'.$emailme.'" srcover="'.$emailme_ho.'" src="'.$emailme.'" style="box-shadow:none;border:none;border-radius:none;" onclick="validatebookingfrm()"/></td>
 								</tr>							
 							</table>
 						</td>
@@ -1705,7 +1757,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				<div class="clear"></div>
 				</div>
 			</div>';
-		$output .='<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold">'.$myoptions["back"].'</a></div>
+		$output .='<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.$myoptions["back"].'</a></div>
 										<div class="clear"></div>';	
 			}		
 	}	
@@ -1976,7 +2028,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					<div class="clear5"></div>
 				</div>
 				<div class="clear5"></div>
-				<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold">'.$myoptions["back"].'</a></div>			
+				<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.$myoptions["back"].'</a></div>			
 				<div align="right">
 				<input type="hidden" name="vehicle_type" value="'.$catdesc.'"/>
 				<input type="hidden" name="rateperday" value="'.$rateperday.'"/>
@@ -2058,7 +2110,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 									</div>									
 								</div>';	
 				}
-				$output .='<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold">'.$myoptions["back"].'</a></div>
+				$output .='<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.$myoptions["back"].'</a></div>
 										<div class="clear"></div>';
 			}		
 	}
