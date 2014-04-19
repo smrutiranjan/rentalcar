@@ -750,14 +750,141 @@ vertical-align:middle;
 					'wheredid'=>'Where did you hear about us',
 					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Your Booking'
 					);
-	//global $wpdb;	
+	$emailquote_template='';
+	$emailquote_template .='<p align="center"><img src="https://secure.rentalcarmanager.com.au/db/AUTravelWheels107/logo.gif" alt="121" /></p>
+<div align="center">
+  <table border="0" cellspacing="0" cellpadding="0" width="650" style="border:1px solid #F69812;font-size:14px;line-height:1.5em;font-family:Arial">
+    <tr>
+      <td colspan="2" bgcolor="#F69812" style="padding:5px 0">Online Quotation with Travelwheels - Ref #[referenceQuote]    (Sydney) </td>
+    </tr>
+    <tr>
+      <td colspan="2"><p>Thank you for your Online Quotation with Travelwheels. </p></td>
+    </tr>
+    <tr>
+      <td colspan="2"><p>This Online Quotation has now been forwarded to the    Location - Sydney.</p></td>
+    </tr>
+    <tr>
+      <td colspan="2"><p>If you would like to proceed with this quotation :</p></td>
+    </tr>
+    <tr>
+      <td colspan="2"><table border="0" cellpadding="0">
+        <tr>
+          <td><p><strong>TURN YOUR QUOTE INTO A BOOKING REQUEST <a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[referenceKey]&amp;E604=[quoteDate]" target="_blank"><font color="#FF0000">CLICK HERE</font></a></strong></p></td>
+          <td><p><img src="https://secure.rentalcarmanager.com.au/images/SafePayment.jpg" alt="231312" border="0" id="_x0000_i1026" /></p></td>
+        </tr>
+        <tr>
+          <td colspan="2"><p>Note : If you are viewing this message in text mode and      having difficulties opening the above link, please try copying and pasting      the following entire link into the address bar of your Internet homepage.</p></td>
+        </tr>
+        <tr>
+          <td colspan="2"><p><a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[referenceKey]&amp;E604=[quoteDate]&amp;VD2=" target="_blank">https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[referenceKey]&amp;E604=[quoteDate]&amp;VD2=</a></p></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td colspan="2"><p>Your Quotation details are as follows:</p></td>
+    </tr>
+    <tr>
+      <td colspan="2"><p>Quotation Date: [quoteDate]</p></td>
+    </tr>
+    <tr>
+        <td colspan="2" height="2px" width="100%" bgcolor="#F69812">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="200"><p><strong>Ref:</strong></p></td>
+      <td><p>[referenceQuote] (Sydney)</p></td>
+    </tr>
+    <tr>
+      <td><p>Name: </p></td>
+      <td><p>[customerName]</p></td>
+    </tr>
+    <tr>
+      <td><p>Email: </p></td>
+      <td><p><a href="mailto:[customerEmail]" target="_blank">[customerEmail]</a></p></td>
+    </tr>
+    <tr>
+        <td colspan="2" height="2px" width="100%" bgcolor="#F69812">&nbsp;</td>
+    </tr>
+    <tr>
+      <td><p>Vehicle Type </p></td>
+      <td><p>[vehicle_type]</p></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><p><img src="[imgsrc]" alt="logo" width="192" border="0" id="_x0000_i1027" /></p></td>
+    </tr>
+    <tr>
+      <td><p>Pickup Location: </p></td>
+      <td><p>[pickuplocation]</p></td>
+    </tr>
+    <tr>
+      <td><p>Pickup Date: </p></td>
+      <td><p>[pickupdate]</p></td>
+    </tr>
+    <tr>
+      <td><p>Dropoff Location: </p></td>
+      <td><p>[dropofflocation]</p></td>
+    </tr>
+    <tr>
+      <td><p>Dropoff Date: </p></td>
+      <td><p>[dropoffdate]</p></td>
+    </tr>
+    <tr>
+      <td colspan="2"><p>Rental Rate and Fees</p></td>
+    </tr>
+    <tr>
+      <td colspan="2"><table border="0" cellpadding="0">
+        <tr>
+          <td><p>[TotalRentalDays]&nbsp;days @&nbsp;AU$[rateperday]&nbsp;(per day)&nbsp;</p></td>
+          <td><p align="right">&nbsp;AU$[subtotal]</p></td>
+        </tr>
+		[insurance]
+		[oneway]
+		<tr>
+          <td><p><strong>Total:</strong></p></td>
+          <td><p align="right">AU$[totalcost]</p></td>
+        </tr>
+        <tr>
+          <td colspan="2"><p align="right">(All Prices GST Inclusive)</p></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+        <td colspan="2" height="5px" width="100%" bgcolor="#F69812">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2"><p><strong>CANCELLATION POLICY</strong><br />
+        If you unfortunately have to change your dates/travel plans, then we will do    our best to provide you with another campervan if we have availability    without any extra cancellation fees.&nbsp; If you have to completely cancel    your booking, then the following charges applies to all bookings:<br />
+        If cancelled over 30 days prior to pick-up date: Cancellation fee of 25%    of the full rental fee applies (equals the non refundable holding deposit to    secure the booking)&nbsp; If cancelled within 29-8 days of pick up: 50% of    the full rental fee applies.<br />
+        If cancelled within 7-1 days prior to pick up: 75% of full rental charge    applies.&nbsp; If cancelled on the day of pick up or no show: NO REFUNDS    sorry, &amp; the full rental fee will be charged to your credit card.</p></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="2"><p><br />
+        <strong>Travelwheels</strong></p></td>
+    </tr>
+    <tr>
+      <td colspan="2"><p>Sydney</p></td>
+    </tr>
+    <tr>
+      <td colspan="2" bgcolor="#F69812"><p align="center">155 - 159 William    St<br />
+        Darlinghurst Sydney,&nbsp;NSW&nbsp;2010&nbsp;Australia<br />
+        Phone:1800 289 222 then dial 2&nbsp;&nbsp;&nbsp;Fax: 02 9666    4695&nbsp;&nbsp;Free Phone: 1800 289 222 THEN PRESS 2</p></td>
+    </tr>
+  </table>
+</div>';
+	
+	global $wpdb;	
 	delete_option('rental_option_en');delete_option('rental_option_fr');delete_option('rental_option_da');delete_option('rental_option_du');
 	//mysql_set_charset('utf8', $wpdb);
 	//mysql_query("SET NAMES 'utf8'");
 	add_option('rental_option_en',$optionsarr['en']);add_option('rental_option_fr',$optionsarr['fr']);
 	add_option('rental_option_da',$optionsarr['da']);add_option('rental_option_du',$optionsarr['du']);
 	
-	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9');
+	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9','emailquote_en'=>$emailquote_template_en,'emailquote_da'=>$emailquote_template_en,'emailquote_du'=>$emailquote_template_en,'emailquote_fr'=>$emailquote_template_en);
+	//echo $emailquote_template;
 	foreach($generalarr as $ky => $value)
 	{
 		delete_option($ky);
@@ -917,6 +1044,12 @@ function set_rentalcar_lang($lang,$langtxt)
 		if($_FILES["continuebtn_ho"]["name"]!=""){$continuebtn_ho=$_FILES["continuebtn_ho"]["name"];}else{$continuebtn_ho=$myoptions["continuebtn_ho"];}
 		if($_FILES["checkavailbtn"]["name"]!=""){$checkavailbtn=$_FILES["checkavailbtn"]["name"];}else{$checkavailbtn=$myoptions["checkavailbtn"];}
 		if($_FILES["checkavailbtn_ho"]["name"]!=""){$checkavailbtn_ho=$_FILES["checkavailbtn_ho"]["name"];}else{$checkavailbtn_ho=$myoptions["checkavailbtn_ho"];}
+		
+		if(isset($_POST['emailquote_template_'.$lang]))
+		{
+			delete_option( 'emailquote_template_'.$lang);
+			add_option( 'emailquote_template_'.$lang,$_POST["emailquote_template_".$lang], '', 'yes' ); 
+		}
 		
 		$optionsarr[$lang]=array(					 
 					'header_img'=>$header_img,	
@@ -1217,7 +1350,23 @@ function set_rentalcar_lang($lang,$langtxt)
                     <td>Enter your name & email to check availability</td>
                     <td><input type="text"  name="step3bookingtitle" value="<?php echo $myoptions["step3bookingtitle"];?>" class="regular-text" style="width:500px;"/></td>
                   </tr>
-                   
+                   <tr>
+                     <td colspan="2">Quote Email</td>
+                   </tr>
+                    <tr>
+                     <td colspan="2"><?php 
+					 $settings = array(
+						'media_buttons' => false,			   
+						'teeny' => true,
+						'textarea_rows' => 50,
+						'tabindex' => 1
+					);
+					 $wpcontent=stripslashes_deep(get_option("emailquote_template_".$lang,true));
+					 
+					 $content = apply_filters('the_content', $wpcontent);
+					 wp_editor( $content, "emailquote_template_".$lang ,$settings);
+					 ?></td>
+                   </tr>
                </table>
                <p class="submit">
                     <input type="submit" class="button-primary" value="Save Language Seting" name="save"/>
@@ -1229,7 +1378,9 @@ function set_rentalcar_lang($lang,$langtxt)
     <?php
 }
 add_shortcode('bookingform','bookingformfn');
-
+function set_html_content_type() {
+		return 'text/html';
+}
 function bookingformfn($attr)
 {
 	$output='';$results='';	$searchout='';
@@ -1282,6 +1433,8 @@ function bookingformfn($attr)
 		}	
 		
 	}
+	
+	
 	
 	/*start search section */
 	
@@ -1419,6 +1572,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 			}
 			else
 			{
+				
 				$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestExtras?RCMReferenceKey='.urlencode($_POST["refkey"]);
 				$articles = file_get_contents($url);
 				$requestExtras=$articles;
@@ -1459,38 +1613,167 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						$quote=$elements->getElementsByTagName("ReferenceNo");
 						$ReservationNo=$elements->getElementsByTagName("ReservationNo");
 						$output .='<div align="center">
-						<h1>Thank you for your Online Quotation with Travel Wheels.</h1>
-						<p>Thank you for your quote. Your quote has now been forwarded to Travel Wheels. If you would like to proceed with this quotation please email us at the following email address info@travelwheels.com.au</p>						
+						<h1>Thank you for your Online Quotation with Travelwheels.</h1>
+						<p>Thank you for your quote. Your quote has now been forwarded to Travelwheels. If you would like to proceed with this quotation please email us at the following email address info@travelwheels.com.au</p>						
 						</div>';
-						$subject='Online Quotation with Travel Wheels - Ref #'.$quote->item(0)->nodeValue.'(Sydney)';
+						$subject='Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'(Sydney)';
+						$message ='';						
 						
-						$message .='Hey '.$_POST["firstname"].','."\r\n";
-						$message .='Thank you for your Online Quotation with Travel Wheels.'."\r\n";						
-						$message .= 'This Online Quotation has now been forwarded to the Location - Sydney.'."\r\n";
-						$message .= 'If you would like to proceed with this quotation :'."\r\n";
-						$message .= 'TURN YOUR QUOTE INTO A BOOKING REQUEST https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&MC2=19&ferq='.$ReservationNo->item(0)->nodeValue.'&E604='.date("d/M/Y",strtotime("Now")).'&VD2='."\r\n";
-						$message .= 'Your Quotation details are as follows:'."\r\n";						
-						$message .= '-------------------Quotation Date: '.date("d/M/Y",strtotime("Now")).'-------------------------'."\r\n";
-						$message .= 'Ref: #'.$quote->item(0)->nodeValue."\r\n";	
-						$message .= 'Name:'.$_POST["firstname"].' '.$_POST["lastname"]."\r\n";
-						$message .= 'Email:'.$_POST["CustomerEmail"]."\r\n";
-						/*$message  .= '----------------Campervan Detail-------'."\r\n";
-						$message .= 'Vehicle Type:'.$_POST["CustomerEmail"]."\r\n";
-						$message .= 'Pickup:'.$_POST["CustomerEmail"]."\r\n";
-						$message .= 'DropOff:'.$_POST["CustomerEmail"]."\r\n";
-						$message .= 'DropOff:'.$_POST["CustomerEmail"]."\r\n";*/
-						$message .= ' '."\r\n";
-						$message .= ' '."\r\n";
-						$message .= 'Thanks '."\r\n";
-						$message .= get_bloginfo("name").''."\r\n";
-						$message .= get_bloginfo("url").''."\r\n";
+			$message .='<p align="center"><img src="https://secure.rentalcarmanager.com.au/db/AUTravelWheels107/logo.gif" alt="121" /></p>
+<div align="center">
+  <table border="0" cellspacing="0" cellpadding="0" width="650" style="border:1px solid #F69812;font-size:13px;line-height:1.2em;font-family:Arial">
+    <tr>
+      <td colspan="2" bgcolor="#F69812" style="padding:3px 0">Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'    (Sydney) </td>
+    </tr>
+    <tr>
+      <td colspan="2">Thank you for your Online Quotation with Travelwheels.</td>
+    </tr>
+    <tr>
+      <td colspan="2">This Online Quotation has now been forwarded to the    Location - Sydney.</td>
+    </tr>
+    <tr>
+      <td colspan="2">If you would like to proceed with this quotation :</td>
+    </tr>
+    <tr>
+      <td colspan="2"><table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><strong>TURN YOUR QUOTE INTO A BOOKING REQUEST <a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq='.$ReservationNo->item(0)->nodeValue.'&amp;E604='.date("d/M/Y",strtotime("+13 hours")).'" target="_blank"><font color="#FF0000">CLICK HERE</font></a></strong></td>
+          <td><img src="https://secure.rentalcarmanager.com.au/images/SafePayment.jpg" alt="231312" border="0" id="_x0000_i1026" /></td>
+        </tr>
+        <tr>
+          <td colspan="2">Note : If you are viewing this message in text mode and      having difficulties opening the above link, please try copying and pasting      the following entire link into the address bar of your Internet homepage.</td>
+        </tr>
+        <tr>
+          <td colspan="2"><a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq='.$ReservationNo->item(0)->nodeValue.'&amp;E604='.date("d/M/Y",strtotime("+13 hours")).'&amp;VD2=" target="_blank">https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq='.$ReservationNo->item(0)->nodeValue.'&amp;E604='.date("d/M/Y",strtotime("+13 hours")).'&amp;VD2=</a></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td colspan="2">Your Quotation details are as follows:</td>
+    </tr>
+    <tr>
+      <td colspan="2">Quotation Date: '.date("d/M/Y",strtotime("Now")).'</td>
+    </tr>
+    <tr>
+        <td colspan="2" height="2px" width="100%" bgcolor="#F69812">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="200"><strong>Ref:</strong></td>
+      <td><p>'.$quote->item(0)->nodeValue.' (Sydney)</p></td>
+    </tr>
+    <tr>
+      <td>Name: </td>
+      <td>'.$_POST["firstname"].'&nbsp;'.$_POST["lastname"].'</td>
+    </tr>
+    <tr>
+      <td>Email: </td>
+      <td><a href="mailto:'.$_POST["CustomerEmail"].'" target="_blank">'.$_POST["CustomerEmail"].'</a></td>
+    </tr>
+    <tr>
+        <td colspan="2" height="2px" width="100%" bgcolor="#F69812">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Vehicle Type </td>
+      <td>'.$_POST["vehicle_type"].'</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><img src="'.$_POST["imgsrc"].'" alt="logo" width="192" border="0" id="_x0000_i1027" /></td>
+    </tr>
+    <tr>
+      <td>Pickup Location: </td>
+      <td>'.$_POST["pickuplocation"].'</td>
+    </tr>
+    <tr>
+      <td>Pickup Date: </td>
+      <td>'.$_POST["pickupdate"].'&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Dropoff Location: </td>
+      <td>'.$_POST["dropofflocation"].'</td>
+    </tr>
+    <tr>
+      <td>Dropoff Date: </td>
+      <td>'.$_POST["dropoffdate"].'&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2">Rental Rate and Fees</td>
+    </tr>
+    <tr>
+      <td colspan="2"><table border="0" cellpadding="0">
+        <tr>
+          <td>'.$_POST["TotalRentalDays"].'&nbsp;days @&nbsp;AU$'.$_POST["rateperday"].'&nbsp;(per day)&nbsp;</td>
+          <td align="right">&nbsp;AU$'.$_POST["subtotal"].'</td>
+        </tr>';
+       if($_POST["isureid"] == '739')
+	   {
+		$message .='<tr>
+          <td>1. Green Insurance, Daily at AU$25.00 :</td>
+          <td align="right">AU$'.$_POST["insurance"].'</td>
+        </tr>';
+	   }
+	   elseif($_POST["isureid"] == '738')
+	   {
+		$message .='<tr>
+          <td>1. Orange Insurance, Daily at AU$15.00 :</td>
+           <td align="right">AU$'.$_POST["insurance"].'</td>
+        </tr>';
+	   }
+	   else
+	   {
+		$message .='<tr>
+          <td>1. Red Insurance, Daily at AU$10.00 :</td>
+           <td align="right">AU$'.$_POST["insurance"].'</td>
+        </tr>';
+	   }
+	   
+	   if(trim($_POST["oneway"]) > 0)
+	   {
+		$message .='<tr>
+          <td>2.One Way Fee :</td>
+           <td align="right">AU$'.$_POST["oneway"].'</td>
+        </tr>';
+	   }
+	   
+        $message .='<tr>
+          <td><strong>Total:</strong></td>
+          <td align="right">AU$'.$_POST["totalcost"].'</td>
+        </tr>
+        <tr>
+          <td colspan="2" align="right">(All Prices GST Inclusive)</td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+        <td colspan="2" height="5px" width="100%" bgcolor="#F69812">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2"><strong>CANCELLATION POLICY</strong><br />
+        If you unfortunately have to change your dates/travel plans, then we will do    our best to provide you with another campervan if we have availability    without any extra cancellation fees.&nbsp; If you have to completely cancel    your booking, then the following charges applies to all bookings:<br />
+        If cancelled over 30 days prior to pick-up date: Cancellation fee of 25%    of the full rental fee applies (equals the non refundable holding deposit to    secure the booking)&nbsp; If cancelled within 29-8 days of pick up: 50% of    the full rental fee applies.<br />
+        If cancelled within 7-1 days prior to pick up: 75% of full rental charge    applies.&nbsp; If cancelled on the day of pick up or no show: NO REFUNDS    sorry, &amp; the full rental fee will be charged to your credit card.<br/></td>
+    </tr>   
+    <tr>
+      <td colspan="2"><strong>Travelwheels</strong><br/>Sydney</td>
+    </tr>  
+    <tr>
+      <td colspan="2" bgcolor="#F69812" align="center">155 - 159 William    St<br />
+        Darlinghurst Sydney,&nbsp;NSW&nbsp;2010&nbsp;Australia<br />
+        Phone:1800 289 222 then dial 2&nbsp;&nbsp;&nbsp;Fax: 02 9666    4695&nbsp;&nbsp;Free Phone: 1800 289 222 THEN PRESS 2</td>
+    </tr>
+  </table>
+</div>
+<p align="center">'.get_bloginfo("name").'<br/>'.get_bloginfo("url").'</p>';
+						
 						
 						$headers[] = 'From: Webmaster <'.get_bloginfo('admin_email').'>'."\r\n";
 						$headers[] = 'Bcc: info <info@travelwheels.com.au>'."\r\n";
 						$headers[] = 'Bcc: info <gino@travelwheels.com.au>'."\r\n";
 						$headers[] = 'Bcc: Developer <smrutiniit@gmail.com>'."\r\n";
 						
+						add_filter( 'wp_mail_content_type', 'set_html_content_type' );
 						wp_mail($_POST["CustomerEmail"],$subject,$message,$headers);	
+						remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
 					}
 				}
 			}
@@ -1743,16 +2026,22 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					</tr>
 					</table>
 					
-					<input type="hidden" name="categoryStatus" size="5" value="1" />
 					<input type="hidden" name="CarSizeID" size="5" value="'.$carid.'" />
 					<input type="hidden" name="refkey" size="5" value="'.$refkey.'" />
-					<input type="hidden" name="RentalSource" value="Online Booking"/>
-					<input type="hidden" name="PickupLocationID" size="5" value="'.$_GET["PickupLocationID"].'" />
-					<input type="hidden" name="DropoffLocationID" size="5" value="'.$_GET["DLocationID"].'" />
-					<input type="hidden" name="PickDateTime" size="15" value="'.$_GET["PickDate"].' 12:00:00 PM" />
-					<input type="hidden" name="DropoffDateTime" size="15" value="'.$_GET["DropoffDate"].'12:00:00 AM" />
-					<input type="hidden" name="TotalRentalDays" size="15" value="'.$numofday.'" />
 					<input type="hidden" name="isureid" id="isureid" size="15" value="737" />
+					
+					<input type="hidden" name="imgsrc" size="5" value="'.$imgsrc.'" />
+					<input type="hidden" name="vehicle_type" value="'.$catdesc.'"/>
+					<input type="hidden" name="pickuplocation" size="5" value="'.$from.'" />
+					<input type="hidden" name="dropofflocation" size="5" value="'.$to.'" />
+					<input type="hidden" name="pickupdate" size="15" value="'.date("d/M/Y",strtotime($_GET["PickDate"])).'" />
+					<input type="hidden" name="dropoffdate" size="15" value="'.date("d/M/Y",strtotime($_GET["DropoffDate"])).'" />
+					<input type="hidden" name="rateperday" size="15" value="'.$rateperday.'" />
+					<input type="hidden" name="subtotal" size="15" value="'.number_format($subtotal,2,'.','').'" />
+					<input type="hidden" name="TotalRentalDays" size="15" value="'.$numofday.'" />
+					<input type="hidden" name="oneway" size="15" value="'.number_format($extrafees,2,'.','').'" />
+					<input type="hidden" name="insurance" size="15" value="'.number_format($insurance,2,'.','').'" />
+					<input type="hidden" name="totalcost" size="15" value="'.number_format(($subtotal + $insurance + $extrafees),2,'.','').'" />
 				</form>
 				<div class="clear"></div>
 				</div>
@@ -1811,16 +2100,16 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						$quote=$elements->getElementsByTagName("ReferenceNo");
 						$ReservationNo=$elements->getElementsByTagName("ReservationNo");
 						$output .='<div align="center">
-						<h1>Thank you for your Online Quotation with Travel Wheels.</h1>
-						<p>Thank you for your quote. Your quote has now been forwarded to Travel Wheels. If you would like to proceed with this quotation please email us at the following email address info@travelwheels.com.au</p>						
+						<h1>Thank you for your Online Quotation with Travelwheels.</h1>
+						<p>Thank you for your quote. Your quote has now been forwarded to Travelwheels. If you would like to proceed with this quotation please email us at the following email address info@travelwheels.com.au</p>						
 						</div>';
-						$subject='Online Quotation with Travel Wheels - Ref #'.$quote->item(0)->nodeValue.'(Sydney)';
+						$subject='Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'(Sydney)';
 						
 						$message .='Hey '.$_POST["firstname"].','."\r\n";
-						$message .='Thank you for your Online Quotation with Travel Wheels.'."\r\n";						
+						$message .='Thank you for your Online Quotation with Travelwheels.'."\r\n";						
 						$message .= 'This Online Quotation has now been forwarded to the Location - Sydney.'."\r\n";
 						$message .= 'If you would like to proceed with this quotation :'."\r\n";
-						$message .= 'TURN YOUR QUOTE INTO A BOOKING REQUEST https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&MC2=19&ferq='.$ReservationNo->item(0)->nodeValue.'&E604='.date("d/M/Y",strtotime("Now")).'&VD2='."\r\n";
+						$message .= 'TURN YOUR QUOTE INTO A BOOKING REQUEST https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&MC2=19&ferq='.$ReservationNo->item(0)->nodeValue.'&E604='.date("d/M/Y",strtotime("+13 hours")).'&VD2='."\r\n";
 						$message .= 'Your Quotation details are as follows:'."\r\n";						
 						$message .= '-------------------Quotation Date: '.date("d/M/Y",strtotime("Now")).'-------------------------'."\r\n";
 						$message .= 'Ref: #'.$quote->item(0)->nodeValue."\r\n";	
