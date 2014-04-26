@@ -13,8 +13,8 @@ function rentalcar_install()
 {
 $layout='
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-	.inpt_booking_extend{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
-	.chk_inpt_booking{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
+	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
 	.chk_avail_fname_lvl{float:left;width:84px;}
 .chk_avail_fname_input{float:left;}
 .chk_avail_lname_lvl{float:left;margin-left:15%;width:84px;}
@@ -81,8 +81,8 @@ $layout='
     margin:20px 0 0 0;
     line-height: 0;
 }
-.inpt_booking_extend{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
-.chk_inpt_booking{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%;}
+.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%;}
 .lvl{width:100%;font-weight:bold;text-align:center;}
 .lvl_val{width:100%;font-weight:normal;text-align:center;}
 .lvl_val_email{float:none;text-align:center;width:100%;}
@@ -97,8 +97,8 @@ $layout='
 }
 
 @media only screen and (min-device-width:480px) and (max-device-width:1900px) {
-	.inpt_booking_extend{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
-	.chk_inpt_booking{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
+	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
 	.chk_avail_fname_lvl{float:left;width:84px;}
 .chk_avail_fname_input{float:left;}
 .chk_avail_lname_lvl{float:left;margin-left:15%;width:84px;}
@@ -163,7 +163,7 @@ $layout='
 .calculate_total,#totalcost{color:#F69812;font-size:15px;}
 .insuranceth{color:#F69812;font-size:13px;font-weight:bold;}
 .booking_title{color:#F69812;font-size:15px;font-weight:bold;}
-.inpt_booking{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:200px; }
+.inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:200px; }
 
 .dailyrate {
     font-size: 25px;
@@ -1495,6 +1495,7 @@ function rentalcarmanagementsearchresults($attr)
 	{
 		if($_GET["PickupLocation"] == $v or $_GET["PickupLocationID"] == $v)
 		{
+
 			$pickuplocationarr .='<option selected value="'.$v.'">'.$k.'</option>';
 			$from=$k;
 		}
