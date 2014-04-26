@@ -12,6 +12,92 @@ register_activation_hook(__FILE__,'rentalcar_install');
 function rentalcar_install()
 {
 $layout='
+@media only screen and (min-device-width:320px) and (max-device-width: 480px) {
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #CCCCCC;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu{box-shadow:none;border:none;border-radius:none;margin-top:5px;}
+	.booking_checkout_center{width:100%;float:none;text-align:center;}
+	.emailme,.bookingleft,.bookingcentre,.bookingright{ width:100%;float:none; line-height: 15px;text-align:center;}
+	.bookingh1{text-align:center;}.bookingcentre{margin:0;}.desc{margin:5px 0;}
+	.price {
+ 	font-size: 18px;
+    font-weight: bold;
+    margin:20px 0 0 0;
+    line-height: 0;
+}
+.inpt_booking_extend{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+.chk_inpt_booking{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%;}
+.lvl{width:100%;font-weight:bold;text-align:center;}
+.lvl_val{width:100%;font-weight:normal;text-align:center;}
+.lvl_val_email{float:none;text-align:center;width:100%;}
+.bookingleft img{
+	max-width:100%;
+}
+.booking_chkoutleft{float:none;width:100%;text-align:center;}
+.booking_chkoutright{float:none;line-height:30px;width:100%;text-align:center;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #CCCCCC;}
+
+.chk_avail_fname_lvl,.chk_avail_fname_input,.chk_avail_lname_lvl,.chk_avail_lname_lvl,.chk_avail_lname_input,.chk_avail_email_lvl,.chk_avail_email_input,.chk_avail_emailquote,.chk_avail_availbtn{float:none;width:100%;text-align:center;}
+}
+
+@media only screen and (min-device-width:480px) and (max-device-width:1900px) {
+	.inpt_booking_extend{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+	.chk_inpt_booking{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
+	.chk_avail_fname_lvl{float:left;width:84px;}
+.chk_avail_fname_input{float:left;}
+.chk_avail_lname_lvl{float:left;margin-left:15%;width:84px;}
+.chk_avail_lname_input{float:left;}
+.chk_avail_email_lvl{float:left;width:84px;}
+.chk_avail_email_input{float:left;width:81%;}
+.chk_avail_emailquote{float:left;margin-left:84px;}
+.chk_avail_availbtn{float:right;margin-right:20px;}
+	
+	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
+	.lvl_val{width:65%;font-weight:normal;float:right;}
+	.lvl_val_email{float:right;text-align:right;width:100%;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #CCCCCC;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
+	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
+.emailme{float:left;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #CCCCCC;}
+.booking_chkoutleft{float:left;width:30%;}
+.booking_chkoutright{float:right;line-height:30px;width:65%;}
+.bookingleft{
+	clear: left;
+	float: left;
+	line-height: 15px;
+	width: 30%;
+}
+.desc{height: 80px; overflow: hidden;}
+.bookingleft img{
+	max-width:150px;
+	height:114px;
+}
+.price {
+ 	font-size: 18px;
+    font-weight: bold;
+    height: 70px;
+    line-height: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+.bookingcentre
+{
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 2%;
+    text-align: left;
+    width: 40%;
+}
+.bookingright{
+	float: right;
+	position: relative;
+	width: 28%;
+}
+.underline {border-bottom: 1px solid #E8E8E8;}
+}
+
+.sep_checkout{background-color:#F69812;height: 1px; width: 100%; clear: both; margin: 10px 0; }
 .clear{clear:both;}
 .clear5{clear:both;height:10px;}
 .clearfix {
@@ -21,7 +107,7 @@ $layout='
 .insuranceth{color:#F69812;font-size:13px;font-weight:bold;}
 .booking_title{color:#F69812;font-size:15px;font-weight:bold;}
 .inpt_booking{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:200px; }
-.inpt_booking_extend{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:490px; }
+
 .dailyrate {
     font-size: 25px;
     line-height: 30px;
@@ -34,15 +120,7 @@ $layout='
     line-height: 0;
     padding: 20px;
 }
-.price {
- 	font-size: 18px;
-    font-weight: bold;
-    height: 70px;
-    line-height: 0;
-    margin: 0;
-    padding-top: 10px;
-}
-.emailme{float:left;}
+
 .bookingwrap {
     background:#fff;
     clear: both;
@@ -59,36 +137,15 @@ $layout='
 .bookingfooter{
 	height:60px;display:block;width:100%;
 }
-.bookingleft{
- 	clear: left;
-    float: left;
-    line-height: 15px;
-    width: 30%;
-}
-.bookingleft img{
-	max-width:200px;
-	height:114px;
-}
+
+
 .bookingh1{
 	background-color:#F69812;
 	padding:3px 10px;
 	color:#fff;
 	border-radius:6px 6px 0 0;
 }
-.bookingcentre
-{
-    float: left;
-    font-size: 14px;
-    line-height: 18px;
-    margin-left: 2%;
-    text-align: left;
-    width: 40%;
-}
-.bookingright{
-	float: right;
-	position: relative;
-	width: 28%;
-}
+
 .bookingright .TotalCost {
     color: #000;
     text-align: center;
@@ -501,12 +558,7 @@ color:#111;
 .rentalcar_form_div img{
 vertical-align:middle;
 }
-.sep_checkout{background-color:#F69812;height: 1px; width: 100%; clear: both; margin: 10px 0; }
-.booking_chkoutleft{float:left;width:30%;}
-.booking_chkoutright{float:right;line-height:30px;width:65%;}
-.underline {border-bottom: 1px solid #E8E8E8;}
-.astrix{background:url('.plugins_url('astrix.png',__FILE__).') no-repeat 1px center;float:left;margin:0;padding:0 5px;}
-.customerfield{width:300px;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #CCCCCC;}
+
 	
 .error{text-align:center;font-weight:bold;color:red;}';
 	$sucessmsg='<div align="center"><h1>Thank you for your quote with travelwheels.</h1><p>Our friendly staff will soon be in touch and if you have any further questions you can email us at info@travelwheels.com.au</p></div>';
@@ -553,7 +605,7 @@ vertical-align:middle;
 					'step3title'=>'Campervan Insurance - please select one option Red, Orange or Green Insurance',
 					'step3moreinfo'=>'Click here for more information about Campervan insurance',
 					'oneway'=>'One Way Fee','addition_details'=>'Questions or special requests',
-					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Email me a quote form','yourdetails'=>'Enter your name and email for a quick quote'
+					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Enter your name and email for a quick quote'
 					);
 	$optionsarr['fr']=array(					 
 					'header_img'=>'headlogo-fr.png',	
@@ -599,7 +651,7 @@ vertical-align:middle;
 					'step3title'=>'Campervan Insurance - please select one option Red, Orange or Green Insurance',
 					'step3moreinfo'=>'Click here for more information about Campervan insurance',
 					'oneway'=>'One Way Fee','addition_details'=>'Questions or special requests',
-					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Email me a quote form','yourdetails'=>'Enter your name and email for a quick quote'
+					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Enter your name and email for a quick quote'
 					);
 	$optionsarr['da']=array(					 
 					'header_img'=>'headlogo-ge.png',	
@@ -644,7 +696,7 @@ vertical-align:middle;
 					'step3title'=>'Campervan Insurance - please select one option Red, Orange or Green Insurance',
 					'step3moreinfo'=>'Click here for more information about Campervan insurance',
 					'oneway'=>'One Way Fee','addition_details'=>'Questions or special requests',
-					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Email me a quote form','yourdetails'=>'Enter your name and email for a quick quote'
+					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Enter your name and email for a quick quote'
 					);	
 	$optionsarr['du']=array(					 
 					'header_img'=>'headlogo-du.png',	
@@ -689,7 +741,7 @@ vertical-align:middle;
 					'step3title'=>'Campervan Insurance - please select one option Red, Orange or Green Insurance',
 					'step3moreinfo'=>'Click here for more information about Campervan insurance',
 					'oneway'=>'One Way Fee','addition_details'=>'Questions or special requests',
-					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Email me a quote form','yourdetails'=>'Enter your name and email for a quick quote'
+					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Enter your name and email for a quick quote'
 					);
 	
 	$emailquote_template ='<p align="center"><img src="http://secure.rentalcarmanager.com.au/db/AUTravelWheels107/logo.gif" alt="121" /></p>
@@ -937,7 +989,7 @@ function rentalcar_settingfn() {
                  <p>Set Widget Background Color&nbsp;&nbsp;&nbsp;<input type="text" name="rental_searchform_bg_color" value="<?php echo get_option('rental_searchform_bg_color');?>"/></p>
                   <p>Set Widget Background Image&nbsp;&nbsp;&nbsp;<input type="file" name="rental_searchform_bg_img" />&nbsp;<a href="<?php echo plugins_url('/upload/'.get_option( 'rental_searchform_bg_img') , __FILE__ );?>" target="_blank">Preview</a></p>    
                    <p>Widget Background Image&nbsp;&nbsp;&nbsp;<input type="radio" name="rental_searchform_bg_stat" value="enabled" <?php if(get_option('rental_searchform_bg_stat')=='enabled'){ echo 'checked';}?>/>&nbsp;&nbsp;Enabled&nbsp;&nbsp;<input type="radio" name="rental_searchform_bg_stat" value="disabled" <?php if(get_option('rental_searchform_bg_stat')=='disabled'){ echo 'checked';}?>/>&nbsp;&nbsp;Disabled</p>                 
-                 <p>Stylesheet&nbsp;&nbsp;(<strong>Shortcode:</strong>&nbsp;[bookingform lang='en']&nbsp;[bookingform lang='da']&nbsp;[bookingform lang='fr']&nbsp;[bookingform lang='du'])</p>
+                 <p>Stylesheet&nbsp;&nbsp;(<strong>Shortcode:</strong>&nbsp;[rcm_search_results lang='en']&nbsp;[rcm_search_results lang='da']&nbsp;[rcm_search_results lang='fr']&nbsp;[rcm_search_results lang='du'])</p>
                 <p><textarea name="rental_searchform_css" class="regular-text csstxt"><?php echo stripslashes(get_option('rental_searchform_css'));?></textarea></p>
                 <div style="float: left; width: 80%;" class="submit">
                     <input type="submit" name="reset" value="Reset Settings" class="button-primary">
@@ -1056,7 +1108,6 @@ function set_rentalcar_lang($lang,$langtxt)
 					'dailyrate'=>$_POST["dailyrate"],
 					'subtotal'=>$_POST["subtotal"],
 					'insurance'=>$_POST["insurance"],
-					'yourdetails'=>$_POST["yourdetails"],
 					'totalcost'=>$_POST["totalcost"],
 					'back'=>$_POST["back"],
 					'step3title'=>$_POST["step3title"],
@@ -1161,7 +1212,7 @@ function set_rentalcar_lang($lang,$langtxt)
                             <td><input type="text"  name="oneway" value="<?php echo $myoptions["oneway"];?>" class="regular-text"/></td>
                           </tr>
                            <tr>
-                            <td>Email me a quote form</td>
+                            <td>Booking summary</td>
                             <td><input type="text"  name="bookingsummary" value="<?php echo $myoptions["bookingsummary"];?>" class="regular-text"/></td>
                           </tr>
                    		</table>
@@ -1269,10 +1320,7 @@ function set_rentalcar_lang($lang,$langtxt)
                             <td>Insurance</td>
                             <td><input type="text"  name="insurance" value="<?php echo $myoptions["insurance"];?>" class="regular-text"/></td>
                           </tr>
-                           <tr>
-                            <td>Your Details</td>
-                            <td><input type="text"  name="yourdetails" value="<?php echo $myoptions["yourdetails"];?>" class="regular-text"/></td>
-                          </tr>
+                       
                             <tr>
                              <td>Back</td>
                              <td><input type="text"  name="back" value="<?php echo $myoptions["back"];?>" class="regular-text"/></td>
@@ -1469,7 +1517,7 @@ function searchtoggle()
 }
 </script>
 <div id="rentalcar_form_section">';
-if($_GET["action"] == 'step2'){
+if($_GET["action"] == 'step2' or $_GET["action"] == 'email'){
 	$searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border:2px solid '.get_option('rental_searchform_bg_color').';border-radius:6px;text-align:center;padding:5px;"><a style="text-decoration:underline;color:#fff;font-size:15px;" onclick="searchtoggle()">'.$myoptions["acrodian"].'</a><a id="custom_toggle_a" style="background-position:-96px top !important" onclick="searchtoggle()">^</a></div>
 	<div class="rentalcar_form_div" data-role="content" style="'.$backstyle.'display:none;background-color:'.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-bottom:2px solid '.get_option('rental_searchform_bg_color').';border-radius:0 0 6px 6px">   
 <form method="GET" action="'.get_permalink().'" id="rentalcar">';
@@ -1604,7 +1652,10 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						}
 						else
 						{
-						$insurance='';
+						$insurance='<tr>
+						  <td>1. Red Insurance, Daily at AU$10.00 :</td>
+						  <td align="right">AU$'.$_POST["insurance"].'</td>
+						</tr>';
 						}
 						
 						if(trim($_POST["oneway"]) > 0)
@@ -1844,55 +1895,21 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				<div class="bookingh1">'.$myoptions["step3bookingtitle"].'</div>
 				<div class="restdiv">
 				<form action="?action=Quote&categoryStatus=1" method="post" name="theForm">
-					<table cellpadding="0" cellspacing="0" border="0" width="100%">
-					<tr>
-						<td width="52%" valign="top" align="left">
-							<table cellpadding="2" cellspacing="2" border="0" width="100%">
-								<tr>
-									<td align="left" width="84"><strong>'.$myoptions["bookingfname"].'</strong></td>
-									<td align="left"><input type="text" name="firstname" id="firstname" class="inpt_booking" style="width: 155px;"/></td>
-								</tr>							
-							</table>
-						</td>
-						<td valign="top" align="left">
-							<table cellpadding="2" cellspacing="2" border="0" width="100%">
-								<tr>
-									<td align="left" width="84"><strong>'.$myoptions["bookinglname"].'</strong></td>
-									<td align="left"><input type="text" name="lastname" id="lastname" class="inpt_booking" style="width: 155px;"/></td>
-								</tr>														
-							</table>
-						</td>
-					</tr>
-					<tr>						
-						<td colspan="2" align="left" valign="top">
-							<table cellpadding="2" cellspacing="2" border="0" width="100%">
-								<tr>
-									<td align="left" width="84"><strong>'.$myoptions["bookingemail"].'</strong></td>
-									<td align="left"><input type="text" name="CustomerEmail" id="CustomerEmail" class="inpt_booking_extend" style="width:490px"/></td>
-								</tr>							
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td width="52%" valign="top" align="left">
-							<table cellpadding="2" cellspacing="2" border="0" width="100%">
-								<tr>
-									<td align="left" width="84">&nbsp;</td>
-									<td align="left">
-									<img border="0" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;" onclick="validatebookingfrm()"/></td>
-								</tr>							
-							</table>
-						</td>
-						<td valign="top" align="left">
-							<table cellpadding="2" cellspacing="2" border="0" width="100%">
-								<tr>
-									<td align="left" width="84">&nbsp;</td>
-									<td align="left"><img border="0" oldsrc="'.$checkavailbtn.'" srcover="'.$checkavailbtn_ho.'" src="'.$checkavailbtn.'" style="box-shadow:none;border:none;border-radius:none;" onclick="validatebookingfrm()"/></td>
-								</tr>													
-							</table>
-						</td>
-					</tr>
-					</table>
+					<div  style="width:95%;margin:0 auto;">
+					<div class="chk_avail_fname_lvl"><strong>'.$myoptions["bookingfname"].'</strong></div>
+					<div class="chk_avail_fname_input"><input type="text" name="firstname" id="firstname" class="chk_inpt_booking"/></div>
+					<div class="chk_avail_lname_lvl"><strong>'.$myoptions["bookinglname"].'</strong></div>
+					<div class="chk_avail_lname_input"><input type="text" name="lastname" id="lastname" class="chk_inpt_booking"/></div>
+					
+					<div class="clear5"></div>					
+					<div class="chk_avail_email_lvl"><strong>'.$myoptions["bookingemail"].'</strong></div>
+					<div class="chk_avail_email_input">
+						<input type="text" name="CustomerEmail" id="CustomerEmail" class="inpt_booking_extend"/></div>
+					<div class="clear5"></div>
+				
+					<div class="chk_avail_emailquote"><img border="0" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;" onclick="validatebookingfrm()"/></div>
+					
+					<div class="chk_avail_availbtn"><img border="0" oldsrc="'.$checkavailbtn.'" srcover="'.$checkavailbtn_ho.'" src="'.$checkavailbtn.'" style="box-shadow:none;border:none;border-radius:none;" onclick="validatebookingfrm()"/></div>						
 					
 					<input type="hidden" name="CarSizeID" size="5" value="'.$carid.'" />
 					<input type="hidden" name="refkey" size="5" value="'.$refkey.'" />
@@ -1910,6 +1927,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					<input type="hidden" name="oneway" size="15" value="'.number_format($extrafees,2,'.','').'" />
 					<input type="hidden" name="insurance" size="15" id="pinsurance" value="'.number_format($insurance,2,'.','').'" />
 					<input type="hidden" name="totalcost" size="15" id="ptotalcost" value="'.number_format(($subtotal + $insurance + $extrafees),2,'.','').'" />
+					</div>
 				</form>
 				<div class="clear"></div>
 				</div>
@@ -1920,11 +1938,11 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	}	
 	elseif($_GET["action"] == 'email')
 	{
-		$searchout='';
+		
 		
 		 if($_POST["action"] == 'sent')
 		{
-			
+			$searchout='';
 			$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/PopulateWebBookingTotal?RCMReferenceKey='.urlencode($_POST["refkey"]);
 			$populatetotal=file_get_contents($url);
 			
@@ -1966,133 +1984,34 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					else
 					{
 						
-						$quote=$elements->getElementsByTagName("ReferenceNo");
-						$ReservationNo=$elements->getElementsByTagName("ReservationNo");
+						$quote=$elements->getElementsByTagName("ReferenceNo");$refquote=$quote->item(0)->nodeValue;
+						$ReservationNo=$elements->getElementsByTagName("ReservationNo");$refkey=$ReservationNo->item(0)->nodeValue;
 						$output .=$sucess_msg;
 						$subject='Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'(Sydney)';
-						$message ='';						
 						
-			$message .='<p align="center"><img src="http://secure.rentalcarmanager.com.au/db/AUTravelWheels107/logo.gif" alt="121" /></p>
-<div align="center">
-  <table border="0" cellspacing="0" cellpadding="0" width="650" style="border:1px solid #F69812;font-size:13px;line-height:1.2em;font-family:Arial">
-    <tr>
-      <td colspan="2" bgcolor="#F69812" style="padding:3px 0">Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'    (Sydney) </td>
-    </tr>
-    <tr>
-      <td colspan="2">Thank you for your Online Quotation with Travelwheels.</td>
-    </tr>
-    <tr>
-      <td colspan="2">This Online Quotation has now been forwarded to the    Location - Sydney.</td>
-    </tr>
-    <tr>
-      <td colspan="2">If you would like to proceed with this quotation :</td>
-    </tr>
-    <tr>
-      <td colspan="2"><table border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td><strong>TURN YOUR QUOTE INTO A BOOKING REQUEST <a href="http://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq='.$ReservationNo->item(0)->nodeValue.'&amp;E604='.date("d/M/Y",strtotime("+13 hours")).'" target="_blank"><font color="#FF0000">CLICK HERE</font></a></strong></td>
-          <td><img src="http://secure.rentalcarmanager.com.au/images/SafePayment.jpg" alt="231312" border="0" id="_x0000_i1026" /></td>
-        </tr>
-        <tr>
-          <td colspan="2">Note : If you are viewing this message in text mode and      having difficulties opening the above link, please try copying and pasting      the following entire link into the address bar of your Internet homepage.</td>
-        </tr>
-        <tr>
-          <td colspan="2"><a href="http://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq='.$ReservationNo->item(0)->nodeValue.'&amp;E604='.date("d/M/Y",strtotime("+13 hours")).'&amp;VD2=" target="_blank">http://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq='.$ReservationNo->item(0)->nodeValue.'&amp;E604='.date("d/M/Y",strtotime("+13 hours")).'&amp;VD2=</a></td>
-        </tr>
-      </table></td>
-    </tr>
-    <tr>
-      <td colspan="2">Your Quotation details are as follows:</td>
-    </tr>
-    <tr>
-      <td colspan="2">Quotation Date: '.date("d/M/Y",strtotime("Now")).'</td>
-    </tr>
-    <tr>
-        <td colspan="2" height="2px" width="100%" bgcolor="#F69812">&nbsp;</td>
-    </tr>
-    <tr>
-      <td width="120"><strong>Ref:</strong></td>
-      <td><p>'.$quote->item(0)->nodeValue.' (Sydney)</p></td>
-    </tr>
-    <tr>
-      <td>Name: </td>
-      <td>'.$_POST["firstname"].'&nbsp;'.$_POST["lastname"].'</td>
-    </tr>
-    <tr>
-      <td>Email: </td>
-      <td><a href="mailto:'.$_POST["CustomerEmail"].'" target="_blank">'.$_POST["CustomerEmail"].'</a></td>
-    </tr>
-    <tr>
-        <td colspan="2" height="2px" width="100%" bgcolor="#F69812">&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Vehicle Type </td>
-      <td>'.$_POST["vehicle_type"].'</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><img src="'.$_POST["imgsrc"].'" alt="logo" width="192" border="0" id="_x0000_i1027" /></td>
-    </tr>
-    <tr>
-      <td>Pickup Location: </td>
-      <td>'.$_POST["pickuplocation"].'</td>
-    </tr>
-    <tr>
-      <td>Pickup Date: </td>
-      <td>'.$_POST["pickupdate"].'&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Dropoff Location: </td>
-      <td>'.$_POST["dropofflocation"].'</td>
-    </tr>
-    <tr>
-      <td>Dropoff Date: </td>
-      <td>'.$_POST["dropoffdate"].'&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="2">Rental Rate and Fees</td>
-    </tr>
-    <tr>
-      <td colspan="2"><table border="0" cellpadding="0">
-        <tr>
-          <td>'.$_POST["TotalRentalDays"].'&nbsp;days @&nbsp;AU$'.$_POST["rateperday"].'&nbsp;(per day)&nbsp;</td>
-          <td align="right">&nbsp;AU$'.$_POST["subtotal"].'</td>
-        </tr>
-		<tr>
-          <td><strong>Total:</strong></td>
-          <td align="right">AU$'.$_POST["subtotal"].'</td>
-        </tr>
-        <tr>
-          <td colspan="2" align="right">(All Prices GST Inclusive)</td>
-        </tr>
-      </table></td>
-    </tr>
-    <tr>
-        <td colspan="2" height="5px" width="100%" bgcolor="#F69812">&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="2"><strong>CANCELLATION POLICY</strong><br />
-        If you unfortunately have to change your dates/travel plans, then we will do    our best to provide you with another campervan if we have availability    without any extra cancellation fees.&nbsp; If you have to completely cancel    your booking, then the following charges applies to all bookings:<br />
-        If cancelled over 30 days prior to pick-up date: Cancellation fee of 25%    of the full rental fee applies (equals the non refundable holding deposit to    secure the booking)&nbsp; If cancelled within 29-8 days of pick up: 50% of    the full rental fee applies.<br />
-        If cancelled within 7-1 days prior to pick up: 75% of full rental charge    applies.&nbsp; If cancelled on the day of pick up or no show: NO REFUNDS    sorry, &amp; the full rental fee will be charged to your credit card.<br/></td>
-    </tr>   
-    <tr>
-      <td colspan="2"><strong>Travelwheels</strong><br/>Sydney</td>
-    </tr>  
-    <tr>
-      <td colspan="2" bgcolor="#F69812" align="center">155 - 159 William    St<br />
-        Darlinghurst Sydney,&nbsp;NSW&nbsp;2010&nbsp;Australia<br />
-        Phone:1800 289 222 then dial 2&nbsp;&nbsp;&nbsp;Fax: 02 9666    4695&nbsp;&nbsp;Free Phone: 1800 289 222 THEN PRESS 2</td>
-    </tr>
-  </table>
-</div>
-<p align="center">'.get_bloginfo("name").'<br/>'.get_bloginfo("url").'</p>';
+						$message ='';	
+						$hr=get_option("rentalcar_timediff",true);
+						$today=date("d/M/Y",strtotime("+".$hr." hours"));$customer_email=$_POST["CustomerEmail"];
+						$customer_name=$_POST["firstname"].'&nbsp;'.$_POST["lastname"];
 						
+						if($_POST["totalcost"]!=""){$totalcost=$_POST["totalcost"];}else{$totalcost='';}
 						
-						$headers[] = 'From: Webmaster <'.get_bloginfo('admin_email').'>'."\r\n";
-						$headers[] = 'Bcc: info <info@travelwheels.com.au>'."\r\n";
-						$headers[] = 'Bcc: info <gino@travelwheels.com.au>'."\r\n";
-						$headers[] = 'Bcc: Developer <smrutiniit@gmail.com>'."\r\n";
+						$findtag=array("[refquote]","[refkey]","[today]","[customer_name]","[customer_email]","[vehicle_type]","[imgsrc]","[pickuplocation]","[pickupdate]","[dropofflocation]","[dropoffdate]","[totalrentaldays]","[rateperday]","[subtotal]","[insurance]","[oneway]","[totalcost]","[sitetitle]","[siteurl]");
+						$replacetag=array($refquote,$refkey,$today,$customer_name,$customer_email,$_POST["vehicle_type"],$_POST["imgsrc"],$_POST["pickuplocation"],$_POST["pickupdate"],$_POST["dropofflocation"],$_POST["dropoffdate"],$_POST["TotalRentalDays"],$_POST["rateperday"],$_POST["subtotal"],'','',$_POST["subtotal"],get_bloginfo("name"),get_bloginfo("url"));
+						$message .=str_replace($findtag,$replacetag,$emailquote_template_msg);	
+						
+						if(get_option("rental_emails_from",true)!=""){$headers[] = 'From: '.get_option("rental_emails_from",true).''."\r\n";
+						}else{
+							$headers[] = 'From: Webmaster <'.get_bloginfo('admin_email').'>'."\r\n";
+						}
+						if(get_option("rental_emails_to",true)!=""){
+							$bccarr=explode(",",get_option("rental_emails_to",true));
+							foreach($bccarr as $val){
+								if($val!=""){
+									$headers[] = 'Bcc: '.$val.''."\r\n";
+								}
+							}
+						}	
 						
 						add_filter( 'wp_mail_content_type', 'set_html_content_type' );
 						wp_mail($_POST["CustomerEmail"],$subject,$message,$headers);	
@@ -2103,7 +2022,8 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 			}			
 		}
 		else
-		{		
+		{	
+			$output=$searchout;
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestVehicleAvailability?PickupLocation='.urlencode($_GET["PickupLocationID"]).'&PickupDate='.urlencode($_GET["PickDate"]).'&PickupTime=12:00&DropOffLocation='.urlencode($_GET["DLocationID"]).'&DropOffDate='.urlencode($_GET["DropoffDate"]).'&DropOffTime=12:00&DriverAge=30&CategoryTypeID='.$CategoryTypeID.'&SecureKey='.urlencode($securekey).'&PromoCode='.urlencode($_GET["promo"]);	
 		
 			$articles = file_get_contents($url);
@@ -2178,89 +2098,70 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					<div class="booking_chkoutleft">											
 						<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>											
 					</div>
-					<div style="width:65%;float:left;margin-left:2%">						
-						<table cellpadding="0" cellspacing="0" border="0" width="100%">
-						<tr>
-							<td width="25%"><strong>'.$myoptions["vehicletype"].':</strong></td>
-							<td>'.$catdesc.'</td>
-						</tr>
-						<tr>
-							<td width="25%"><strong>'.$myoptions["pickup"].':</strong></td>
-							<td>'.$pickup.'</td>
-						</tr>
-						<tr>
-							<td width="25%"><strong>'.$myoptions["dropoff"].':</strong></td>
-							<td>'.$dropoff.'</td>
-						</tr>
-						<tr>
-							<td width="25%"><strong>'.$myoptions["dailyrate"].':</strong></td>
-							<td>$'.$rateperday.'&nbsp;/&nbsp;day&nbsp;(total '.$numofday.' days)</td>
-						</tr>
-						<tr>
-							<td width="25%"><strong>'.$myoptions["subtotal"].':</strong></td>
-							<td>AUD $'.$subtotal.'</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td><div style="padding: 0px; margin: 0px; font-size: 11px; line-height: 1.4em;">'.$myoptions["subtotal_notes"].'</div></td>
-						</tr>
-						</table>													
+					<div class="booking_checkout_center">
+						<div class="lvl">'.$myoptions["vehicletype"].':</div>
+						<div class="lvl_val">'.$catdesc.'</div>
+						<div class="clear5"></div>
+						
+						<div class="lvl">'.$myoptions["pickup"].':</div>
+						<div class="lvl_val">'.$pickup.'</div>
+						<div class="clear5"></div>
+						
+						<div class="lvl">'.$myoptions["dropoff"].':</div>
+						<div class="lvl_val">'.$dropoff.'</div>
+						<div class="clear5"></div>
+						
+						<div class="lvl">'.$myoptions["dailyrate"].':</div>
+						<div class="lvl_val">$'.$rateperday.'&nbsp;/&nbsp;day&nbsp;(total '.$numofday.' days)</div>
+						<div class="clear5"></div>
+						
+						<div class="lvl">'.$myoptions["subtotal"].':</div>
+						<div class="lvl_val">AUD $'.$subtotal.'</div>
+						<div class="clear5"></div>
+						<div style="padding: 0px; margin: 0px; font-size: 11px; line-height: 1.4em;">'.$myoptions["subtotal_notes"].'</div>						
 					</div>
-					<div class="clear5"></div>
-			</div>
-		</div>
-		
-		<div class="bookingwrap clearfix">
-			<div class="bookingh1">'.$myoptions["yourdetails"].'</div>
-				<div class="restdiv">				
-				<table border="0" cellspacing="0" cellpadding="0" width="100%">                  
-                  <tbody>
-				  <tr>
-                    <td width="60" align="left">&nbsp;</td>
-                    <td width="250" align="left" class="underline"><strong>'.$myoptions["bookingfname"].':</strong></td>
-                    <td align="left" class="underline"><input type="text" class="customerfield" maxlength="30" name="firstname" id="firstname"/></td>
-                  </tr>
-                  <tr>
-                    <td width="60" align="left">&nbsp;</td>
-                    <td width="250" align="left" class="underline"><strong>'.$myoptions["bookinglname"].':</strong></td>
-                    <td align="left" class="underline"><input type="text" class="customerfield" maxlength="30" name="lastname" id="lastname"/></td>
-                  </tr>
-                  <tr>
-                    <td width="60" align="left">&nbsp;</td>
-                    <td width="250" align="left" class="underline"><strong>'.$myoptions["bookingemail"].':</strong></td>
-                    <td align="left" class="underline"><input type="text" class="customerfield" maxlength="50" name="CustomerEmail" id="CustomerEmail"/>
-                    </td>
-                  </tr>               
-                  <tr>
-                    <td width="60" align="left">&nbsp;</td>
-                    <td width="250" valign="top" align="left"><strong>'.$myoptions["addition_details"].':</strong></td>
-                    <td align="left"><textarea name="Notes" rows="6" cols="35" style="margin:4px 0;"></textarea>
-                    </td>
-                  </tr>                
-                  <tr>
-                    <td width="60" align="left">&nbsp;</td>
-                    <td width="250" align="left">&nbsp;</td>
-                    <td align="left">
-					<input type="hidden" name="CarSizeID" value="'.$_GET["CarSizeID"].'"/>
-					<input type="hidden" name="refkey" size="5" value="'.$refkey.'" />
-					
-					<input type="hidden" name="imgsrc" size="5" value="'.$imgsrc.'" />
-					<input type="hidden" name="vehicle_type" value="'.$catdesc.'"/>
-					<input type="hidden" name="pickuplocation" size="5" value="'.$from.'" />
-					<input type="hidden" name="dropofflocation" size="5" value="'.$to.'" />
-					<input type="hidden" name="pickupdate" size="15" value="'.date("d/M/Y",strtotime($_GET["PickDate"])).'" />
-					<input type="hidden" name="dropoffdate" size="15" value="'.date("d/M/Y",strtotime($_GET["DropoffDate"])).'" />
-					<input type="hidden" name="rateperday" size="15" value="'.$rateperday.'" />
-					<input type="hidden" name="subtotal" size="15" value="'.number_format($subtotal,2,'.','').'" />
-					<input type="hidden" name="TotalRentalDays" size="15" value="'.$numofday.'" />
-					
-					<input type="hidden" name="pickup" value="'.$pickup.'"/>
-					<input type="hidden" name="dropoff" value="'.$dropoff.'"/>
-					<input type="hidden" name="action" value="sent"/>
-				<img border="0" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="margin-left:168px;box-shadow:none;border:none;border-radius:none;" onclick="validatequote();"/>
-					</td>
-                  </tr>
-                </tbody></table>				
+					<div class="clear5"></div>	
+					<div style="width:90%;margin:0 auto">
+						<div class="lvl underline">'.$myoptions["bookingfname"].':</div>
+                    	<div class="lvl_val underline">
+							<input type="text" class="customerfield" maxlength="30" name="firstname" id="firstname"/>
+                  		</div>
+						<div class="clear5"></div>
+                  		<div class="lvl underline">'.$myoptions["bookinglname"].':</div>
+                    	<div class="lvl_val underline">
+							<input type="text" class="customerfield" maxlength="30" name="lastname" id="lastname"/>
+                  		</div>
+						<div class="clear5"></div>
+                  		<div class="lvl underline">'.$myoptions["bookingemail"].':</div>
+                    	<div class="lvl_val underline">
+							<input type="text" class="customerfield" maxlength="50" name="CustomerEmail" id="CustomerEmail"/>
+                    	</div>
+						<div class="clear5"></div>
+						<div class="lvl_val_email">                    
+							<input type="hidden" name="CarSizeID" value="'.$_GET["CarSizeID"].'"/>
+							<input type="hidden" name="refkey" size="5" value="'.$refkey.'" />
+							
+							<input type="hidden" name="imgsrc" size="5" value="'.$imgsrc.'" />
+							<input type="hidden" name="vehicle_type" value="'.$catdesc.'"/>
+							<input type="hidden" name="pickuplocation" size="5" value="'.$from.'" />
+							<input type="hidden" name="dropofflocation" size="5" value="'.$to.'" />
+							<input type="hidden" name="pickupdate" size="15" value="'.date("d/M/Y",strtotime($_GET["PickDate"])).'" />
+							<input type="hidden" name="dropoffdate" size="15" value="'.date("d/M/Y",strtotime($_GET["DropoffDate"])).'" />
+							<input type="hidden" name="rateperday" size="15" value="'.$rateperday.'" />
+							<input type="hidden" name="subtotal" size="15" value="'.number_format($subtotal,2,'.','').'" />
+							<input type="hidden" name="TotalRentalDays" size="15" value="'.$numofday.'" />
+							
+							<input type="hidden" name="pickup" value="'.$pickup.'"/>
+							<input type="hidden" name="dropoff" value="'.$dropoff.'"/>
+							<input type="hidden" name="action" value="sent"/>
+						<img border="0" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" class="emailqu" onclick="validatequote();"/>
+						</div>
+						<div class="clear5"></div>
+                  		<div class="lvl" style="width:100%;">'.$myoptions["addition_details"].':</div>
+                    	<div class="lvl_val" style="width:100%">
+							<textarea name="Notes" class="emailqu_textarea"></textarea>
+                    	</div>
+					</div>			
 					<div class="clear5"></div>
 				</div>
 				<div class="clear5"></div>
@@ -2317,12 +2218,12 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					$output .='<div class="bookingwrap clearfix">
 									<div class="bookingh1">'.$catdesc.'</div>
 									<div class="restdiv">
-										<div class="bookingleft"><img src="'.$imgsrc.'" border="0" height="114"/>
+										<div class="bookingleft"><img src="'.$imgsrc.'" border="0"/>
 											<div class="clear"></div>
 											<a onclick="openMoreInfo('.$carid.');" href="#" style="font-size: 13px;">'.$myoptions["clickinfo"].'</a>
 										</div>
 										<div class="bookingcentre">
-												<div style="height: 80px; overflow: hidden;">'.$desc.'</div>
+												<div class="desc">'.$desc.'</div>
 												<div class="emailme">
 												<a href="'.get_permalink().'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=email"><img border="0" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;"/></a></div>
 										</div>
