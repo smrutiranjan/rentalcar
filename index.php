@@ -27,11 +27,11 @@ $layout='
 	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
 	.lvl_val{width:65%;font-weight:normal;float:right;}
 	.lvl_val_email{float:right;text-align:right;width:100%;}
-	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #CCCCCC;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
 	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
 	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
 .emailme{float:left;}
-.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #CCCCCC;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
 .booking_chkoutleft{float:left;width:30%;}
 .booking_chkoutright{float:right;line-height:30px;width:65%;}
 .bookingleft{
@@ -70,7 +70,7 @@ $layout='
 .underline {border-bottom: 1px solid #E8E8E8;}
 }
 @media only screen and (min-device-width:320px) and (max-device-width: 480px) {
-	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #CCCCCC;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
 	.emailqu{box-shadow:none;border:none;border-radius:none;margin-top:5px;}
 	.booking_checkout_center{width:100%;float:none;text-align:center;}
 	.emailme,.bookingleft,.bookingcentre,.bookingright{ width:100%;float:none; line-height: 15px;text-align:center;}
@@ -91,7 +91,7 @@ $layout='
 }
 .booking_chkoutleft{float:none;width:100%;text-align:center;}
 .booking_chkoutright{float:none;line-height:30px;width:100%;text-align:center;}
-.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #CCCCCC;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
 
 .chk_avail_fname_lvl,.chk_avail_fname_input,.chk_avail_lname_lvl,.chk_avail_lname_lvl,.chk_avail_lname_input,.chk_avail_email_lvl,.chk_avail_email_input,.chk_avail_emailquote,.chk_avail_availbtn{float:none;width:100%;text-align:center;}
 }
@@ -111,11 +111,11 @@ $layout='
 	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
 	.lvl_val{width:65%;font-weight:normal;float:right;}
 	.lvl_val_email{float:right;text-align:right;width:100%;}
-	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #CCCCCC;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
 	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
 	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
 .emailme{float:left;}
-.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #CCCCCC;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
 .booking_chkoutleft{float:left;width:30%;}
 .booking_chkoutright{float:right;line-height:30px;width:65%;}
 .bookingleft{
@@ -468,7 +468,7 @@ font:bold 13px Arial,Helvetica;
   background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
   background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
   background-repeat: repeat-x;
-  border: 1px solid #cccccc;
+  border: 1px solid #F69812;
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   border-bottom-color: #b3b3b3;
