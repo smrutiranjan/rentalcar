@@ -12,6 +12,63 @@ register_activation_hook(__FILE__,'rentalcar_install');
 function rentalcar_install()
 {
 $layout='
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.inpt_booking_extend{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+	.chk_inpt_booking{border:1px solid #ddd;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
+	.chk_avail_fname_lvl{float:left;width:84px;}
+.chk_avail_fname_input{float:left;}
+.chk_avail_lname_lvl{float:left;margin-left:15%;width:84px;}
+.chk_avail_lname_input{float:left;}
+.chk_avail_email_lvl{float:left;width:84px;}
+.chk_avail_email_input{float:left;width:81%;}
+.chk_avail_emailquote{float:left;margin-left:84px;}
+.chk_avail_availbtn{float:right;margin-right:20px;}
+	
+	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
+	.lvl_val{width:65%;font-weight:normal;float:right;}
+	.lvl_val_email{float:right;text-align:right;width:100%;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #CCCCCC;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
+	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
+.emailme{float:left;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #CCCCCC;}
+.booking_chkoutleft{float:left;width:30%;}
+.booking_chkoutright{float:right;line-height:30px;width:65%;}
+.bookingleft{
+	clear: left;
+	float: left;
+	line-height: 15px;
+	width: 30%;
+}
+.desc{height: 80px; overflow: hidden;}
+.bookingleft img{
+	max-width:150px;
+	height:114px;
+}
+.price {
+ 	font-size: 18px;
+    font-weight: bold;
+    height: 70px;
+    line-height: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+.bookingcentre
+{
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 2%;
+    text-align: left;
+    width: 40%;
+}
+.bookingright{
+	float: right;
+	position: relative;
+	width: 28%;
+}
+.underline {border-bottom: 1px solid #E8E8E8;}
+}
 @media only screen and (min-device-width:320px) and (max-device-width: 480px) {
 	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #CCCCCC;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
 	.emailqu{box-shadow:none;border:none;border-radius:none;margin-top:5px;}
@@ -1496,8 +1553,16 @@ jQuery( document ).ready(function($) {
 		else if($lang == 'du') { $searchout .= '$.datepicker.setDefaults( $.datepicker.regional[ "nl" ] );';}
 		else { $searchout.='$.datepicker.setDefaults( $.datepicker.regional[ "" ] );';}  
 $searchout .='jQuery("#PickupLocation,#DropOffLocation").selectBoxIt({theme: "jquerymobile"});
-$("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",defaultDate: +2});
-$("#DropOffDate").datepicker({ numberOfMonths: 3,defaultDate: +16,dateFormat: "dd/mm/yy"});
+$("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",defaultDate: +2,
+						onSelect: function (dateText, inst) {
+								var date = $(this).datepicker("getDate");
+								if (date){
+									date.setDate(date.getDate() + 14);
+									$( "#DropOffDate" ).datepicker( "option", "minDate", date );
+								}
+						}
+									});
+		$("#DropOffDate").datepicker({ numberOfMonths: 3,defaultDate: +14,dateFormat: "dd/mm/yy"});
 });
 var j = jQuery.noConflict();
 function searchtoggle()
