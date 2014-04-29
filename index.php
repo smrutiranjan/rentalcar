@@ -11,18 +11,16 @@ Version: 1.1
 register_activation_hook(__FILE__,'rentalcar_install');
 function rentalcar_install()
 {
-$layout='
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
-	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
-	.chk_avail_fname_lvl{float:left;width:84px;}
-.chk_avail_fname_input{float:left;}
-.chk_avail_lname_lvl{float:left;margin-left:15%;width:84px;}
-.chk_avail_lname_input{float:left;}
-.chk_avail_email_lvl{float:left;width:84px;}
-.chk_avail_email_input{float:left;width:81%;}
-.chk_avail_emailquote{float:left;margin-left:84px;}
-.chk_avail_availbtn{float:right;margin-right:20px;}
+$mac_style='.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
+	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
+	.chk_avail_fname_lvl{float:left;width:15%;}
+.chk_avail_fname_input{float:left;width:30%;}
+.chk_avail_lname_lvl{ float: left; margin-left: 8%; text-align: right;width: 15%;}
+.chk_avail_lname_input{float:right;width:30%;text-align:right;}
+.chk_avail_email_lvl{float:left;width:15%;}
+.chk_avail_email_input{float:right;width:85%;}
+.chk_avail_emailquote{float:left;margin-left:15%;}
+.chk_avail_availbtn{float:right;}
 	
 	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
 	.lvl_val{width:65%;font-weight:normal;float:right;}
@@ -68,92 +66,6 @@ $layout='
 	width: 28%;
 }
 .underline {border-bottom: 1px solid #E8E8E8;}
-}
-@media only screen and (min-device-width:320px) and (max-device-width: 480px) {
-	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
-	.emailqu{box-shadow:none;border:none;border-radius:none;margin-top:5px;}
-	.booking_checkout_center{width:100%;float:none;text-align:center;}
-	.emailme,.bookingleft,.bookingcentre,.bookingright{ width:100%;float:none; line-height: 15px;text-align:center;}
-	.bookingh1{text-align:center;}.bookingcentre{margin:0;}.desc{margin:5px 0;}
-	.price {
- 	font-size: 18px;
-    font-weight: bold;
-    margin:20px 0 0 0;
-    line-height: 0;
-}
-.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
-.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%;}
-.lvl{width:100%;font-weight:bold;text-align:center;}
-.lvl_val{width:100%;font-weight:normal;text-align:center;}
-.lvl_val_email{float:none;text-align:center;width:100%;}
-.bookingleft img{
-	max-width:100%;
-}
-.booking_chkoutleft{float:none;width:100%;text-align:center;}
-.booking_chkoutright{float:none;line-height:30px;width:100%;text-align:center;}
-.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
-
-.chk_avail_fname_lvl,.chk_avail_fname_input,.chk_avail_lname_lvl,.chk_avail_lname_lvl,.chk_avail_lname_input,.chk_avail_email_lvl,.chk_avail_email_input,.chk_avail_emailquote,.chk_avail_availbtn{float:none;width:100%;text-align:center;}
-}
-
-@media only screen and (min-device-width:480px) and (max-device-width:1900px) {
-	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
-	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
-	.chk_avail_fname_lvl{float:left;width:84px;}
-.chk_avail_fname_input{float:left;}
-.chk_avail_lname_lvl{float:left;margin-left:15%;width:84px;}
-.chk_avail_lname_input{float:left;}
-.chk_avail_email_lvl{float:left;width:84px;}
-.chk_avail_email_input{float:left;width:81%;}
-.chk_avail_emailquote{float:left;margin-left:84px;}
-.chk_avail_availbtn{float:right;margin-right:20px;}
-	
-	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
-	.lvl_val{width:65%;font-weight:normal;float:right;}
-	.lvl_val_email{float:right;text-align:right;width:100%;}
-	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
-	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
-	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
-.emailme{float:left;}
-.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
-.booking_chkoutleft{float:left;width:30%;}
-.booking_chkoutright{float:right;line-height:30px;width:65%;}
-.bookingleft{
-	clear: left;
-	float: left;
-	line-height: 15px;
-	width: 30%;
-}
-.desc{height: 80px; overflow: hidden;}
-.bookingleft img{
-	max-width:150px;
-	height:114px;
-}
-.price {
- 	font-size: 18px;
-    font-weight: bold;
-    height: 70px;
-    line-height: 0;
-    margin: 0;
-    padding-top: 10px;
-}
-.bookingcentre
-{
-    float: left;
-    font-size: 14px;
-    line-height: 18px;
-    margin-left: 2%;
-    text-align: left;
-    width: 40%;
-}
-.bookingright{
-	float: right;
-	position: relative;
-	width: 28%;
-}
-.underline {border-bottom: 1px solid #E8E8E8;}
-}
-
 .sep_checkout{background-color:#F69812;height: 1px; width: 100%; clear: both; margin: 10px 0; }
 .clear{clear:both;}
 .clear5{clear:both;height:10px;}
@@ -614,11 +526,733 @@ color:#111;
 }
 .rentalcar_form_div img{
 vertical-align:middle;
+}	
+.error{text-align:center;font-weight:bold;color:red;}
+';
+$layout='/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;max-width:500px; }
+	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
+	.chk_avail_fname_lvl{float:left;width:15%;}
+.chk_avail_fname_input{float:left;width:30%;}
+.chk_avail_lname_lvl{ float: left; margin-left: 8%; text-align: right;width: 15%;}
+.chk_avail_lname_input{float:right;width:30%;text-align:right;}
+.chk_avail_email_lvl{float:left;width:15%;}
+.chk_avail_email_input{float:right;width:85%;}
+.chk_avail_emailquote{float:left;margin-left:15%;}
+.chk_avail_availbtn{float:right;}
+	
+	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
+	.lvl_val{width:65%;font-weight:normal;float:right;}
+	.lvl_val_email{float:right;text-align:right;width:100%;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
+	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
+.emailme{float:left;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
+.booking_chkoutleft{float:left;width:30%;}
+.booking_chkoutright{float:right;line-height:30px;width:65%;}
+.bookingleft{
+	clear: left;
+	float: left;
+	line-height: 15px;
+	width: 30%;
+}
+.desc{height: 80px; overflow: hidden;}
+.bookingleft img{
+	max-width:150px;
+	height:114px;
+}
+.price {
+ 	font-size: 18px;
+    font-weight: bold;
+    height: 70px;
+    line-height: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+.bookingcentre
+{
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 2%;
+    text-align: left;
+    width: 40%;
+}
+.bookingright{
+	float: right;
+	position: relative;
+	width: 28%;
+}
+.underline {border-bottom: 1px solid #E8E8E8;}
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	
+	
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu{box-shadow:none;border:none;border-radius:none;margin-top:5px;}
+	.booking_checkout_center{width:100%;float:none;text-align:center;}
+	.emailme,.bookingleft,.bookingcentre,.bookingright{ width:100%;float:none; line-height: 15px;text-align:center;}
+	.bookingh1{text-align:center;}.bookingcentre{margin:0;}.desc{margin:5px 0;}
+	.price {
+ 	font-size: 18px;
+    font-weight: bold;
+    margin:20px 0 0 0;
+    line-height: 0;
+}
+.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%;}
+.lvl{width:100%;font-weight:bold;text-align:center;}
+.lvl_val{width:100%;font-weight:normal;text-align:center;}
+.lvl_val_email{float:none;text-align:center;width:100%;}
+.bookingleft img{
+	max-width:100%;
+}
+.booking_chkoutleft{float:none;width:100%;text-align:center;}
+.booking_chkoutright{float:none;line-height:30px;width:100%;text-align:center;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
+
+.chk_avail_fname_lvl,.chk_avail_fname_input,.chk_avail_lname_lvl,.chk_avail_lname_lvl,.chk_avail_lname_input,.chk_avail_email_lvl,.chk_avail_email_input,.chk_avail_emailquote,.chk_avail_availbtn{float:none;width:100%;text-align:center;}
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 481px) and (max-device-width : 640px) {
+	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:125px;}
+	.chk_avail_fname_lvl{float:left;width:84px;}
+.chk_avail_fname_input{float:left;}
+.chk_avail_lname_lvl{float:left;margin-left:6%;width:84px;}
+.chk_avail_lname_input{float:left;}
+.chk_avail_email_lvl{float:left;width:84px;}
+.chk_avail_email_input{float:left;width:80%;}
+.chk_avail_emailquote{float:left;margin-left:84px;}
+.chk_avail_availbtn{float:right;margin-right:0;}
+	
+	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
+	.lvl_val{width:65%;font-weight:normal;float:right;}
+	.lvl_val_email{float:right;text-align:right;width:100%;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
+	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
+.emailme{float:left;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
+.booking_chkoutleft{float:left;width:30%;}
+.booking_chkoutright{float:right;line-height:30px;width:65%;}
+.bookingleft{
+	clear: left;
+	float: left;
+	line-height: 15px;
+	width: 30%;
+}
+.desc{height: 80px; overflow: hidden;}
+.bookingleft img{
+	max-width:150px;
+	height:114px;
+}
+.price {
+ 	font-size: 18px;
+    font-weight: bold;
+    height: 70px;
+    line-height: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+.bookingcentre
+{
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 2%;
+    text-align: left;
+    width: 40%;
+}
+.bookingright{
+	float: right;
+	position: relative;
+	width: 28%;
+}
+.underline {border-bottom: 1px solid #E8E8E8;}
+}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
+	.chk_avail_fname_lvl{float:left;width:84px;}
+.chk_avail_fname_input{float:left;}
+.chk_avail_lname_lvl{float:left;margin-left:32%;width:84px;}
+.chk_avail_lname_input{float:left;}
+.chk_avail_email_lvl{float:left;width:84px;}
+.chk_avail_email_input{float:left;width:81%;}
+.chk_avail_emailquote{float:left;margin-left:84px;}
+.chk_avail_availbtn{float:right;margin-right:8%;}
+	
+	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
+	.lvl_val{width:65%;font-weight:normal;float:right;}
+	.lvl_val_email{float:right;text-align:right;width:100%;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
+	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
+.emailme{float:left;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
+.booking_chkoutleft{float:left;width:30%;}
+.booking_chkoutright{float:right;line-height:30px;width:65%;}
+.bookingleft{
+	clear: left;
+	float: left;
+	line-height: 15px;
+	width: 30%;
+}
+.desc{height: 80px; overflow: hidden;}
+.bookingleft img{
+	max-width:150px;
+	height:114px;
+}
+.price {
+ 	font-size: 18px;
+    font-weight: bold;
+    height: 70px;
+    line-height: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+.bookingcentre
+{
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 2%;
+    text-align: left;
+    width: 40%;
+}
+.bookingright{
+	float: right;
+	position: relative;
+	width: 28%;
+}
+.underline {border-bottom: 1px solid #E8E8E8;}
+}
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:100%; }
+	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:155px;}
+	.chk_avail_fname_lvl{float:left;width:84px;}
+.chk_avail_fname_input{float:left;}
+.chk_avail_lname_lvl{float:left;margin-left:13%;width:84px;}
+.chk_avail_lname_input{float:left;}
+.chk_avail_email_lvl{float:left;width:84px;}
+.chk_avail_email_input{float:left;width:81%;}
+.chk_avail_emailquote{float:left;margin-left:84px;}
+.chk_avail_availbtn{float:right;margin-right:20px;}
+	
+	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
+	.lvl_val{width:65%;font-weight:normal;float:right;}
+	.lvl_val_email{float:right;text-align:right;width:100%;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
+	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
+.emailme{float:left;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
+.booking_chkoutleft{float:left;width:30%;}
+.booking_chkoutright{float:right;line-height:30px;width:65%;}
+.bookingleft{
+	clear: left;
+	float: left;
+	line-height: 15px;
+	width: 30%;
+}
+.desc{height: 80px; overflow: hidden;}
+.bookingleft img{
+	max-width:150px;
+	height:114px;
+}
+.price {
+ 	font-size: 18px;
+    font-weight: bold;
+    height: 70px;
+    line-height: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+.bookingcentre
+{
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 2%;
+    text-align: left;
+    width: 40%;
+}
+.bookingright{
+	float: right;
+	position: relative;
+	width: 28%;
+}
+.underline {border-bottom: 1px solid #E8E8E8;}
+}
+.sep_checkout{background-color:#F69812;height: 1px; width: 100%; clear: both; margin: 10px 0; }
+.clear{clear:both;}
+.clear5{clear:both;height:10px;}
+.clearfix {
+    display: block;
+}
+.calculate_total,#totalcost{color:#F69812;font-size:15px;}
+.insuranceth{color:#F69812;font-size:13px;font-weight:bold;}
+.booking_title{color:#F69812;font-size:15px;font-weight:bold;}
+.inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);padding:3px 5px;margin:0px;line-height:15px;font-size:14px;width:200px; }
+
+.dailyrate {
+    font-size: 25px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+}
+.dailyrate_small {
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 0;
+    padding: 20px;
 }
 
-	
-.error{text-align:center;font-weight:bold;color:red;}';
-	$sucessmsg='<div align="center"><h1>Thank you for your quote with travelwheels.</h1><p>Our friendly staff will soon be in touch and if you have any further questions you can email us at info@travelwheels.com.au</p></div>';
+.bookingwrap {
+    background:#fff;
+    clear: both;
+    margin: 0 auto 10px;  
+}
+.restdiv{
+	border:2px solid #F69812;
+	padding:10px;
+	border-radius:0 0 6px 6px;
+	font-size: 15px;
+    line-height: 30px;
+	font-family:Arial,Helvetica,sans-serif;
+}
+.bookingfooter{
+	height:60px;display:block;width:100%;
+}
+
+
+.bookingh1{
+	background-color:#F69812;
+	padding:3px 10px;
+	color:#fff;
+	border-radius:6px 6px 0 0;
+}
+
+.bookingright .TotalCost {
+    color: #000;
+    text-align: center;
+}
+.bookingright .TotalCost h3{
+	 color: #000;
+    font-size: 18px;
+    font-weight: bold;
+}
+.ErrorBookingNEW, .ErrorBookingNEW a, .ErrorBookingNEW a:hover {
+    color: #000;
+    line-height: 1.3em;
+    text-align: center;
+    text-decoration: none;
+}
+.ErrorBookingNEW {
+    background: none repeat scroll 0 0 #EE5B28;
+    border-radius: 5px;
+    bottom: 40px;
+    left: 555px;
+    padding: 3px;
+    position: absolute;
+    visibility: visible;
+    width: 194px;
+}
+.moreInfo {
+    background: url('.plugins_url('icon-moreinfo.png', __FILE__).') no-repeat scroll center center rgba(0, 0, 0, 0);
+    width: 110px;
+}
+.videoTour a, .moreInfo a, .currencyConverter a, .liveChat a{
+	display: block;
+    height: 100%;
+    width: 100%;
+}
+.videoTour span, .moreInfo span, .currencyConverter span{
+	visibility:hidden;
+}
+.currencyConverter {
+    background: url('.plugins_url('icon-currency.png', __FILE__).') no-repeat scroll center center rgba(0, 0, 0, 0);
+    width: 105px;
+}
+br {
+    clear: both;
+    padding: 0;
+    width: 100%;
+}
+.custom_div_left{width: 45%; float: left; margin: 0px; padding: 0px; text-align: left; line-height: 25px;}
+.custom_div_right{width: 45%; float: right; margin: 0px; padding: 0px; text-align: left; line-height: 25px;}
+/* SelectBoxIt container */
+.selectboxit-container {
+  position: relative;
+  display: block;
+  vertical-align: top;
+}
+.ui-btn-up-c {
+    background: none repeat scroll 0 0 #F9F9F9;
+}
+/* Styles that apply to all SelectBoxIt elements */
+.selectboxit-container * {
+  font: 14px Helvetica, Arial;
+  /* Prevents text selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  outline: none;
+  white-space: nowrap;
+}
+
+/* Button */
+.selectboxit-container .selectboxit {
+  width: 100%; /* Width of the dropdown button */
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
+
+/* Height and Vertical Alignment of Text */
+.selectboxit-container span, .selectboxit-container .selectboxit-options a {
+  height: 35px; /* Height of the drop down */
+  line-height:35px; /* Vertically positions the drop down text */
+  display: block;
+}
+
+/* Focus pseudo selector */
+.selectboxit-container .selectboxit:focus {
+  outline: 0;
+}
+
+/* Disabled Mouse Interaction */
+.selectboxit.selectboxit-disabled, .selectboxit-options .selectboxit-disabled {
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+
+/* Button Text */
+.selectboxit-text {
+  text-indent: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+color:#111111;
+font:bold 13px Arial,Helvetica;
+}
+
+.selectboxit .selectboxit-option-icon-container {
+  margin-left: 5px;
+}
+
+/* Options List */
+.selectboxit-container .selectboxit-options {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-width: 100%;  /* Minimum Width of the dropdown list box options */
+  *width: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: auto;
+  cursor: pointer;
+  display: none;
+  z-index: 9999999999999;
+  border-radius: 6px;
+  text-align: left;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* Individual options */
+ .selectboxit-option .selectboxit-option-anchor{
+  padding: 0 2px;
+}
+
+/* Individual Option Hover Action */
+.selectboxit-option .selectboxit-option-anchor:hover {
+  text-decoration: none;
+}
+
+/* Individual Option Optgroup Header */
+.selectboxit-option, .selectboxit-optgroup-header {
+  text-indent: 5px; /* Horizontal Positioning of the select box option text */
+  margin: 0;
+  list-style-type: none;
+}
+
+/* The first Drop Down option */
+.selectboxit-option-first {
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+/* The first Drop Down option optgroup */
+.selectboxit-optgroup-header + .selectboxit-option-first {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+/* The last Drop Down option */
+.selectboxit-option-last {
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+/* Drop Down optgroup headers */
+.selectboxit-optgroup-header {
+  font-weight: bold;
+}
+
+/* Drop Down optgroup header hover psuedo class */
+.selectboxit-optgroup-header:hover {
+  cursor: default;
+}
+
+/* Drop Down down arrow container */
+.selectboxit-arrow-container {
+  /* Positions the down arrow */
+  width: 30px;
+  position: absolute;
+  right: 0;
+}
+
+/* Drop Down down arrow */
+.selectboxit .selectboxit-arrow-container .selectboxit-arrow {
+  /* Horizontally centers the down arrow */
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+}
+
+/* Drop Down down arrow for jQueryUI and jQuery Mobile */
+.selectboxit .selectboxit-arrow-container .selectboxit-arrow.ui-icon {
+  top: 30%;
+}
+
+/* Drop Down individual option icon positioning */
+.selectboxit-option-icon-container {
+  float: left;
+}
+
+.selectboxit-container .selectboxit-option-icon {
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+/* Drop Down individual option icon positioning */
+.selectboxit-option-icon-url {
+  width: 18px;
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-position: center;
+  float: left;
+}
+
+.selectboxit-rendering {
+  display: inline-block !important;
+  *display: inline !important;
+  zoom: 1 !important;
+  visibility: visible !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+/* jQueryUI and jQuery Mobile compatability fix - Feel free to remove this style if you are not using jQuery Mobile */
+.jqueryui .ui-icon {
+  background-color: inherit;
+}
+
+/* Another jQueryUI and jQuery Mobile compatability fix - Feel free to remove this style if you are not using jQuery Mobile */
+.jqueryui .ui-icon-triangle-1-s {
+  background-position: -64px -16px;
+}
+
+/*
+  Default Theme
+  -------------
+  Note: Feel free to remove all of the CSS underneath this line if you are not using the default theme
+*/
+.selectboxit-btn {
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
+  border: 1px solid #F69812;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-bottom-color: #b3b3b3;
+}
+
+.selectboxit-btn.selectboxit-enabled:hover,
+.selectboxit-btn.selectboxit-enabled:focus,
+.selectboxit-btn.selectboxit-enabled:active {
+  color: #333333;
+  background:none;
+}
+
+.selectboxit-btn.selectboxit-enabled:hover,
+.selectboxit-btn.selectboxit-enabled:focus {
+  color: #333333;
+  text-decoration: none;
+  background-position: 0 -15px;
+}
+
+.selectboxit-default-arrow {
+  width: 0;
+  height: 0;
+  border-top: 4px solid #000000;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.selectboxit-list {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.selectboxit-list .selectboxit-option-anchor {
+  color: #333333;
+}
+
+.selectboxit-list > .selectboxit-focus > .selectboxit-option-anchor {
+  color: #ffffff;
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+}
+
+.selectboxit-list > .selectboxit-disabled > .selectboxit-option-anchor {
+  color: #999999;
+}
+.rentalcar_form_div h1{  
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 23px;
+    margin: 0;
+    padding: 20px 0 0;
+    text-align: left;
+}	
+.rentalcar_form_div .col1{width:49%;float:left;}
+.rentalcar_form_div.col2{width:49%;float:left;margin-left:2%;}
+.rentalcar_form_div .clear5{clear:both;height:1px;}
+.rentalcar_form_div h1{
+	color:#59595a;
+	text-transform:capitalize;
+	font-weight:bold;
+	border-bottom:2px solid #b4b4b5;
+	padding:0;
+	margin:0;
+}
+.rentalcar_form_div{
+	font-size:13px;
+	padding:5px;
+	border-radius:8px;
+	border:2px solid #026cd6;
+	background-color:#026cd6;
+}
+#PickupDate,#DropOffDate{
+	background: url('.plugins_url('cal.gif', __FILE__).') no-repeat scroll right center rgba(0, 0, 0, 0);
+    border: medium none;
+    color: #111111;
+    font: bold 13px Arial,Helvetica;
+    padding: 0;
+    text-indent: 10px;
+    width: 97%;
+}
+#PromoCode{
+	background-color:rgba(0, 0, 0, 0);
+	border: medium none;
+    color: #111111;
+    font: bold 13px Arial,Helvetica;
+    padding: 0;
+    text-indent: 10px;
+    width: 97%;
+}
+.ui-input-text input, .ui-input-search input{
+min-height:2.6em;
+}
+.ui-select .ui-btn > span:not(.ui-li-count) {
+text-align:left;
+}
+.rentalcar_form_div label{
+color:#fff;
+}
+.ui-datepicker .ui-datepicker-header {
+background:none repeat scroll 0 0 #026CD6;
+color:#fff;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+ background:none repeat scroll 0 0 #026CD6;
+    color: #FFFFFF;
+}
+.ui-icon-arrow-d{
+background:url('.plugins_url('down_arrow.png', __FILE__).') no-repeat;
+}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+color:#111;
+background:none repeat scroll 0 0 #026CD6;
+border:1px solid #026CD6;
+}
+.ui-datepicker .ui-datepicker-next span {
+background:url('.plugins_url('next.png', __FILE__).') no-repeat;
+}
+.ui-datepicker .ui-datepicker-prev span{
+background:url('.plugins_url('prev.png', __FILE__).') no-repeat;
+}
+.ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+color:#111;
+background:none;border:none;
+}
+.ui-state-hover, .ui-widget-content .ui-state-hover{
+color:#111;
+}
+.rentalcar_form_div ul li{
+	list-style-type:none;	
+	padding:0;
+	border:none;
+	margin:0;
+}
+.rentalcar_form_div img{
+vertical-align:middle;
+}	
+.error{text-align:center;font-weight:bold;color:red;}
+';
+	$sucessmsg='<div align="center"><h1>Thank you for your quote with travelwheels.</h1><p>Our friendly staff will soon be in touch and if you have any further questions you can email us at <a title="Send email to Travelwheels" href="mailto:info@travelwheels.com.au">info@travelwheels.com.au</a></p></div>';
 	$optionsarr['en']=array(					 
 					'header_img'=>'headlogo.png',	
 					'searchbtn'=>'search.png',
@@ -668,7 +1302,6 @@ vertical-align:middle;
 					'header_img'=>'headlogo-fr.png',	
 					'searchbtn'=>'search_fr.png',
 					'searchbtn_ho'=>'search_fr_ho.png',
-
 					'emailquote'=>'emailquote-fr.png',
 					'emailquote_ho'=>'emailquote_ho-fr.png',
 					'continuebtn'=>'continue-fr.png',
@@ -847,7 +1480,8 @@ vertical-align:middle;
     <tr>
       <td style="border-bottom:1px solid #F69812;margin-bottom:2px;">Email: </td>
       <td style="border-bottom:1px solid #F69812;margin-bottom:2px;"><a href="mailto:[customer_email]" target="_blank">[customer_email]</a></td>
-    </tr>  
+    </tr>
+	[notes]
     <tr>
       <td style="margin-top:2px;">Vehicle Type </td>
       <td style="margin-top:2px;">[vehicle_type]</td>
@@ -914,7 +1548,7 @@ vertical-align:middle;
 	add_option('rental_option_en',$optionsarr['en']);add_option('rental_option_fr',$optionsarr['fr']);
 	add_option('rental_option_da',$optionsarr['da']);add_option('rental_option_du',$optionsarr['du']);
 	
-	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9','emailquote_template_en'=>$emailquote_template,'emailquote_template_da'=>$emailquote_template,'emailquote_template_du'=>$emailquote_template,'emailquote_template_fr'=>$emailquote_template,'successmsg_en'=>$sucessmsg,'successmsg_fr'=>$sucessmsg,'successmsg_da'=>$sucessmsg,'successmsg_du'=>$sucessmsg,'rentalcar_timediff'=>'13','rental_emails_from'=>'Webmaster <'.get_bloginfo('admin_email').'>','rental_emails_to'=>'info <info@travelwheels.com.au>,info <gino@travelwheels.com.au>,Developer <smrutiniit@gmail.com>');
+	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9','emailquote_template_en'=>$emailquote_template,'emailquote_template_da'=>$emailquote_template,'emailquote_template_du'=>$emailquote_template,'emailquote_template_fr'=>$emailquote_template,'successmsg_en'=>$sucessmsg,'successmsg_fr'=>$sucessmsg,'successmsg_da'=>$sucessmsg,'successmsg_du'=>$sucessmsg,'rentalcar_timediff'=>'13','rental_emails_from'=>'Webmaster <'.get_bloginfo('admin_email').'>','rental_emails_to'=>'info <info@travelwheels.com.au>,info <gino@travelwheels.com.au>,Developer <smrutiniit@gmail.com>','css_mac'=>$mac_style);
 	
 	foreach($generalarr as $ky => $value)
 	{
@@ -940,12 +1574,41 @@ function rentalcar_form_setting_admin_stylesheet() {
 	wp_register_style( 'rentalcar_form_setting-style', plugins_url('rentalcar_form_setting-admin.css', __FILE__) );
 	wp_enqueue_style( 'rentalcar_form_setting-style' );
 }
-function rentalcar_form_setting() {
-	add_menu_page( 'Rental Car', 'Rental Car', 'manage_options', 'rentalcar_setting', 'rentalcar_settingfn'); 			
+function rentalcar_form_setting() {	
+	add_menu_page( 'Rental Car', 'Rental Car', 'manage_options', 'rentalcar_setting', 'set_help_info'); 
+	add_submenu_page('rentalcar_setting', __( 'Settings', 'rentalcar_form'), __( 'Settings', 'rentalcar_form' ), 'manage_options', 'rentalcar_settingfn', 'rentalcar_settingfn');			
 	add_submenu_page('rentalcar_setting', __( 'English', 'rentalcar_form'), __( 'English', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_en', 'set_rentalcar_en');
 	add_submenu_page('rentalcar_setting', __( 'French', 'rentalcar_form'), __( 'French', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_fr', 'set_rentalcar_fr');
 	add_submenu_page('rentalcar_setting', __( 'German', 'rentalcar_form'), __( 'German', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_da', 'set_rentalcar_da');
 	add_submenu_page('rentalcar_setting', __( 'Netherlands', 'rentalcar_form'), __( 'Netherlands', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_du', 'set_rentalcar_du');
+	add_submenu_page('rentalcar_setting', __( 'Carlist', 'rentalcar_form'), __( 'Carlist', 'rentalcar_form' ), 'manage_options', 'carlist', 'carlist');
+}
+function carlist()
+{
+	echo 'coming soon..';
+}
+function set_help_info()
+{
+	?>
+    <h2>Help Information</h2>
+    <p>Shortcode for english<br/>
+    display search form at top and display search result under search form - [rcm_search_results lang='en']<br/>
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='en' only="result"]    
+    </p>
+    
+    <p>Shortcode for french<br/>
+    display search form at top and display search result under search form - [rcm_search_results lang='fr']<br/>
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='fr' only="result"]    
+    
+    <p>Shortcode for german<br/>
+    display search form at top and display search result under search form - [rcm_search_results lang='da']<br/>
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='da' only="result"]    
+    
+    <p>Shortcode for netherland<br/>
+    display search form at top and display search result under search form - [rcm_search_results lang='du']<br/>
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='du' only="result"]    
+    
+    <?php
 }
 function rentalcar_settingfn() {
 	$msg='';
@@ -966,6 +1629,11 @@ function rentalcar_settingfn() {
 		{
 			delete_option( 'rental_searchform_css');
 			add_option( 'rental_searchform_css',$_POST["rental_searchform_css"], '', 'yes' ); 
+		}
+		if(isset($_POST['css_mac']))
+		{
+			delete_option( 'css_mac');
+			add_option( 'css_mac',$_POST["css_mac"], '', 'yes' ); 
 		}
 		if(isset($_POST["rental_searchform_bg_color"]))
 		{
@@ -1046,8 +1714,10 @@ function rentalcar_settingfn() {
                  <p>Set Widget Background Color&nbsp;&nbsp;&nbsp;<input type="text" name="rental_searchform_bg_color" value="<?php echo get_option('rental_searchform_bg_color');?>"/></p>
                   <p>Set Widget Background Image&nbsp;&nbsp;&nbsp;<input type="file" name="rental_searchform_bg_img" />&nbsp;<a href="<?php echo plugins_url('/upload/'.get_option( 'rental_searchform_bg_img') , __FILE__ );?>" target="_blank">Preview</a></p>    
                    <p>Widget Background Image&nbsp;&nbsp;&nbsp;<input type="radio" name="rental_searchform_bg_stat" value="enabled" <?php if(get_option('rental_searchform_bg_stat')=='enabled'){ echo 'checked';}?>/>&nbsp;&nbsp;Enabled&nbsp;&nbsp;<input type="radio" name="rental_searchform_bg_stat" value="disabled" <?php if(get_option('rental_searchform_bg_stat')=='disabled'){ echo 'checked';}?>/>&nbsp;&nbsp;Disabled</p>                 
-                 <p>Stylesheet&nbsp;&nbsp;(<strong>Shortcode:</strong>&nbsp;[rcm_search_results lang='en']&nbsp;[rcm_search_results lang='da']&nbsp;[rcm_search_results lang='fr']&nbsp;[rcm_search_results lang='du'])</p>
+                 <p>Stylesheet for window browser/iphone/ipad</p>
                 <p><textarea name="rental_searchform_css" class="regular-text csstxt"><?php echo stripslashes(get_option('rental_searchform_css'));?></textarea></p>
+                <p>Stylesheet for Mac browser</p>
+                <p><textarea name="css_mac" class="regular-text csstxt"><?php echo stripslashes(get_option('css_mac'));?></textarea></p>                
                 <div style="float: left; width: 80%;" class="submit">
                     <input type="submit" name="reset" value="Reset Settings" class="button-primary">
                 </div>
@@ -1459,7 +2129,7 @@ add_shortcode('rcm_search_results','rentalcarmanagementsearchresults');
 function rentalcarmanagementsearchresults($attr)
 {
 	$output='';$results='';	$searchout='';
-	global $myoptions,$emailquote_template_msg,$sucess_msg;
+	global $myoptions,$emailquote_template_msg,$sucess_msg,$win,$mac;
 	if(is_array($attr)){
 		if($attr["lang"] !=""){$lang=$attr["lang"];}else{$lang='en';}
 		if($attr["only"] !=""){$resonly=$attr["only"];}else{$resonly='';}
@@ -1495,7 +2165,6 @@ function rentalcarmanagementsearchresults($attr)
 	{
 		if($_GET["PickupLocation"] == $v or $_GET["PickupLocationID"] == $v)
 		{
-
 			$pickuplocationarr .='<option selected value="'.$v.'">'.$k.'</option>';
 			$from=$k;
 		}
@@ -1527,6 +2196,12 @@ function rentalcarmanagementsearchresults($attr)
 	} else {
 		$headertxt= '<h1 onclick="searchtoggle()">Enter Your Travel Details</h1>'; } 
 	
+	$ua = $_SERVER["HTTP_USER_AGENT"];
+	$mac=strpos($ua, 'Macintosh') ? true : false;
+	$win=strpos($ua, 'Windows') ? true : false;
+	$stylesheet=get_option('rental_searchform_css');
+	if($mac){$stylesheet=get_option('css_mac');}
+	
 	if($resonly == ""){
 	$searchout .='<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" />
           <link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
@@ -1534,7 +2209,7 @@ function rentalcarmanagementsearchresults($attr)
           <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/i18n/jquery-ui-i18n.min.js"></script>	
           <script src="'.plugins_url('jquery.selectBoxIt.js', __FILE__).'"></script> 
-		  <style>'.get_option('rental_searchform_css').'
+		  <style>'.$stylesheet.'
 			.ui-datepicker .ui-datepicker-header {background:none repeat scroll 0 0 #026CD6;color:#FFFFFF}
 			.rentalcar_widget_div ul li{background:none;padding:5px;margin:0;}
 			.tabsidebar .ui-widget-content{	border:none;}
@@ -1558,12 +2233,12 @@ $("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",defaultDat
 						onSelect: function (dateText, inst) {
 								var date = $(this).datepicker("getDate");
 								if (date){
-									date.setDate(date.getDate() + 14);
+									date.setDate(date.getDate() + 3);
 									$( "#DropOffDate" ).datepicker( "option", "minDate", date );
 								}
 						}
 									});
-		$("#DropOffDate").datepicker({ numberOfMonths: 3,defaultDate: +14,dateFormat: "dd/mm/yy"});
+		$("#DropOffDate").datepicker({ numberOfMonths: 3,defaultDate: +3,dateFormat: "dd/mm/yy"});
 });
 var j = jQuery.noConflict();
 function searchtoggle()
@@ -1733,8 +2408,8 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						}else {$oneway='';}
 						if($_POST["totalcost"]!=""){$totalcost=$_POST["totalcost"];}else{$totalcost='';}
 						
-						$findtag=array("[refquote]","[refkey]","[today]","[customer_name]","[customer_email]","[vehicle_type]","[imgsrc]","[pickuplocation]","[pickupdate]","[dropofflocation]","[dropoffdate]","[totalrentaldays]","[rateperday]","[subtotal]","[insurance]","[oneway]","[totalcost]","[sitetitle]","[siteurl]");
-						$replacetag=array($refquote,$refkey,$today,$customer_name,$customer_email,$_POST["vehicle_type"],$_POST["imgsrc"],$_POST["pickuplocation"],$_POST["pickupdate"],$_POST["dropofflocation"],$_POST["dropoffdate"],$_POST["TotalRentalDays"],$_POST["rateperday"],$_POST["subtotal"],$insurance,$oneway,$totalcost,get_bloginfo("name"),get_bloginfo("url"));
+						$findtag=array("[refquote]","[refkey]","[today]","[customer_name]","[customer_email]","[notes]","[vehicle_type]","[imgsrc]","[pickuplocation]","[pickupdate]","[dropofflocation]","[dropoffdate]","[totalrentaldays]","[rateperday]","[subtotal]","[insurance]","[oneway]","[totalcost]","[sitetitle]","[siteurl]");
+						$replacetag=array($refquote,$refkey,$today,$customer_name,$customer_email,'',$_POST["vehicle_type"],$_POST["imgsrc"],$_POST["pickuplocation"],$_POST["pickupdate"],$_POST["dropofflocation"],$_POST["dropoffdate"],$_POST["TotalRentalDays"],$_POST["rateperday"],$_POST["subtotal"],$insurance,$oneway,$totalcost,get_bloginfo("name"),get_bloginfo("url"));
 						$message .=str_replace($findtag,$replacetag,$emailquote_template_msg);	
 						
 						if(get_option("rental_emails_from",true)!=""){$headers[] = 'From: '.get_option("rental_emails_from",true).''."\r\n";
@@ -1814,7 +2489,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				}				
 				$subtotal=$numofday * $rateperday;
 				$insurance=$numofday * 10;
-				$output .='<style>'.get_option('rental_searchform_css').'</style><script>function openMoreInfo() {window.open("'.plugins_url('insurance_details.php',__FILE__).'", "WindowMore", "width=970,height=440,scrollbars=yes");}function moreInfo(id) { window.open("'.plugins_url('moreinfo.php',__FILE__).'?v=" + id, "WindowMore", "width=970,height=440,scrollbars=yes");}
+				$output .='<style>'.$stylesheet.'</style><script>function openMoreInfo() {window.open("'.plugins_url('insurance_details.php',__FILE__).'", "WindowMore", "width=970,height=440,scrollbars=yes");}function moreInfo(id) { window.open("'.plugins_url('moreinfo.php',__FILE__).'?v=" + id, "WindowMore", "width=970,height=440,scrollbars=yes");}
 				function updatedotalcost(numofday,extrafee){
 					var subtotal;
 					var extra=parseFloat(extrafee);
@@ -1913,47 +2588,47 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					</tr>
 					</tbody>
 			</table>	
-					<div class="sep_checkout">&nbsp;</div>
-					<div class="booking_title">'.$myoptions["step3quotetitle"].'</div>
-					<div class="booking_chkoutleft">											
-						<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>	
-						<div class="clear"></div>
-						<a onclick="moreInfo('.$carid.');" href="#" style="font-size: 13px;">'.$myoptions["clickinfo"].'</a>
-					</div>
-					<div class="booking_chkoutright">						
-						<table cellpadding="0" cellspacing="0" border="0" width="100%">
-						<tr>
-							<td width="35%"><strong>'.$myoptions["vehicletype"].':</strong></td>
-							<td>'.$catdesc.'</td>
-						</tr>
-						<tr>
-							<td width="35%"><strong>'.$myoptions["pickup"].':</strong></td>
-							<td>'.$pickup.'</td>
-						</tr>
-						<tr>
-							<td width="35%"><strong>'.$myoptions["dropoff"].':</strong></td>
-							<td>'.$dropoff.'</td>
-						</tr>
-						<tr>
-							<td width="35%"><strong>'.$myoptions["dailyrate"].':</strong></td>
-							<td>$'.$rateperday.'&nbsp;/&nbsp;day&nbsp;(total '.$numofday.' days)</td>
-						</tr>
-						<tr>
-							<td width="35%"><strong>'.$myoptions["subtotal"].':</strong></td>
-							<td>AUD $'.number_format($subtotal,2,'.','').'<input id="subtotal" type="hidden" value="'.$subtotal.'"/></td>
-						</tr>
-						<tr>
-							<td width="35%"><strong>'.$myoptions["insurance"].':</strong></td>
-							<td><span id="insurance">AUD $'.number_format($insurance,2,'.','').'</span></td>
-						</tr>
-						'.$ratetrtd.'
-						<tr>
-							<td width="35%" class="calculate_total">'.$myoptions["totalcost"].':</td>
-							<td><span id="totalcost">AUD $'.number_format(($subtotal + $insurance + $extrafees),2,'.','').'</span></td>
-						</tr>
-						</table>													
-					</div>
-					<div class="clear5"></div>
+						<div class="sep_checkout">&nbsp;</div>
+						<div class="booking_title">'.$myoptions["step3quotetitle"].'</div>
+						<div class="booking_chkoutleft">											
+							<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>	
+							<div class="clear"></div>
+							<a onclick="moreInfo('.$carid.');" href="#" style="font-size: 13px;">'.$myoptions["clickinfo"].'</a>
+						</div>
+						<div class="booking_chkoutright">						
+							<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td width="35%"><strong>'.$myoptions["vehicletype"].':</strong></td>
+								<td>'.$catdesc.'</td>
+							</tr>
+							<tr>
+								<td width="35%"><strong>'.$myoptions["pickup"].':</strong></td>
+								<td>'.$pickup.'</td>
+							</tr>
+							<tr>
+								<td width="35%"><strong>'.$myoptions["dropoff"].':</strong></td>
+								<td>'.$dropoff.'</td>
+							</tr>
+							<tr>
+								<td width="35%"><strong>'.$myoptions["dailyrate"].':</strong></td>
+								<td>$'.$rateperday.'&nbsp;/&nbsp;day&nbsp;(total '.$numofday.' days)</td>
+							</tr>
+							<tr>
+								<td width="35%"><strong>'.$myoptions["subtotal"].':</strong></td>
+								<td>AUD $'.number_format($subtotal,2,'.','').'<input id="subtotal" type="hidden" value="'.$subtotal.'"/></td>
+							</tr>
+							<tr>
+								<td width="35%"><strong>'.$myoptions["insurance"].':</strong></td>
+								<td><span id="insurance">AUD $'.number_format($insurance,2,'.','').'</span></td>
+							</tr>
+							'.$ratetrtd.'
+							<tr>
+								<td width="35%" class="calculate_total">'.$myoptions["totalcost"].':</td>
+								<td><span id="totalcost">AUD $'.number_format(($subtotal + $insurance + $extrafees),2,'.','').'</span></td>
+							</tr>
+							</table>													
+						</div>
+					<div class="clear"></div>
 					</div>
 				</div>	
 			
@@ -1961,7 +2636,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				<div class="bookingh1">'.$myoptions["step3bookingtitle"].'</div>
 				<div class="restdiv">
 				<form action="?action=Quote&categoryStatus=1" method="post" name="theForm">
-					<div  style="width:95%;margin:0 auto;">
+					<div style="margin-left:5%;width:90%;">
 					<div class="chk_avail_fname_lvl"><strong>'.$myoptions["bookingfname"].'</strong></div>
 					<div class="chk_avail_fname_input"><input type="text" name="firstname" id="firstname" class="chk_inpt_booking"/></div>
 					<div class="chk_avail_lname_lvl"><strong>'.$myoptions["bookinglname"].'</strong></div>
@@ -1996,15 +2671,14 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					</div>
 				</form>
 				<div class="clear"></div>
-				</div>
-			</div>';
+			</div>
+		</div>';
 		$output .='<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.$myoptions["back"].'</a></div>
 										<div class="clear"></div>';	
 			}		
 	}	
 	elseif($_GET["action"] == 'email')
-	{
-		
+	{		
 		
 		 if($_POST["action"] == 'sent')
 		{
@@ -2059,11 +2733,15 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						$hr=get_option("rentalcar_timediff",true);
 						$today=date("d/M/Y",strtotime("+".$hr." hours"));$customer_email=$_POST["CustomerEmail"];
 						$customer_name=$_POST["firstname"].'&nbsp;'.$_POST["lastname"];
+						$notes='<tr>
+<td style="border-bottom: 1px solid #F69812; margin-bottom: 2px;">Notes:</td>
+<td style="border-bottom: 1px solid #F69812; margin-bottom: 2px;">'.strip_tags($_POST["Notes"]).'</td>
+</tr>';
 						
 						if($_POST["totalcost"]!=""){$totalcost=$_POST["totalcost"];}else{$totalcost='';}
 						
-						$findtag=array("[refquote]","[refkey]","[today]","[customer_name]","[customer_email]","[vehicle_type]","[imgsrc]","[pickuplocation]","[pickupdate]","[dropofflocation]","[dropoffdate]","[totalrentaldays]","[rateperday]","[subtotal]","[insurance]","[oneway]","[totalcost]","[sitetitle]","[siteurl]");
-						$replacetag=array($refquote,$refkey,$today,$customer_name,$customer_email,$_POST["vehicle_type"],$_POST["imgsrc"],$_POST["pickuplocation"],$_POST["pickupdate"],$_POST["dropofflocation"],$_POST["dropoffdate"],$_POST["TotalRentalDays"],$_POST["rateperday"],$_POST["subtotal"],'','',$_POST["subtotal"],get_bloginfo("name"),get_bloginfo("url"));
+						$findtag=array("[refquote]","[refkey]","[today]","[customer_name]","[notes]","[customer_email]","[vehicle_type]","[imgsrc]","[pickuplocation]","[pickupdate]","[dropofflocation]","[dropoffdate]","[totalrentaldays]","[rateperday]","[subtotal]","[insurance]","[oneway]","[totalcost]","[sitetitle]","[siteurl]");
+						$replacetag=array($refquote,$refkey,$today,$customer_name,$notes,$customer_email,$_POST["vehicle_type"],$_POST["imgsrc"],$_POST["pickuplocation"],$_POST["pickupdate"],$_POST["dropofflocation"],$_POST["dropoffdate"],$_POST["TotalRentalDays"],$_POST["rateperday"],$_POST["subtotal"],'','',$_POST["subtotal"],get_bloginfo("name"),get_bloginfo("url"));
 						$message .=str_replace($findtag,$replacetag,$emailquote_template_msg);	
 						
 						if(get_option("rental_emails_from",true)!=""){$headers[] = 'From: '.get_option("rental_emails_from",true).''."\r\n";
@@ -2130,7 +2808,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				}
 				$subtotal=$numofday * $rateperday;
 				
-			$output .=' <script language="Javascript">function openMoreInfo() { window.open("'.plugins_url('insurance_details.php',__FILE__).'", "WindowMore", "width=970,height=440,scrollbars=yes");}function validatequote(){
+			$output .=' <script language="Javascript">function openMoreInfo(id) {window.open("'.plugins_url('moreinfo.php',__FILE__).'?v=" + id, "WindowMore", "width=970,height=440,scrollbars=yes");}function validatequote(){
 	if(document.getElementById("firstname").value == "")
 	{
 		alert("Please enter your first name");
@@ -2156,13 +2834,15 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
          return false;
       }
 	document.getElementById("Rate").submit();}</script>
-		<style>'.get_option('rental_searchform_css').'</style>
+		<style>'.$stylesheet.'</style>
 			<div class="bookingwrap clearfix">
 		<form id="Rate" name="Rate" action="" method="post">
 			<div class="bookingh1">'.$myoptions["bookingsummary"].'</div>
 				<div class="restdiv">
 					<div class="booking_chkoutleft">											
-						<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>											
+						<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>
+						<div class="clear"></div>
+							<a onclick="openMoreInfo('.$carid.');" href="#" style="font-size: 13px;">'.$myoptions["clickinfo"].'</a>
 					</div>
 					<div class="booking_checkout_center">
 						<div class="lvl">'.$myoptions["vehicletype"].':</div>
@@ -2314,156 +2994,5 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 		$output=$searchout;	
 	}
 	return $output;
-}
-
-function rentalcarmanagementsearch($attr)
-{
-	$searchout='';global $myoptions;
-	if(is_array($attr)){
-		if($attr["lang"] !=""){$lang=$attr["lang"];}else{$lang='en';}
-	}
-	else
-	{
-		$lang='en';
-	}
-	$myoptions=get_option('rental_option_'.$lang);
-	$lang_res['rental_headerimgurl']=plugins_url('/upload/'.$myoptions["header_img"], __FILE__);
-	
-	$locationarray=array('Sydney'=>1,'Adelaide'=>28,'Brisbane'=>33,'Cairns'=>36,'Darwin'=>12,'Melbourne'=>4,'Perth'=>9);
-	$pickuplocationarr='';$dropofflocationarr='';$from='';$to='';
-	foreach($locationarray as $k => $v)
-	{
-		if($_GET["PickupLocation"] == $v or $_GET["PickupLocationID"] == $v)
-		{
-			$pickuplocationarr .='<option selected value="'.$v.'">'.$k.'</option>';
-			$from=$k;
-		}
-		else{
-			$pickuplocationarr .='<option value="'.$v.'">'.$k.'</option>';
-		}	
-		
-		if($_GET["DropOffLocation"] == $v or $_GET["DLocationID"] == $v)
-		{
-			$dropofflocationarr .='<option selected value="'.$v.'">'.$k.'</option>';
-			$to=$k;
-		}
-		else{
-			$dropofflocationarr .='<option value="'.$v.'">'.$k.'</option>';
-		}	
-		
-	}	
-	/*start search section */
-	if($_GET["PickupDate"]!=""){ $PickupDate=$_GET["PickupDate"];}else {$PickupDate=date("d/m/Y",strtotime("+2 day"));}
-	if($_GET["DropOffDate"]!=""){ $DropOffDate=$_GET["DropOffDate"];}else {$DropOffDate=date("d/m/Y",strtotime("+14 day"));}
-	if($_GET["PromoCode"]!=""){$PromoCode=$_GET["PromoCode"];}
-	
-	if(get_option('rental_searchform_bg_stat') == 'enabled')
-	{
-		$backstyle='background-image:url('.plugins_url('/upload/'.get_option( 'rental_searchform_bg_img') , __FILE__ ).');';
-	}
-	if($lang_res['rental_headerimgurl']!=""){
-		$headertxt= '<img src="'.$lang_res['rental_headerimgurl'].'" border="0" onclick="searchtoggle()"/>';
-	} else {
-		$headertxt= '<h1 onclick="searchtoggle()">Enter Your Travel Details</h1>'; } 
-		
-	$searchout .='<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" />
-          <link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-          <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-		   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/i18n/jquery-ui-i18n.min.js"></script>	
-          <script src="'.plugins_url('jquery.selectBoxIt.js', __FILE__).'"></script> 
-		  <style>'.get_option('rental_searchform_css').'
-			.ui-datepicker .ui-datepicker-header {background:none repeat scroll 0 0 #026CD6;color:#FFFFFF}
-			.rentalcar_widget_div ul li{background:none;padding:5px;margin:0;}
-			.tabsidebar .ui-widget-content{	border:none;}
-			.ui-tabs .ui-tabs-panel{padding:0;}
-			.content_left .ui-tabs{padding:0;}
-			.clear5{clear:both;height:10px;}
-			#custom_toggle_a{background-position:-80px top !important;background-image:url(http://static.olark.com/themes/azul/buttons-light.png);background-position:0 top;background-repeat:no-repeat !important;border-radius:5px !important;cursor:pointer !important;float:right;height:16px;line-height:1000;margin-right:10px;margin-top:5px;overflow:hidden;padding:0;width:16px;
-}
-#custom_toggle_a:hover{background-color:#333;}
-            </style>
- <script>
-function openMoreInfo(id) {
- window.open("'.plugins_url('moreinfo.php',__FILE__).'?v=" + id, "WindowMore", "width=970,height=440,scrollbars=yes");
-}
-
-jQuery( document ).ready(function($) {		
-		';
-		if($lang == 'en') { $searchout .= 'jQuery.datepicker.setDefaults( jQuery.datepicker.regional[""] );';}
-		else if($lang == 'ge') { $searchout .= '$.datepicker.setDefaults( $.datepicker.regional[ "de" ] );';}
-		else if($lang == 'fr') { $searchout .= '$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );';}
-		else if($lang == 'du') { $searchout .= '$.datepicker.setDefaults( $.datepicker.regional[ "nl" ] );';}
-		else { $searchout.='$.datepicker.setDefaults( $.datepicker.regional[ "" ] );';}  
-$searchout .='jQuery("#PickupLocation,#DropOffLocation").selectBoxIt({theme: "jquerymobile"});
-$("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",defaultDate: +2});
-$("#DropOffDate").datepicker({ numberOfMonths: 3,defaultDate: +16,dateFormat: "dd/mm/yy"});
-});
-var j = jQuery.noConflict();
-function searchtoggle()
-{	
-	if(j(".rentalcar_form_div").css("display") == "none"){
-		j(".rentalcar_form_div").show("slow");
-		j("#toggle_custom_div").html(\''.$headertxt.'<a id="custom_toggle_a" onclick="searchtoggle()">^</a>\');
-		j("#toggle_custom_div").css("border-radius","6px 6px 0 0");
-	}
-	else
-	{
-		j(".rentalcar_form_div").hide("slow");
-		j("#toggle_custom_div").css("border-radius","6px");
-		j("#toggle_custom_div").html(\'<a style="color:#fff;font-size:15px;text-decoration:underline;" onclick="searchtoggle()">Click Here to Change Search Cities & Dates</a><a id="custom_toggle_a" style="background-position:-96px top !important" onclick="searchtoggle()">^</a>\');		
-	}
-		
-}
-</script>
-<div id="rentalcar_form_section">';
-if($_GET["action"] == 'step2'){
-	$searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border:2px solid '.get_option('rental_searchform_bg_color').';border-radius:6px;text-align:center;padding:5px;"><a style="text-decoration:underline;color:#fff;font-size:15px;" onclick="searchtoggle()">'.$myoptions["acrodian"].'</a><a id="custom_toggle_a" style="background-position:-96px top !important" onclick="searchtoggle()">^</a></div>
-	<div class="rentalcar_form_div" data-role="content" style="'.$backstyle.'display:none;background-color:'.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-bottom:2px solid '.get_option('rental_searchform_bg_color').';border-radius:0 0 6px 6px">   
-<form method="GET" action="'.get_permalink().'" id="rentalcar">';
-}
-else
-{
-$searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border-top:2px solid '.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-radius:6px 6px 0 0;text-align:center;padding:5px;">'.$headertxt.'<a id="custom_toggle_a" onclick="searchtoggle()">^</a></div><div class="rentalcar_form_div" data-role="content" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-bottom:2px solid '.get_option('rental_searchform_bg_color').';border-radius:0 0 6px 6px">   
-<form method="GET" action="'.get_permalink().'" id="rentalcar">';
-}
-	
-	$searchout .='<div style="clear:both"></div>                          
-            	<div class="custom_div_left"> 
-					<label>'.$myoptions["pickuplocation"].'</label>
-					<select id="PickupLocation" name="PickupLocation">'.$pickuplocationarr.'</select>
-				</div>
-				<div class="custom_div_right">
-					<label>'.$myoptions["pickupdate"].'</label>
-					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-shadow ui-btn-up-c">
-					<input type="text" name="PickupDate" size="30" id="PickupDate" value="'.$PickupDate.'" data-theme="a" />
-					</div>
-				</div>
-				<div class="clear5"></div>				
-			<div class="custom_div_left">
-				<label>'.$myoptions["dropofflocation"].'</label>
-				<select id="DropOffLocation" name="DropOffLocation">'.$dropofflocationarr.'</select>
-			</div>
-			<div class="custom_div_right">
-				<label>'.$myoptions["dropoffdate"].'</label><div class="clear2"></div>
-				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-shadow ui-btn-up-c"> <input type="text" name="DropOffDate" size="30" id="DropOffDate" value="'.$DropOffDate.'" data-theme="a" /></div>	
-			</div>
-			<div class="clear5"></div>	
-			<div class="custom_div_left">
-					<label>'.$myoptions["promocode"].'</label>
-					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-shadow ui-btn-up-c"><input type="text" id="PromoCode" name="PromoCode" size="30" value="'.$PromoCode.'" data-theme="a" /></div>
-				</div>
-			<div class="custom_div_right" style="margin-top:20px;">
-				<input type="hidden" name="action" value="step2"/>
-				<img border="0" oldsrc="'.plugins_url('/upload/'.$myoptions['searchbtn'], __FILE__).'" srcover="'.plugins_url('/upload/'.$myoptions['searchbtn_ho'], __FILE__).'" src="'.plugins_url('/upload/'.$myoptions['searchbtn'], __FILE__).'" onclick="document.getElementById(\'rentalcar\').submit()"/>
-			</div>
-			<div style="clear:both"></div>			
-	 </form>
-	 </div>
-	 </div>
-	 <div class="clear5"></div>';
-	 /*end search section*/	
-	 
-	 return $searchout;
 }
 ?>
