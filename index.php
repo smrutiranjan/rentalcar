@@ -1252,7 +1252,7 @@ vertical-align:middle;
 }	
 .error{text-align:center;font-weight:bold;color:red;}
 ';
-	$sucessmsg='<div align="center"><h1>Thank you for your quote with travelwheels.</h1><p>Our friendly staff will soon be in touch and if you have any further questions you can email us at <a title="Send email to Travelwheels" href="mailto:info@travelwheels.com.au">info@travelwheels.com.au</a></p></div>';
+	$sucessmsg='<div align="center"><h1>Thank you for your quote with travelwheels.</h1><p>Our friendly staff will soon be in touch and if you have any further questions you can email us at <a title="Send email to Travelwheels" href="mailto:info@travelwheels.com.au">info@travelwheels.com.au</a></p><p>This page will be automatically redirect to home page in 5 sec or you can click on <a href="/">home</a> to go this page.</p></div>';
 	$optionsarr['en']=array(					 
 					'header_img'=>'headlogo.png',	
 					'searchbtn'=>'search.png',
@@ -1438,13 +1438,13 @@ vertical-align:middle;
 <div align="center">
   <table border="0" cellspacing="0" cellpadding="4" width="650" style="border:1px solid #F69812;font-size:13px;line-height:1.2em;font-family:Arial">
     <tr>
-      <td colspan="2" bgcolor="#F69812" style="padding:3px 4px">Online Quotation with Travelwheels - Ref #[refquote]    (Sydney) </td>
+      <td colspan="2" bgcolor="#F69812" style="padding:3px 4px">Online Quotation with Travelwheels - Ref #[refquote]  ([pickuplocation]) </td>
     </tr>
     <tr>
       <td colspan="2">Thank you for your Online Quotation with Travelwheels.</td>
     </tr>
     <tr>
-      <td colspan="2">This Online Quotation has now been forwarded to the    Location - Sydney.</td>
+      <td colspan="2">This Online Quotation has now been forwarded to the    Location - [pickuplocation].</td>
     </tr>
     <tr>
       <td colspan="2">If you would like to proceed with this quotation :</td>
@@ -1471,17 +1471,19 @@ vertical-align:middle;
     </tr>   
     <tr>
       <td style="margin-top:2px;"><strong>Ref:</strong></td>
-      <td style="margin-top:2px;">[refquote] (Sydney)</td>
+      <td style="margin-top:2px;">[refquote] ([pickuplocation])</td>
     </tr>
     <tr>
-      <td>Name: </td>
+      <td>Name: </td> 
       <td>[customer_name]</td>
+    </tr>
+	<tr>
+      <td colspan="2">[notes]</td>
     </tr>
     <tr>
       <td style="border-bottom:1px solid #F69812;margin-bottom:2px;">Email: </td>
       <td style="border-bottom:1px solid #F69812;margin-bottom:2px;"><a href="mailto:[customer_email]" target="_blank">[customer_email]</a></td>
     </tr>
-	[notes]
     <tr>
       <td style="margin-top:2px;">Vehicle Type </td>
       <td style="margin-top:2px;">[vehicle_type]</td>
@@ -1533,7 +1535,7 @@ vertical-align:middle;
         If cancelled within 7-1 days prior to pick up: 75% of full rental charge    applies.&nbsp; If cancelled on the day of pick up or no show: NO REFUNDS    sorry, &amp; the full rental fee will be charged to your credit card.<br/></td>
     </tr>   
     <tr>
-      <td colspan="2"><strong>Travelwheels</strong><br/>Sydney</td>
+      <td colspan="2"><strong>Travelwheels</strong><br/>[pickuplocation]</td>
     </tr>  
     <tr>
       <td colspan="2" bgcolor="#F69812" align="center">155 - 159 William    St<br />
@@ -1548,7 +1550,7 @@ vertical-align:middle;
 	add_option('rental_option_en',$optionsarr['en']);add_option('rental_option_fr',$optionsarr['fr']);
 	add_option('rental_option_da',$optionsarr['da']);add_option('rental_option_du',$optionsarr['du']);
 	
-	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9','emailquote_template_en'=>$emailquote_template,'emailquote_template_da'=>$emailquote_template,'emailquote_template_du'=>$emailquote_template,'emailquote_template_fr'=>$emailquote_template,'successmsg_en'=>$sucessmsg,'successmsg_fr'=>$sucessmsg,'successmsg_da'=>$sucessmsg,'successmsg_du'=>$sucessmsg,'rentalcar_timediff'=>'13','rental_emails_from'=>'Webmaster <'.get_bloginfo('admin_email').'>','rental_emails_to'=>'info <info@travelwheels.com.au>,info <gino@travelwheels.com.au>,Developer <smrutiniit@gmail.com>','css_mac'=>$mac_style);
+	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9','emailquote_template_en'=>$emailquote_template,'emailquote_template_da'=>$emailquote_template,'emailquote_template_du'=>$emailquote_template,'emailquote_template_fr'=>$emailquote_template,'successmsg_en'=>$sucessmsg,'successmsg_fr'=>$sucessmsg,'successmsg_da'=>$sucessmsg,'successmsg_du'=>$sucessmsg,'rentalcar_timediff'=>'13','rental_emails_from'=>'Travelwheels <'.get_bloginfo('admin_email').'>','rental_emails_to'=>'info <info@travelwheels.com.au>,info <gino@travelwheels.com.au>,Developer <smrutiniit@gmail.com>','css_mac'=>$mac_style);
 	
 	foreach($generalarr as $ky => $value)
 	{
@@ -1561,6 +1563,172 @@ add_action( 'init', 'rentalcar_front_js' );
 if ( is_admin() ){ // admin actions
 	add_action('admin_menu', 'rentalcar_form_setting');	
 	add_action( 'admin_init', 'rentalcar_form_setting_admin_stylesheet' );  
+	add_action('admin_menu', 'add_carrental_detail');
+	add_action('save_post', 'save_carrental_meta');
+}
+function save_carrental_meta($post_id){
+	if(trim($_POST["carid"])!="")
+	{
+		delete_post_meta($post_id, 'carid');
+		add_post_meta($post_id, 'carid',$_POST["carid"]);
+	}
+	
+	if(trim($_POST["car_shortdesc_en"])!="")
+	{
+		delete_post_meta($post_id, 'car_shortdesc_en');
+		add_post_meta($post_id, 'car_shortdesc_en',$_POST["car_shortdesc_en"]);
+	}
+	if(trim($_POST["car_shortdesc_fr"])!="")
+	{
+		delete_post_meta($post_id, 'car_shortdesc_fr');
+		add_post_meta($post_id, 'car_shortdesc_fr',$_POST["car_shortdesc_fr"]);
+	}
+	if(trim($_POST["car_shortdesc_da"])!="")
+	{
+		delete_post_meta($post_id, 'car_shortdesc_da');
+		add_post_meta($post_id, 'car_shortdesc_da',$_POST["car_shortdesc_da"]);
+	}
+	if(trim($_POST["car_shortdesc_du"])!="")
+	{
+		delete_post_meta($post_id, 'car_shortdesc_du');
+		add_post_meta($post_id, 'car_shortdesc_du',$_POST["car_shortdesc_du"]);
+	}
+	
+	if(trim($_POST["car_desc_en"])!="")
+	{
+		delete_post_meta($post_id, 'car_desc_en');
+		add_post_meta($post_id, 'car_desc_en',$_POST["car_desc_en"]);
+	}	
+		
+	if(trim($_POST["car_desc_fr"])!="")
+	{
+		delete_post_meta($post_id, 'car_desc_fr');
+		add_post_meta($post_id, 'car_desc_fr',$_POST["car_desc_fr"]);
+	}
+	if(trim($_POST["car_desc_da"])!="")
+	{
+		delete_post_meta($post_id, 'car_desc_da');
+		add_post_meta($post_id, 'car_desc_da',$_POST["car_desc_da"]);
+	}
+	if(trim($_POST["car_desc_du"])!="")
+	{
+		delete_post_meta($post_id, 'car_desc_du');
+		add_post_meta($post_id, 'car_desc_du',$_POST["car_desc_du"]);
+	}
+}
+function add_carrental_detail(){
+	add_meta_box('carrental_detail', __('Car Rental Details'), 'add_car_detail_meta_box', 'rentalcar', 'advanced', 'high');
+}
+function add_car_detail_meta_box($post){
+	$id=$post->ID;
+	?>
+	<table cellspacing="2" cellpadding="4" border="0" width="100%">
+     <tr>	
+        <td width="122" align="left"><strong>Car ID</strong></td>
+        <td  align="left"><input type='text' name='carid' id='carid' value='<?php echo get_post_meta($post->ID, 'carid', true);?>'/></td>
+     </tr>
+     <tr><td colspan="2" align="left" valign="top"><h1>English</h1></td></tr>
+     <tr>
+     	<td colspan="2" align="left" valign="top">
+        	<table cellspacing="2" cellpadding="4" border="0" width="100%">
+            	<tr>
+                	<td align="left"><strong>Short Description</strong></td>
+                </tr>
+                <tr>
+                	<td align="left"><textarea name="car_shortdesc_en" cols="80" rows="3"><?php echo stripslashes_deep(get_post_meta($post->ID, 'car_shortdesc_en',true));?></textarea></td>
+                </tr>
+                <tr>
+                	<td align="left"><strong>Description</strong></td>
+                </tr>
+                 <tr>
+                	<td align="left">
+                    <?php
+                    $wpcontent=stripslashes_deep(get_post_meta($post->ID, 'car_desc_en',true));					 
+					 $wpcontent = apply_filters('the_content', $wpcontent);
+					 wp_editor( $wpcontent, "car_desc_en" ,array('textarea_rows' => 15));
+                     ?>
+                    </td>
+                </tr>
+            </table>
+        </td>
+     </tr>
+      <tr><td colspan="2" align="left" valign="top"><h1>French</h1></td></tr>
+     <tr>
+     	<td colspan="2" align="left" valign="top">
+        	<table cellspacing="2" cellpadding="4" border="0" width="100%"> 
+            	<tr>
+                	<td align="left"><strong>Short Description</strong></td>
+                </tr>
+                <tr>
+                	<td align="left"><textarea name="car_shortdesc_fr" cols="80" rows="3"><?php echo stripslashes_deep(get_post_meta($post->ID, 'car_shortdesc_fr',true));?></textarea></td>
+                </tr>
+                  <tr>
+                	<td align="left"><strong>Description</strong></td>
+                </tr>
+                 <tr>
+                	<td align="left">
+                    <?php
+                    $wpcontent=stripslashes_deep(get_post_meta($post->ID, 'car_desc_fr',true));					 
+					 $wpcontent = apply_filters('the_content', $wpcontent);
+					 wp_editor( $wpcontent, "car_desc_fr" ,array('textarea_rows' => 15));
+                     ?>
+                    </td>
+                </tr>
+             </table>
+        </td>
+     </tr>
+      <tr><td colspan="2" align="left" valign="top"><h1>German</h1></td></tr>
+     <tr>
+     	<td colspan="2" align="left" valign="top">
+        	<table cellspacing="2" cellpadding="4" border="0" width="100%">
+            	<tr>
+                	<td align="left"><strong>Short Description</strong></td>
+                </tr>
+                <tr>
+                	<td align="left"><textarea name="car_shortdesc_da" cols="80" rows="3"><?php echo stripslashes_deep(get_post_meta($post->ID, 'car_shortdesc_da',true));?></textarea></td>
+                </tr>
+                  <tr>
+                	<td align="left"><strong>Description</strong></td>
+                </tr>
+                 <tr>
+                	<td align="left">
+                    <?php
+                    $wpcontent=stripslashes_deep(get_post_meta($post->ID, 'car_desc_da',true));					 
+					 $wpcontent = apply_filters('the_content', $wpcontent);
+					 wp_editor( $wpcontent, "car_desc_da" ,array('textarea_rows' => 15));
+                     ?>
+                    </td>
+                </tr>
+            </table>
+        </td>
+     </tr>
+       <tr><td colspan="2" align="left" valign="top"><h1>Netherland</h1></td></tr>
+     <tr>
+     	<td colspan="2" align="left" valign="top">
+        	<table cellspacing="2" cellpadding="4" border="0" width="100%">
+            	<tr>
+                	<td align="left"><strong>Short Description</strong></td>
+                </tr>
+                <tr>
+                	<td align="left"><textarea name="car_shortdesc_du" cols="80" rows="3"><?php echo stripslashes_deep(get_post_meta($post->ID, 'car_shortdesc_du',true));?></textarea></td>
+                </tr>
+                  <tr>
+                	<td align="left"><strong>Description</strong></td>
+                </tr>
+                 <tr>
+                	<td align="left">
+                    <?php
+                    $wpcontent=stripslashes_deep(get_post_meta($post->ID, 'car_desc_du',true));					 
+					 $wpcontent = apply_filters('the_content', $wpcontent);
+					 wp_editor( $wpcontent, "car_desc_du" ,array('textarea_rows' => 15));
+                     ?>
+                    </td>
+                </tr>
+            </table>
+        </td>
+     </tr>
+    </table>
+    <?php
 }
 function rentalcar_front_js() {
 	 if (wp_script_is('rollover1.js','enqueued')) {
@@ -1568,7 +1736,7 @@ function rentalcar_front_js() {
      } else {
        wp_register_script( 'rollover1-js', plugins_url('rollover1.js', __FILE__));
 		wp_enqueue_script( 'rollover1-js' );
-     }
+     }	
 }
 function rentalcar_form_setting_admin_stylesheet() {
 	wp_register_style( 'rentalcar_form_setting-style', plugins_url('rentalcar_form_setting-admin.css', __FILE__) );
@@ -1581,12 +1749,123 @@ function rentalcar_form_setting() {
 	add_submenu_page('rentalcar_setting', __( 'French', 'rentalcar_form'), __( 'French', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_fr', 'set_rentalcar_fr');
 	add_submenu_page('rentalcar_setting', __( 'German', 'rentalcar_form'), __( 'German', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_da', 'set_rentalcar_da');
 	add_submenu_page('rentalcar_setting', __( 'Netherlands', 'rentalcar_form'), __( 'Netherlands', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_du', 'set_rentalcar_du');
-	add_submenu_page('rentalcar_setting', __( 'Carlist', 'rentalcar_form'), __( 'Carlist', 'rentalcar_form' ), 'manage_options', 'carlist', 'carlist');
+	add_submenu_page('rentalcar_setting', __( 'Car listing', 'rentalcar_form'), __( 'Car listing', 'rentalcar_form' ), 'manage_options', 'edit.php?post_type=rentalcar');	
+	add_submenu_page('rentalcar_setting', __( 'Insurance', 'rentalcar_form'), __( 'Insurance', 'rentalcar_form' ), 'manage_options', 'set_insurancepage','set_insurancepage');	
 }
-function carlist()
+function set_insurancepage()
 {
-	echo 'coming soon..';
+	$msg='';
+	if(isset($_POST['save'])){		
+		
+		if(isset($_POST["car_insurance"]))
+		{
+			delete_option( 'car_insurance');
+			add_option( 'car_insurance',$_POST["car_insurance"], '', 'yes' ); 
+		}
+		$msg="Insurance page has been saved successfully.";
+	}
+	?>
+     <div class="pea_admin_wrap">
+        <div class="pea_admin_top">
+            <h1>Rental Car Insurance</h1>
+        </div>        
+ 		<?php if($msg!=""){ echo '<div class="msg">'.$msg.'</div>';}?>
+        <div class="pea_admin_main_wrap">
+            <div class="pea_admin_main_left">
+            <form method="post" action="" name="form1">
+            	<p>Insurance</p>
+                <p><?php
+				 	 $settings = array('textarea_rows'=>20);
+					 $wpcontent=stripslashes_deep(get_option("car_insurance",true));					 
+					 $wpcontent = apply_filters('the_content', $wpcontent);
+					 wp_editor( $wpcontent, "car_insurance" ,$settings);
+                ?></p>
+                 <div style="float: right; margin-right: 10px;" class="submit">
+                    <input type="submit" style="float: right;" name="save" value="Save Settings" class="button-primary">
+                </div>
+            </form>            
+            </div>
+		</div>            
+    </div>   
+    <?php
 }
+add_action( 'init', 'car_post_type' );
+function car_post_type() {
+	if(!post_type_exists('rentalcar')){
+		register_post_type( 'rentalcar',
+			array(
+				'labels' => array(
+					'name' => __( 'Car Rentals' ),
+					'singular_name' => __( 'Car Rental' ),
+					'search_items' => __("Search Car Rental"),
+					'not_found' =>  __('No rental car found'),
+					'not_found_in_trash' => __('No rental car found in Trash'),
+				    'parent_item_colon' => ''
+				),
+				'menu_position'	=> 100,
+				'public' => true,
+				'publicly_queryable' => true,
+				'query_var' => true,				
+				'hierarchical' => false,
+				'show_ui' => true,
+				'show_in_menu'	=> false,
+				'show_in_admin_bar' => false,
+				'has_archive' => true,
+				'supports' => array('title')
+				)
+		);
+		
+	}
+}
+add_filter( 'manage_edit-rentalcar_columns', 'set_custom_edit_rentalcar_columns' );
+add_action( 'manage_rentalcar_posts_custom_column' , 'custom_rentalcar_column', 10, 2 );
+add_filter( 'manage_edit-rentalcar_sortable_columns', 'my_sortable_rentalcar_column' );
+function set_custom_edit_rentalcar_columns($columns) {	
+	unset( $columns['date'] );
+  	$columns['car_shortdesc_en'] = 'english';
+    $columns['car_shortdesc_fr'] = 'French';
+    $columns['car_shortdesc_da'] = 'German';
+	$columns['car_shortdesc_du'] = 'Netherland';
+    $columns['carid'] ='Car ID';
+    return $columns;
+}
+function my_sortable_rentalcar_column( $columns ) {
+	$columns['carid'] = 'carid';
+	return $columns;
+}
+add_action( 'pre_get_posts', 'my_custom_orderby' );
+function my_custom_orderby( $query ) {
+	if( ! is_admin() )
+		return;
+
+	$orderby = $query->get( 'orderby');
+
+	if( 'carid' == $orderby ) {
+		$query->set('meta_key','carid');
+		$query->set('orderby','meta_value');
+	}	
+}
+function custom_rentalcar_column( $column, $post_id ) {
+    switch ( $column ) {		
+		case 'car_shortdesc_en' :
+             echo get_post_meta( $post_id , 'car_shortdesc_en' , true );
+            break;
+	 	case 'car_shortdesc_fr' :
+             echo get_post_meta( $post_id , 'car_shortdesc_fr' , true );
+            break;
+	 	case 'car_shortdesc_da' :
+             echo get_post_meta( $post_id , 'car_shortdesc_da' , true );
+            break;
+	 	case 'car_shortdesc_du' :
+             echo get_post_meta( $post_id , 'car_shortdesc_du' , true );
+            break;
+	 	case 'carid' :
+             echo get_post_meta( $post_id , 'carid' , true );
+            break;
+	 	
+    }
+}
+
 function set_help_info()
 {
 	?>
@@ -1607,6 +1886,9 @@ function set_help_info()
     <p>Shortcode for netherland<br/>
     display search form at top and display search result under search form - [rcm_search_results lang='du']<br/>
     display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='du' only="result"]    
+    
+    <p>Available email template variables are following</p>
+    <p>[refquote],[refkey],[today],[customer_name],[customer_email],[notes],[vehicle_type],[imgsrc],[pickuplocation],[pickupdate],[dropofflocation],[dropoffdate],[totalrentaldays],[rateperday],[subtotal],[insurance],[oneway],[totalcost],[sitetitle],[siteurl] </p>
     
     <?php
 }
@@ -2122,14 +2404,59 @@ require_once('rcmsearch-widget.php');
 function rcmsearch_widget_init(){
 	register_widget('Rcmsearch_Widget');
 }
+function get_lang_options($lang,$carid)
+{
+	global $post;
+	$args = array(
+	'post_type'		=>	'rentalcar',
+		'meta_query'	=>	array(
+			array(
+				'key'	=>'carid',
+				'value' => $carid
+			)
+		)
+	);
+	$query = new WP_Query( $args );
+		if ( $query->have_posts() ) :
+		 while ( $query->have_posts() ) : $query->the_post(); 
+		  $str=get_post_meta(get_the_ID(), 'car_shortdesc_'.$lang,'yes');
+	 	 endwhile;
+	 	 wp_reset_query();
+	 	 else:
+		 $str='';
+	  endif;
+	  return $str;
+}
 add_action('widgets_init','rcmsearch_widget_init');
 
 add_shortcode('rcm_search_results','rentalcarmanagementsearchresults');
 
 function rentalcarmanagementsearchresults($attr)
 {
-	$output='';$results='';	$searchout='';
-	global $myoptions,$emailquote_template_msg,$sucess_msg,$win,$mac;
+	$output='';$results='';	$searchout='';$stylesheet='';
+	global $myoptions,$emailquote_template_msg,$sucess_msg,$win,$mac,$common;
+	$common='<!-- Add jQuery library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="'.plugins_url('fancybox/lib/jquery.mousewheel-3.0.6.pack.js', __FILE__).'"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="'.plugins_url('fancybox/source/jquery.fancybox.css?v=2.1.5', __FILE__).'" type="text/css" media="screen" />
+<script type="text/javascript" src="'.plugins_url('fancybox/source/jquery.fancybox.pack.js?v=2.1.5', __FILE__).'"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="'.plugins_url('fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5', __FILE__).'" type="text/css" media="screen" />
+<script type="text/javascript" src="'.plugins_url('fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5', __FILE__).'"></script>
+<script type="text/javascript" src="'.plugins_url('fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6', __FILE__).'"></script>
+
+<link rel="stylesheet" href="'.plugins_url('fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7', __FILE__).'" type="text/css" media="screen" />
+<script type="text/javascript" src="'.plugins_url('fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7', __FILE__).'"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".various").fancybox({\'type\':\'iframe\',\'height\':\'480\',\'autosize\':true,\'scrolling\':\'auto\',\'preload\':true,\'autoScale\':true,\'fitToView\' : true});		
+	});
+</script>';
 	if(is_array($attr)){
 		if($attr["lang"] !=""){$lang=$attr["lang"];}else{$lang='en';}
 		if($attr["only"] !=""){$resonly=$attr["only"];}else{$resonly='';}
@@ -2138,7 +2465,6 @@ function rentalcarmanagementsearchresults($attr)
 	{
 		$lang='en';$resonly='';
 	}
-	
 	if(get_option('rental_env_mode') == 'live'){$securekey=get_option('rental_live_api');} else {$securekey=get_option('rental_test_api');}
 	if(get_option('rental_type') == '9'){$CategoryTypeID='9';}else{$CategoryTypeID='1';}
 	
@@ -2196,12 +2522,71 @@ function rentalcarmanagementsearchresults($attr)
 	} else {
 		$headertxt= '<h1 onclick="searchtoggle()">Enter Your Travel Details</h1>'; } 
 	
+	$addIEstyle='<!--[if IE 8]>
+	<style>
+	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;max-width:500px; }
+	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
+	.chk_avail_fname_lvl{float:left;width:15%;}
+.chk_avail_fname_input{float:left;width:30%;}
+.chk_avail_lname_lvl{ float: left; margin-left: 8%; text-align: right;width: 15%;}
+.chk_avail_lname_input{float:right;width:30%;text-align:right;}
+.chk_avail_email_lvl{float:left;width:15%;}
+.chk_avail_email_input{float:right;width:85%;}
+.chk_avail_emailquote{float:left;margin-left:15%;}
+.chk_avail_availbtn{float:right;}
+	
+	.lvl{width:35%;font-weight:bold;float:left;text-align:left;}
+	.lvl_val{width:65%;font-weight:normal;float:right;}
+	.lvl_val_email{float:right;text-align:right;width:100%;}
+	.emailqu_textarea{margin: 4px 0px; width: 100%;border:1px solid #F69812;font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;height:80px;}
+	.emailqu{margin-left:168px;box-shadow:none;border:none;border-radius:none;margin-top:5px;}
+	.booking_checkout_center{width:65%;float:left;margin-left:2%;}
+.emailme{float:left;}
+.customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
+.booking_chkoutleft{float:left;width:30%;}
+.booking_chkoutright{float:right;line-height:30px;width:65%;}
+.bookingleft{
+	clear: left;
+	float: left;
+	line-height: 15px;
+	width: 30%;
+}
+.desc{height: 80px; overflow: hidden;}
+.bookingleft img{
+	max-width:150px;
+	height:114px;
+}
+.price {
+ 	font-size: 18px;
+    font-weight: bold;
+    height: 70px;
+    line-height: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+.bookingcentre
+{
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 2%;
+    text-align: left;
+    width: 40%;
+}
+.bookingright{
+	float: right;
+	position: relative;
+	width: 28%;
+}
+.underline {border-bottom: 1px solid #E8E8E8;}
+	</style>
+	<![endif]-->';
+	
 	$ua = $_SERVER["HTTP_USER_AGENT"];
 	$mac=strpos($ua, 'Macintosh') ? true : false;
 	$win=strpos($ua, 'Windows') ? true : false;
 	$stylesheet=get_option('rental_searchform_css');
 	if($mac){$stylesheet=get_option('css_mac');}
-	
 	if($resonly == ""){
 	$searchout .='<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" />
           <link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
@@ -2209,7 +2594,7 @@ function rentalcarmanagementsearchresults($attr)
           <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/i18n/jquery-ui-i18n.min.js"></script>	
           <script src="'.plugins_url('jquery.selectBoxIt.js', __FILE__).'"></script> 
-		  <style>'.$stylesheet.'
+		  '.$addIEstyle.'<style>'.$stylesheet.'
 			.ui-datepicker .ui-datepicker-header {background:none repeat scroll 0 0 #026CD6;color:#FFFFFF}
 			.rentalcar_widget_div ul li{background:none;padding:5px;margin:0;}
 			.tabsidebar .ui-widget-content{	border:none;}
@@ -2229,16 +2614,21 @@ jQuery( document ).ready(function($) {
 		else if($lang == 'du') { $searchout .= '$.datepicker.setDefaults( $.datepicker.regional[ "nl" ] );';}
 		else { $searchout.='$.datepicker.setDefaults( $.datepicker.regional[ "" ] );';}  
 $searchout .='jQuery("#PickupLocation,#DropOffLocation").selectBoxIt({theme: "jquerymobile"});
-$("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",defaultDate: +2,
+$("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",
 						onSelect: function (dateText, inst) {
 								var date = $(this).datepicker("getDate");
+								var date1 = $(this).datepicker("getDate");
 								if (date){
-									date.setDate(date.getDate() + 3);
-									$( "#DropOffDate" ).datepicker( "option", "minDate", date );
+									date.setDate(date.getDate() + 12);
+									$( "#DropOffDate" ).val($.datepicker.formatDate("dd/mm/yy",date));
+									
+									date1.setDate(date1.getDate() + 1);
+									$( "#DropOffDate" ).datepicker( "option", "minDate", date1 );
 								}
 						}
 									});
-		$("#DropOffDate").datepicker({ numberOfMonths: 3,defaultDate: +3,dateFormat: "dd/mm/yy"});
+		
+		$("#DropOffDate").datepicker({ numberOfMonths: 3,dateFormat: "dd/mm/yy"});
 });
 var j = jQuery.noConflict();
 function searchtoggle()
@@ -2309,7 +2699,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	if($_GET["action"] == "Quote")
 	{
 		$output='';
-		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/PopulateWebBookingTotal?RCMReferenceKey='.urlencode($_POST["refkey"]);
+			$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/PopulateWebBookingTotal?RCMReferenceKey='.urlencode($_POST["refkey"]);
 			$populatetotal=file_get_contents($url);
 			
 			$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/confirmBookingTotal?CustomerEmailID='.urlencode($_POST["CustomerEmail"]).'&RCMReferenceKey='.urlencode($_POST["refkey"]);
@@ -2370,8 +2760,10 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					{
 						$quote=$elements->getElementsByTagName("ReferenceNo");$refquote=$quote->item(0)->nodeValue;
 						$ReservationNo=$elements->getElementsByTagName("ReservationNo");$refkey=$ReservationNo->item(0)->nodeValue;
-						$output .=$sucess_msg;
-						$subject='Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'(Sydney)';
+						$output .='<script>
+						jQuery(document).ready(function($) { setTimeout(function() { $("#timeoutmsg").fadeOut(); document.location="'.get_permalink().'";}, 5000); 
+						});</script><div id="timeoutmsg">'.$sucess_msg.'</div>';
+						$subject='Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'('.$_POST["pickuplocation"].')';
 						
 						$message ='';	
 						$hr=get_option("rentalcar_timediff",true);
@@ -2436,7 +2828,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	elseif($_GET["action"] == 'detail')
 	{
 		$output='';
-		$output .='<style>header{display:none;}nav{display:none;}</style>';
+		$output .=$common.'<style>header{display:none;}nav{display:none;}</style>';
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestVehicleAvailability?PickupLocation='.urlencode($_GET["PickupLocationID"]).'&PickupDate='.urlencode($_GET["PickDate"]).'&PickupTime=12:00&DropOffLocation='.urlencode($_GET["DLocationID"]).'&DropOffDate='.urlencode($_GET["DropoffDate"]).'&DropOffTime=12:00&DriverAge=30&CategoryTypeID='.$CategoryTypeID.'&SecureKey='.urlencode($securekey).'&PromoCode='.urlencode($_GET["promo"]);	
 		
 			$articles = file_get_contents($url);
@@ -2489,7 +2881,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				}				
 				$subtotal=$numofday * $rateperday;
 				$insurance=$numofday * 10;
-				$output .='<style>'.$stylesheet.'</style><script>function openMoreInfo() {window.open("'.plugins_url('insurance_details.php',__FILE__).'", "WindowMore", "width=970,height=440,scrollbars=yes");}function moreInfo(id) { window.open("'.plugins_url('moreinfo.php',__FILE__).'?v=" + id, "WindowMore", "width=970,height=440,scrollbars=yes");}
+				$output .=$addIEstyle.'<style>'.$stylesheet.'</style><script>
 				function updatedotalcost(numofday,extrafee){
 					var subtotal;
 					var extra=parseFloat(extrafee);
@@ -2584,7 +2976,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						<td align="left" class="underline"><input type="radio" value="25" name="InsuranceID" id="InsuranceID3" onclick="updatedotalcost(\''.$numofday.'\',\''.$extrafees.'\')"/>&nbsp;'.$myoptions["step3tr3td3"].'</td>
 					</tr>
 					<tr>
-						<td colspan="3" align="left"><a href="javascript:void(0)" onclick="openMoreInfo()" style="font-size:12px;color:#000">'.$myoptions["step3moreinfo"].' </a></td>
+						<td colspan="3" align="left"><a class="various fancybox.iframe" data-fancybox-type="iframe" href="'.plugins_url('insurance.php',__FILE__).'" style="font-size:12px;color:#000;text-decoration:underline;">'.$myoptions["step3moreinfo"].' </a></td>
 					</tr>
 					</tbody>
 			</table>	
@@ -2593,7 +2985,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						<div class="booking_chkoutleft">											
 							<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>	
 							<div class="clear"></div>
-							<a onclick="moreInfo('.$carid.');" href="#" style="font-size: 13px;">'.$myoptions["clickinfo"].'</a>
+							<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.$myoptions["clickinfo"].'</a>
 						</div>
 						<div class="booking_chkoutright">						
 							<table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -2726,17 +3118,16 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						
 						$quote=$elements->getElementsByTagName("ReferenceNo");$refquote=$quote->item(0)->nodeValue;
 						$ReservationNo=$elements->getElementsByTagName("ReservationNo");$refkey=$ReservationNo->item(0)->nodeValue;
-						$output .=$sucess_msg;
-						$subject='Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'(Sydney)';
+						$output .='<script>
+						jQuery(document).ready(function($) { setTimeout(function() { $("#timeoutmsg").fadeOut(); document.location="'.get_permalink().'";}, 5000); 
+						});</script><div id="timeoutmsg">'.$sucess_msg.'</div>';
+						$subject='Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'('.$_POST["pickuplocation"].')';
 						
 						$message ='';	
 						$hr=get_option("rentalcar_timediff",true);
 						$today=date("d/M/Y",strtotime("+".$hr." hours"));$customer_email=$_POST["CustomerEmail"];
 						$customer_name=$_POST["firstname"].'&nbsp;'.$_POST["lastname"];
-						$notes='<tr>
-<td style="border-bottom: 1px solid #F69812; margin-bottom: 2px;">Notes:</td>
-<td style="border-bottom: 1px solid #F69812; margin-bottom: 2px;">'.strip_tags($_POST["Notes"]).'</td>
-</tr>';
+						$notes='<p>Notes:<br/>'.stripslashes(strip_tags($_POST["Notes"])).'</p>';
 						
 						if($_POST["totalcost"]!=""){$totalcost=$_POST["totalcost"];}else{$totalcost='';}
 						
@@ -2808,7 +3199,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				}
 				$subtotal=$numofday * $rateperday;
 				
-			$output .=' <script language="Javascript">function openMoreInfo(id) {window.open("'.plugins_url('moreinfo.php',__FILE__).'?v=" + id, "WindowMore", "width=970,height=440,scrollbars=yes");}function validatequote(){
+			$output .=' <script language="Javascript">function validatequote(){
 	if(document.getElementById("firstname").value == "")
 	{
 		alert("Please enter your first name");
@@ -2834,7 +3225,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
          return false;
       }
 	document.getElementById("Rate").submit();}</script>
-		<style>'.$stylesheet.'</style>
+		'.$addIEstyle.'<style>'.$stylesheet.'</style>
 			<div class="bookingwrap clearfix">
 		<form id="Rate" name="Rate" action="" method="post">
 			<div class="bookingh1">'.$myoptions["bookingsummary"].'</div>
@@ -2842,7 +3233,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					<div class="booking_chkoutleft">											
 						<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>
 						<div class="clear"></div>
-							<a onclick="openMoreInfo('.$carid.');" href="#" style="font-size: 13px;">'.$myoptions["clickinfo"].'</a>
+							<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.$myoptions["clickinfo"].'</a>
 					</div>
 					<div class="booking_checkout_center">
 						<div class="lvl">'.$myoptions["vehicletype"].':</div>
@@ -2922,7 +3313,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	{	
 		$output=$searchout;
 		
-		$output .='<script>function openMoreInfo(id) {window.open("'.plugins_url('moreinfo.php',__FILE__).'?v=" + id, "WindowMore", "width=970,height=440,scrollbars=yes");}</script>';
+		$output .=$common;
 		
 		$pickupdatearr=explode("/",$_GET["PickupDate"]);
 		$pickupdate=$pickupdatearr[1].'/'.$pickupdatearr[0].'/'.$pickupdatearr[2];
@@ -2949,7 +3340,10 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					
 					$imgsrc=$items->item($i)->getElementsByTagName("CarImageMobile")->item(0)->nodeValue;
 					$catdesc=$items->item($i)->getElementsByTagName("CategoryDesc")->item(0)->nodeValue;
-					$desc=$items->item($i)->getElementsByTagName("VehicleDesc")->item(0)->nodeValue;
+					
+					if(get_lang_options($lang,$carid)!=""){	$desc=get_lang_options($lang,$carid);				
+					} else { $desc=$items->item($i)->getElementsByTagName("VehicleDesc")->item(0)->nodeValue;}
+					
 					$descurl=$items->item($i)->getElementsByTagName("VehicleDescURL")->item(0)->nodeValue;
 					
 					$pickup=date("d F Y",strtotime($pickupdate)).' from '.$from;
@@ -2966,7 +3360,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 									<div class="restdiv">
 										<div class="bookingleft"><img src="'.$imgsrc.'" border="0"/>
 											<div class="clear"></div>
-											<a onclick="openMoreInfo('.$carid.');" href="#" style="font-size: 13px;">'.$myoptions["clickinfo"].'</a>
+											<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.$myoptions["clickinfo"].'</a>
 										</div>
 										<div class="bookingcentre">
 												<div class="desc">'.$desc.'</div>

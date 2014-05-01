@@ -1,1 +1,0 @@
-<iframe src="https://secure.rentalcarmanager.com.au/ssl/AUTravelWheels107/bondi/webstep3-details.htm" scrolling="auto" frameborder="0" height="430" width="960"></iframe>
