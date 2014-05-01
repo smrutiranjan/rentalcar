@@ -9,8 +9,127 @@ Version: 1.1
 */
 //ini_set('default_charset', 'utf-8');
 register_activation_hook(__FILE__,'rentalcar_install');
+function ConvertCharacters($str)
+{
+	$findarray=array("Á","á","À","Â","à","Â","â","Ä","ä","Ã","ã","Å","å","Æ","æ","Ç","ç","Ð","ð","É","é","È","è","Ê","ê","Ë","ë","Í","í","Ì","ì","Î","î","Ï","ï","Ñ","ñ","Ó","ó","Ò","ò","Ô","ô","Ö","ö","Õ","õ","Ø","ø","ß","Þ","þ","Ú","ú","Ù","ù","Û","û","Ü","ü","Ý","ý","ÿ");
+	$replacearray=array("&Aacute;","&aacute;","&Agrave;","&Acirc;","&agrave;","&Acirc;","&acirc;","&Auml;","&auml;","&Atilde;","&atilde;","&Aring;","&aring;","&Aelig;","&aelig;","&Ccedil;","&ccedil;","&Eth;","&eth;","&Eacute;","&eacute;","&Egrave;","&egrave;","&Ecirc;","&ecirc;","&Euml;","&euml;","&Iacute;","&iacute;","&Igrave;","&igrave;","&Icirc;","&icirc;","&Iuml;","&iuml;","&Ntilde;","&ntilde;","&Oacute;","&oacute;","&Ograve;","&ograve;","&Ocirc;","&ocirc;","&Ouml;","&ouml;","&Otilde;","&otilde;","&Oslash;","&oslash;","&szlig;","&Thorn;","&thorn;","&Uacute;","&uacute;","&Ugrave;","&ugrave;","&Ucirc;","&ucirc;","&Uuml;","&uuml;","&Yacute;","&yacute;","&yuml;");
+	return str_replace($findarray,$replacearray,$str);
+}
 function rentalcar_install()
 {
+	
+	$emailquote_template_da ='<p align="center"><img src="http://secure.rentalcarmanager.com.au/db/AUTravelWheels107/logo.gif" alt="121" /></p>
+<div align="center">
+  <table border="0" cellspacing="0" cellpadding="4" width="650" style="border:1px solid #F69812;font-size:13px;line-height:1.2em;font-family:Arial">
+    <tr>
+      <td colspan="2" bgcolor="#F69812" style="padding:3px 4px">Online-Angebot mit Travelwheels - Ref #[refquote]  ([pickuplocation]) </td>
+    </tr>
+    <tr>
+      <td colspan="2">Vielen Dank für Ihr Online-Angebot mit Travelwheels.</td>
+    </tr>
+    <tr>
+      <td colspan="2">Dieses Online-Angebot ist nun der Ort weitergeleitet wurde - [pickuplocation].</td>
+    </tr>
+    <tr>
+      <td colspan="2">'.ConvertCharacters('Wenn Sie möchten, mit diesem Zitat gehen').' :</td>
+    </tr>
+    <tr>
+      <td colspan="2"><table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><strong>TURN IN IHR ZITAT eine Buchungsanfrage <a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[refkey]&amp;E604=[today]" target="_blank"><font color="#FF0000">KLICKEN SIE HIER</font></a></strong></td>
+          <td><img src="https://secure.rentalcarmanager.com.au/images/SafePayment.jpg" alt="231312" border="0" id="_x0000_i1026" /></td>
+        </tr>
+        <tr>
+          <td colspan="2">'.ConvertCharacters('Hinweis: Wenn Sie diese Mail im Textmodus und Schwierigkeiten Öffnen der Link oben, bitte versuchen Sie das Kopieren und die folgende gesamte Link einfügen in die Adressleiste Ihres Internet-Homepage.').'</td>
+        </tr>
+        <tr>
+          <td colspan="2"><a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[refkey]&amp;E604=[today]&amp;VD2=" target="_blank">https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[refkey]&amp;E604=[today]&amp;VD2=</a></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td colspan="2">Ihr Zitat Details sind wie folgt:</td>
+    </tr>
+    <tr>
+      <td colspan="2" style="border-bottom:1px solid #F69812;margin-bottom:2px;">Angebotsdatum: [today]</td>
+    </tr>   
+    <tr>
+      <td style="margin-top:2px;"><strong>Ref:</strong></td>
+      <td style="margin-top:2px;">[refquote] ([pickuplocation])</td>
+    </tr>
+    <tr>
+      <td>Name: </td> 
+      <td>[customer_name]</td>
+    </tr>
+	<tr>
+      <td colspan="2">[notes]</td>
+    </tr>
+    <tr>
+      <td style="border-bottom:1px solid #F69812;margin-bottom:2px;">Email: </td>
+      <td style="border-bottom:1px solid #F69812;margin-bottom:2px;"><a href="mailto:[customer_email]" target="_blank">[customer_email]</a></td>
+    </tr>
+    <tr>
+      <td style="margin-top:2px;">Fahrzeugtyp </td>
+      <td style="margin-top:2px;">[vehicle_type]</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="[imgsrc]" alt="logo" width="192" border="0" id="_x0000_i1027" /></td>
+    </tr>
+    <tr>
+      <td>Pickup Standort: </td>
+      <td>[pickuplocation]</td>
+    </tr>
+    <tr>
+      <td>Abholdatum: </td>
+      <td>[pickupdate]&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Dropoff Location: </td>
+      <td>[dropofflocation]</td>
+    </tr>
+    <tr>
+      <td>Dropoff Date: </td>
+      <td>[dropoffdate]&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2">'.ConvertCharacters('Mietpreis und Gebühren').'</td>
+    </tr>
+    <tr>
+      <td colspan="2" style="border-bottom:1px solid #F69812;margin-bottom:2px;"><table border="0" cellpadding="0" width="100%">
+        <tr>
+          <td>[totalrentaldays]&nbsp;days @&nbsp;AU$[rateperday]&nbsp;(per day)&nbsp;</td>
+          <td align="right">&nbsp;AU$[subtotal]</td>
+        </tr>
+		[insurance]
+		[oneway]
+        <tr>
+          <td><strong>Total:</strong></td>
+          <td align="right">AU$[totalcost]</td>
+        </tr>
+        <tr>
+          <td colspan="2" align="right">(Alle Preise inkl. GST)</td>
+        </tr>
+      </table></td>
+    </tr>    
+    <tr>
+      <td colspan="2" style="margin-top:2px;"><strong>Stornierungsbedingungen</strong><br />
+       '.ConvertCharacters('Wenn Sie leider um Ihre Termine / Reisepläne ändern, dann werden wir unser Bestes tun, um Sie mit einem anderen Wohnmobil stellen, wenn wir die Verfügbarkeit ohne zusätzliche Stornokosten. Wenn Sie Ihre Buchung stornieren müssen vollständig, dann sind die folgenden Gebühren gilt für alle Buchungen:<br />
+        Wenn mehr als 30 Tage vor storniert, Pick-up Datum: Stornogebühr von 25% des vollen Mietpreis gilt (entspricht der nicht rückzahlbare Anzahlung zu, um die Buchung) Wenn innerhalb von 29-8 Tagen abholen abgesagt: 50% der vollen Miete gilt.<br />
+        Wenn innerhalb von 7-1 Tagen storniert vor Übernahme: 75% des Mietpreises gilt. Wenn am Tag der Abholung oder No-Show abgesagt: Keine Rückerstattungen sorry, & die volle Miete wird Ihre Kreditkarte belastet.<br/>').'</td>
+    </tr>   
+    <tr>
+      <td colspan="2"><strong>Travelwheels</strong><br/>[pickuplocation]</td>
+    </tr>  
+    <tr>
+      <td colspan="2" bgcolor="#F69812" align="center">155 - 159 William    St<br />
+        Darlinghurst Sydney,&nbsp;NSW&nbsp;2010&nbsp;Australia<br />
+        Phone:1800 289 222 then dial 2&nbsp;&nbsp;&nbsp;Fax: 02 9666    4695&nbsp;&nbsp;Free Phone: 1800 289 222 THEN PRESS 2</td>
+    </tr>
+  </table>
+</div>
+<p align="center">[sitetitle]<br/>[siteurl]</p>';
+	
 $mac_style='.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
 	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
 	.chk_avail_fname_lvl{float:left;width:15%;}
@@ -1308,40 +1427,40 @@ vertical-align:middle;
 					'continuebtn_ho'=>'continue_ho-fr.png',
 					'checkavailbtn'=>'checkavailability-fr.png',
 					'checkavailbtn_ho'=>'checkavailability_ho-fr.png',								
-					'pickuplocation'=>'Pickup Location',
-					'pickupdate'=>'Pickup Date',
-					'dropofflocation'=>'Dropoff Location',			
-					'dropoffdate'=>'Dropoff Date',
-					'promocode'=>'Promo Code',					
-					'acrodian'=>'Click Here to Change Search Cities & Dates',
-					'step3tr1td3'=>'Red',
+					'pickuplocation'=>'Lieu de ramassage',
+					'pickupdate'=>'date de ramassage',
+					'dropofflocation'=>'Descente Lieu',			
+					'dropoffdate'=>'Descente date',
+					'promocode'=>'Code promotionnel',					
+					'acrodian'=>ConvertCharacters('Cliquez ici pour modifier votre recherche Villes et dates'),
+					'step3tr1td3'=>'rouge',
 					'step3tr2td3'=>'Orange',
-					'step3tr3td3'=>'Green',
-					'bookingfname'=>'First Name',
-					'bookinglname'=>'Last Name',
+					'step3tr3td3'=>'vert',
+					'bookingfname'=>ConvertCharacters('Prénom'),
+					'bookinglname'=>'Nom',
 					'bookingemail'=>'Email',
-					'step3th1'=>'Campervan Insurance',
+					'step3th1'=>'camping-car d\'assurance',
 					'step3th2'=>'Bond',
-					'step3th3'=>'Select Insurance',
-					'step3trtd1'=>'Red Insurance $10 per day',
-					'step3trtd2'=>'Orange Insurance $15 per day',
-					'step3trtd3'=>'Green Insurance $25 per day',
-					'avgrate'=>'Average daily rate',
-					'step3quotetitle'=>'Campervan Hire Quote',
-					'vehicletype'=>'Vehicle Type',
-					'pickup'=>'Pickup',
-					'step3bookingtitle'=>'Enter your name & email to check availability',
-					'dropoff'=>'Dropoff',
-					'clickinfo'=>'Click for vehicle info',
-					'dailyrate'=>'Daily Rate',
-					'subtotal'=>'SUB TOTAL',
-					'insurance'=>'Insurance',
-					'totalcost'=>'Total Cost',
-					'back'=>'Back',
-					'step3title'=>'Campervan Insurance - please select one option Red, Orange or Green Insurance',
-					'step3moreinfo'=>'Click here for more information about Campervan insurance',
-					'oneway'=>'One Way Fee','addition_details'=>'Questions or special requests',
-					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Enter your name and email for a quick quote'
+					'step3th3'=>ConvertCharacters('Sélectionner assurance'),
+					'step3trtd1'=>'Rouge d\'assurance de 10 $ par jour',
+					'step3trtd2'=>'Orange d\'assurance de 15 $ par jour',
+					'step3trtd3'=>'Verte d\'assurance de 25 $ par jour',
+					'avgrate'=>'Taux journalier moyen',
+					'step3quotetitle'=>'Location de camping-car Citer',
+					'vehicletype'=>ConvertCharacters('Type de véhicule'),
+					'pickup'=>'pick-up',
+					'step3bookingtitle'=>ConvertCharacters('Saisissez votre nom et e-mail pour vérifier la disponibilité'),
+					'dropoff'=>'Descente',
+					'clickinfo'=>ConvertCharacters('Cliquez pour info véhicule'),
+					'dailyrate'=>'Tarif quotidien',
+					'subtotal'=>'sous',
+					'insurance'=>'assurance',
+					'totalcost'=>ConvertCharacters('Coût total'),
+					'back'=>ConvertCharacters('arrière'),
+					'step3title'=>ConvertCharacters('Camping-car d\'assurance - s\'il vous plaît sélectionner une option rouge, orange ou vert assurance'),
+					'step3moreinfo'=>'Cliquez ici pour plus d\'informations sur l\'assurance camping-car',
+					'oneway'=>'Frais ONE WAY','addition_details'=>ConvertCharacters('Questions ou des demandes spéciales'),
+					'subtotal_notes'=>ConvertCharacters('Cette citation est pour le coût de location de location de véhicule et ne comprend pas les assurances applicables ou les frais de poste supplémentaires'),'bookingsummary'=>ConvertCharacters('Entrez votre nom et votre e-mail pour un devis rapide')
 					);
 	$optionsarr['da']=array(					 
 					'header_img'=>'headlogo-ge.png',	
@@ -1353,40 +1472,40 @@ vertical-align:middle;
 					'continuebtn_ho'=>'continue_ho-da.png',
 					'checkavailbtn'=>'checkavailability-da.png',
 					'checkavailbtn_ho'=>'checkavailability_ho-da.png',					
-					'pickuplocation'=>'Pickup Location',
-					'pickupdate'=>'Pickup Date',
-					'dropofflocation'=>'Dropoff Location',			
-					'dropoffdate'=>'Dropoff Date',
-					'promocode'=>'Promo Code',					
-					'acrodian'=>'Click Here to Change Search Cities & Dates',
-					'step3tr1td3'=>'Red',
+					'pickuplocation'=>'Pickup Standort',
+					'pickupdate'=>'Abholdatum',
+					'dropofflocation'=>'Drop-Off-Location',			
+					'dropoffdate'=>'Drop-Off-Datum',
+					'promocode'=>'Promo-Code',					
+					'acrodian'=>ConvertCharacters('Klicken Sie hier, um Ändern Sie suchen Städte & Termine'),
+					'step3tr1td3'=>'rot',
 					'step3tr2td3'=>'Orange',
-					'step3tr3td3'=>'Green',
-					'bookingfname'=>'First Name',
-					'bookinglname'=>'Last Name',
-					'bookingemail'=>'Email',
-					'step3th1'=>'Campervan Insurance',
-					'step3th2'=>'Bond',
-					'step3th3'=>'Select Insurance',
-					'step3trtd1'=>'Red Insurance $10 per day',
-					'step3trtd2'=>'Orange Insurance $15 per day',
-					'step3trtd3'=>'Green Insurance $25 per day',
-					'avgrate'=>'Average daily rate',
-					'step3quotetitle'=>'Campervan Hire Quote',
-					'vehicletype'=>'Vehicle Type',
-					'pickup'=>'Pickup',
-					'step3bookingtitle'=>'Enter your name & email to check availability',
-					'dropoff'=>'Dropoff',
-					'clickinfo'=>'Click for vehicle info',
-					'dailyrate'=>'Daily Rate',
+					'step3tr3td3'=>ConvertCharacters('grün'),
+					'bookingfname'=>'Vorname',
+					'bookinglname'=>'Nachname',
+					'bookingemail'=>'E-Mail',
+					'step3th1'=>'Wohnmobil-Versicherung',
+					'step3th2'=>'Bindung',
+					'step3th3'=>ConvertCharacters('Wählen Versicherung'),
+					'step3trtd1'=>'Red Versicherung $ 10 pro Tag',
+					'step3trtd2'=>'Orange Versicherung $15 per Tag',
+					'step3trtd3'=>ConvertCharacters('grün Versicherung $25 per Tag'),
+					'avgrate'=>'Durchschnittliche Tagesrate',
+					'step3quotetitle'=>'Campervan Vermietungen',
+					'vehicletype'=>'Fahrzeugtyp',
+					'pickup'=>'Tonabnehmer',
+					'step3bookingtitle'=>ConvertCharacters('Geben Sie Ihren Namen und E-Mail, um die Verfügbarkeit zu überprüfen'),
+					'dropoff'=>'absetzen',
+					'clickinfo'=>ConvertCharacters('Klicken Sie für die Fahrzeug info'),
+					'dailyrate'=>'Tagesrate',
 					'subtotal'=>'SUB TOTAL',
-					'insurance'=>'Insurance',
-					'totalcost'=>'Total Cost',
-					'back'=>'Back',
-					'step3title'=>'Campervan Insurance - please select one option Red, Orange or Green Insurance',
-					'step3moreinfo'=>'Click here for more information about Campervan insurance',
-					'oneway'=>'One Way Fee','addition_details'=>'Questions or special requests',
-					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Enter your name and email for a quick quote'
+					'insurance'=>'Versicherung',
+					'totalcost'=>'Gesamtkosten',
+					'back'=>ConvertCharacters('zurück'),
+					'step3title'=>ConvertCharacters('Campervan Versicherung - Bitte wählen Sie eine Option Rot, orange oder grün Versicherung'),
+					'step3moreinfo'=>ConvertCharacters('Klicken Sie hier für weitere Informationen über Wohnmobil-Versicherung'),
+					'oneway'=>ConvertCharacters('Einweggebühr'),'addition_details'=>ConvertCharacters('Fragen oder Sonderwünsche'),
+					'subtotal_notes'=>ConvertCharacters('Dieses Zitat ist nur für den Fahrzeugverleih Mietkosten und keine geltenden Versicherungen oder zusätzliche Einzelkosten beinhalten'),'bookingsummary'=>ConvertCharacters('Geben Sie Ihren Namen und E-Mail für ein schnelles Angebot')
 					);	
 	$optionsarr['du']=array(					 
 					'header_img'=>'headlogo-du.png',	
@@ -1398,42 +1517,86 @@ vertical-align:middle;
 					'continuebtn_ho'=>'continue_ho-du.png',
 					'checkavailbtn'=>'checkavailability-du.png',
 					'checkavailbtn_ho'=>'checkavailability_ho-du.png',									
-					'pickuplocation'=>'Pickup Location',
-					'pickupdate'=>'Pickup Date',
-					'dropofflocation'=>'Dropoff Location',			
-					'dropoffdate'=>'Dropoff Date',
+					'pickuplocation'=>'pickup Locatie',
+					'pickupdate'=>'pickup Datum',
+					'dropofflocation'=>'Vertrek locatie',			
+					'dropoffdate'=>'Drop Off Datum',
 					'promocode'=>'Promo Code',					
-					'acrodian'=>'Click Here to Change Search Cities & Dates',
-					'step3tr1td3'=>'Red',
-					'step3tr2td3'=>'Orange',
-					'step3tr3td3'=>'Green',
-					'bookingfname'=>'First Name',
-					'bookinglname'=>'Last Name',
+					'acrodian'=>'Klik hier om te veranderen zoeken Steden & Data',
+					'step3tr1td3'=>'rood',
+					'step3tr2td3'=>'oranje',
+					'step3tr3td3'=>'groen',
+					'bookingfname'=>'Voornaam',
+					'bookinglname'=>'achternaam',
 					'bookingemail'=>'Email',
-					'step3th1'=>'Campervan Insurance',
-					'step3th2'=>'Bond',
-					'step3th3'=>'Select Insurance',
-					'step3trtd1'=>'Red Insurance $10 per day',
-					'step3trtd2'=>'Orange Insurance $15 per day',
-					'step3trtd3'=>'Green Insurance $25 per day',
-					'avgrate'=>'Average daily rate',
-					'step3quotetitle'=>'Campervan Hire Quote',
+					'step3th1'=>'camper Verzekering',
+					'step3th2'=>'obligatie',
+					'step3th3'=>'Selecteer Verzekeringen',
+					'step3trtd1'=>'Rode Insurance $ 10 per dag',
+					'step3trtd2'=>'Oranje Verzekeringen $ 15 per dag',
+					'step3trtd3'=>'Green Insurance $ 25 per dag',
+					'avgrate'=>'Gemiddelde dagtarief',
+					'step3quotetitle'=>'Camper huren Quote',
 					'vehicletype'=>'Vehicle Type',
 					'pickup'=>'Pickup',
-					'step3bookingtitle'=>'Enter your name & email to check availability',
+					'step3bookingtitle'=>ConvertCharacters('Voer uw naam en e-mail om de beschikbaarheid te controleren'),
 					'dropoff'=>'Dropoff',
-					'clickinfo'=>'Click for vehicle info',
-					'dailyrate'=>'Daily Rate',
-					'subtotal'=>'SUB TOTAL',
-					'insurance'=>'Insurance',
+					'clickinfo'=>'Klik voor voertuig info',
+					'dailyrate'=>'dagprijs',
+					'subtotal'=>'SUBTOTAAL',
+					'insurance'=>'verzekering',
 					'totalcost'=>'Total Cost',
-					'back'=>'Back',
-					'step3title'=>'Campervan Insurance - please select one option Red, Orange or Green Insurance',
-					'step3moreinfo'=>'Click here for more information about Campervan insurance',
-					'oneway'=>'One Way Fee','addition_details'=>'Questions or special requests',
-					'subtotal_notes'=>'This quote is for vehicle rental hire cost only and does not include any applicable insurances or additional item charges','bookingsummary'=>'Enter your name and email for a quick quote'
+					'back'=>'terug',
+					'step3title'=>'Camper Verzekeringen - maak een keuze optie rood, oranje of groen Verzekeringen',
+					'step3moreinfo'=>'Klik hier voor meer informatie over Camper verzekering',
+					'oneway'=>'One Way Fee','addition_details'=>'Vragen of speciale verzoeken',
+					'subtotal_notes'=>'Dit citaat is alleen huurauto huren kosten en geen toepasselijke verzekeringen of extra punt kosten omvatten','bookingsummary'=>'Voer uw naam en e-mail voor een snelle offerte'
 					);
-	
+	$optionsarr['pt']=array(					 
+					'header_img'=>'headlogo-pt.png',	
+					'searchbtn'=>'search-pt.png',
+					'searchbtn_ho'=>'search_ho-pt.png',
+					'emailquote'=>'emailquote-pt.png',
+					'emailquote_ho'=>'emailquote_ho-pt.png',
+					'continuebtn'=>'continue-pt.png',
+					'continuebtn_ho'=>'continue_ho-pt.png',
+					'checkavailbtn'=>'checkavailability-pt.png',
+					'checkavailbtn_ho'=>'checkavailability_ho-pt.png',	
+					'pickuplocation'=>ConvertCharacters('Captura de Localização'),
+					'pickupdate'=>'Coleta Data',
+					'dropofflocation'=>ConvertCharacters('Drop Off Localização'),			
+					'dropoffdate'=>'Drop Off Data',
+					'promocode'=>ConvertCharacters('Código da Promoção'),					
+					'acrodian'=>ConvertCharacters('Clique aqui para alterar Pesquisa Cidades e datas'),
+					'step3tr1td3'=>'vermelho',
+					'step3tr2td3'=>'laranja',
+					'step3tr3td3'=>'verde',
+					'bookingfname'=>'Nome',
+					'bookinglname'=>'Sobrenome',
+					'bookingemail'=>'Email',
+					'step3th1'=>'Autocaravanas Seguro',
+					'step3th2'=>ConvertCharacters('vínculo'),
+					'step3th3'=>ConvertCharacters('Selecione Seguro'),
+					'step3trtd1'=>'Seguro Red US $ 10 por dia',
+					'step3trtd2'=>'Laranja Seguro US $ 15 por dia',
+					'step3trtd3'=>'Verde Seguro US $ 25 por dia',
+					'avgrate'=>ConvertCharacters('Taxa média diária'),
+					'step3quotetitle'=>ConvertCharacters('Aluguer Autocaravanas Citação'),
+					'vehicletype'=>ConvertCharacters('Tipo de Veículo'),
+					'pickup'=>'Levantamento',
+					'step3bookingtitle'=>ConvertCharacters('Digite seu nome e e-mail para verificar a disponibilidad'),
+					'dropoff'=>ConvertCharacters('cochilar'),
+					'clickinfo'=>ConvertCharacters('Clique para obter informações do veículo'),
+					'dailyrate'=>ConvertCharacters('diária'),
+					'subtotal'=>'SUB TOTAL',
+					'insurance'=>'seguro',
+					'totalcost'=>'Custo total',
+					'back'=>'de volta',
+					'step3title'=>ConvertCharacters('Autocaravanas Seguros - selecione uma opção de vermelho, laranja ou verde Seguro'),
+					'step3moreinfo'=>ConvertCharacters('Clique aqui para mais informações sobre o seguro de Autocaravanas'),
+					'oneway'=>'Taxa de One Way','addition_details'=>ConvertCharacters('Perguntas ou pedidos especiais'),
+					'subtotal_notes'=>ConvertCharacters('Esta citação é para o aluguer de veículo único custo de aluguer e não inclui quaisquer seguros aplicáveis ??ou encargos de itens adicionais'),'bookingsummary'=>ConvertCharacters('Digite seu nome e e-mail para uma cotação')
+					);
 	$emailquote_template ='<p align="center"><img src="http://secure.rentalcarmanager.com.au/db/AUTravelWheels107/logo.gif" alt="121" /></p>
 <div align="center">
   <table border="0" cellspacing="0" cellpadding="4" width="650" style="border:1px solid #F69812;font-size:13px;line-height:1.2em;font-family:Arial">
@@ -1546,11 +1709,13 @@ vertical-align:middle;
 </div>
 <p align="center">[sitetitle]<br/>[siteurl]</p>';
 		
-	delete_option('rental_option_en');delete_option('rental_option_fr');delete_option('rental_option_da');delete_option('rental_option_du');	
-	add_option('rental_option_en',$optionsarr['en']);add_option('rental_option_fr',$optionsarr['fr']);
+	delete_option('rental_option_en');//delete_option('rental_option_fr');
+	delete_option('rental_option_da');delete_option('rental_option_du');	delete_option('rental_option_pt');
+	add_option('rental_option_en',$optionsarr['en']);//add_option('rental_option_fr',$optionsarr['fr']);
 	add_option('rental_option_da',$optionsarr['da']);add_option('rental_option_du',$optionsarr['du']);
+	add_option('rental_option_pt',$optionsarr['pt']);
 	
-	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9','emailquote_template_en'=>$emailquote_template,'emailquote_template_da'=>$emailquote_template,'emailquote_template_du'=>$emailquote_template,'emailquote_template_fr'=>$emailquote_template,'successmsg_en'=>$sucessmsg,'successmsg_fr'=>$sucessmsg,'successmsg_da'=>$sucessmsg,'successmsg_du'=>$sucessmsg,'rentalcar_timediff'=>'13','rental_emails_from'=>'Travelwheels <'.get_bloginfo('admin_email').'>','rental_emails_to'=>'info <info@travelwheels.com.au>,info <gino@travelwheels.com.au>,Developer <smrutiniit@gmail.com>','css_mac'=>$mac_style);
+	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9','emailquote_template_en'=>$emailquote_template,'emailquote_template_da'=>$emailquote_template,'emailquote_template_du'=>$emailquote_template,'emailquote_template_fr'=>$emailquote_template,'emailquote_template_pt'=>$emailquote_template,'successmsg_pt'=>$sucessmsg,'successmsg_en'=>$sucessmsg,'successmsg_fr'=>$sucessmsg,'successmsg_da'=>$sucessmsg,'successmsg_du'=>$sucessmsg,'rentalcar_timediff'=>'13','rental_emails_from'=>'Travelwheels <'.get_bloginfo('admin_email').'>','rental_emails_to'=>'info <info@travelwheels.com.au>,info <gino@travelwheels.com.au>,Developer <smrutiniit@gmail.com>','css_mac'=>$mac_style);
 	
 	foreach($generalarr as $ky => $value)
 	{
@@ -1592,6 +1757,11 @@ function save_carrental_meta($post_id){
 	{
 		delete_post_meta($post_id, 'car_shortdesc_du');
 		add_post_meta($post_id, 'car_shortdesc_du',$_POST["car_shortdesc_du"]);
+	}
+	if(trim($_POST["car_shortdesc_pt"])!="")
+	{
+		delete_post_meta($post_id, 'car_shortdesc_pt');
+		add_post_meta($post_id, 'car_shortdesc_pt',$_POST["car_shortdesc_pt"]);
 	}
 	
 	if(trim($_POST["car_desc_en"])!="")
@@ -1712,6 +1882,7 @@ function add_car_detail_meta_box($post){
                 <tr>
                 	<td align="left"><textarea name="car_shortdesc_du" cols="80" rows="3"><?php echo stripslashes_deep(get_post_meta($post->ID, 'car_shortdesc_du',true));?></textarea></td>
                 </tr>
+
                   <tr>
                 	<td align="left"><strong>Description</strong></td>
                 </tr>
@@ -1721,6 +1892,33 @@ function add_car_detail_meta_box($post){
                     $wpcontent=stripslashes_deep(get_post_meta($post->ID, 'car_desc_du',true));					 
 					 $wpcontent = apply_filters('the_content', $wpcontent);
 					 wp_editor( $wpcontent, "car_desc_du" ,array('textarea_rows' => 15));
+                     ?>
+                    </td>
+                </tr>
+            </table>
+        </td>
+     </tr>
+     </tr>
+       <tr><td colspan="2" align="left" valign="top"><h1>Portuguese</h1></td></tr>
+     <tr>
+     	<td colspan="2" align="left" valign="top">
+        	<table cellspacing="2" cellpadding="4" border="0" width="100%">
+            	<tr>
+                	<td align="left"><strong>Short Description</strong></td>
+                </tr>
+                <tr>
+                	<td align="left"><textarea name="car_shortdesc_pt" cols="80" rows="3"><?php echo stripslashes_deep(get_post_meta($post->ID, 'car_shortdesc_pt',true));?></textarea></td>
+                </tr>
+
+                  <tr>
+                	<td align="left"><strong>Description</strong></td>
+                </tr>
+                 <tr>
+                	<td align="left">
+                    <?php
+                    $wpcontent=stripslashes_deep(get_post_meta($post->ID, 'car_desc_pt',true));					 
+					 $wpcontent = apply_filters('the_content', $wpcontent);
+					 wp_editor( $wpcontent, "car_desc_pt" ,array('textarea_rows' => 15));
                      ?>
                     </td>
                 </tr>
@@ -1749,8 +1947,10 @@ function rentalcar_form_setting() {
 	add_submenu_page('rentalcar_setting', __( 'French', 'rentalcar_form'), __( 'French', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_fr', 'set_rentalcar_fr');
 	add_submenu_page('rentalcar_setting', __( 'German', 'rentalcar_form'), __( 'German', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_da', 'set_rentalcar_da');
 	add_submenu_page('rentalcar_setting', __( 'Netherlands', 'rentalcar_form'), __( 'Netherlands', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_du', 'set_rentalcar_du');
+	add_submenu_page('rentalcar_setting', __( 'Portuguese', 'rentalcar_form'), __( 'Portuguese', 'rentalcar_form' ), 'manage_options', 'set_rentalcar_pt', 'set_rentalcar_pt');
 	add_submenu_page('rentalcar_setting', __( 'Car listing', 'rentalcar_form'), __( 'Car listing', 'rentalcar_form' ), 'manage_options', 'edit.php?post_type=rentalcar');	
 	add_submenu_page('rentalcar_setting', __( 'Insurance', 'rentalcar_form'), __( 'Insurance', 'rentalcar_form' ), 'manage_options', 'set_insurancepage','set_insurancepage');	
+	add_submenu_page('rentalcar_setting', __( 'Tracking Code', 'rentalcar_form'), __( 'Tracking Code', 'rentalcar_form' ), 'manage_options', 'set_trackingcode','set_trackingcode');
 }
 function set_insurancepage()
 {
@@ -1780,6 +1980,40 @@ function set_insurancepage()
 					 $wpcontent = apply_filters('the_content', $wpcontent);
 					 wp_editor( $wpcontent, "car_insurance" ,$settings);
                 ?></p>
+                 <div style="float: right; margin-right: 10px;" class="submit">
+                    <input type="submit" style="float: right;" name="save" value="Save Settings" class="button-primary">
+                </div>
+            </form>            
+            </div>
+		</div>            
+    </div>   
+    <?php
+}
+function set_trackingcode()
+{
+	
+	$msg='';
+	if(isset($_POST['save'])){		
+		
+		if(isset($_POST["car_trackingcode"]))
+		{
+			delete_option( 'car_trackingcode');
+			add_option( 'car_trackingcode',$_POST["car_trackingcode"], '', 'yes' ); 
+		}
+		$msg="Tracking code has been saved successfully.";
+	}
+	?>
+     <div class="pea_admin_wrap">
+        <div class="pea_admin_top">
+            <h1>Tracking Code</h1>
+        </div>        
+ 		<?php if($msg!=""){ echo '<div class="msg">'.$msg.'</div>';}?>
+        <div class="pea_admin_main_wrap">
+            <div class="pea_admin_main_left">
+            <form method="post" action="" name="form1">
+            	<p>Put your tracking code</p>
+                  <p><textarea name="car_trackingcode" class="regular-text csstxt" style="height:480px;"><?php echo stripslashes(get_option('car_trackingcode'));?></textarea></p>
+               
                  <div style="float: right; margin-right: 10px;" class="submit">
                     <input type="submit" style="float: right;" name="save" value="Save Settings" class="button-primary">
                 </div>
@@ -1826,6 +2060,7 @@ function set_custom_edit_rentalcar_columns($columns) {
     $columns['car_shortdesc_fr'] = 'French';
     $columns['car_shortdesc_da'] = 'German';
 	$columns['car_shortdesc_du'] = 'Netherland';
+	$columns['car_shortdesc_pt'] = 'Portuguese';
     $columns['carid'] ='Car ID';
     return $columns;
 }
@@ -1859,6 +2094,9 @@ function custom_rentalcar_column( $column, $post_id ) {
 	 	case 'car_shortdesc_du' :
              echo get_post_meta( $post_id , 'car_shortdesc_du' , true );
             break;
+		case 'car_shortdesc_pt' :
+             echo get_post_meta( $post_id , 'car_shortdesc_pt' , true );
+            break;
 	 	case 'carid' :
              echo get_post_meta( $post_id , 'carid' , true );
             break;
@@ -1885,7 +2123,11 @@ function set_help_info()
     
     <p>Shortcode for netherland<br/>
     display search form at top and display search result under search form - [rcm_search_results lang='du']<br/>
-    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='du' only="result"]    
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='du' only="result"] 
+    
+     <p>Shortcode for Portuguese<br/>
+    display search form at top and display search result under search form - [rcm_search_results lang='pt']<br/>
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='pt' only="result"]    
     
     <p>Available email template variables are following</p>
     <p>[refquote],[refkey],[today],[customer_name],[customer_email],[notes],[vehicle_type],[imgsrc],[pickuplocation],[pickupdate],[dropofflocation],[dropoffdate],[totalrentaldays],[rateperday],[subtotal],[insurance],[oneway],[totalcost],[sitetitle],[siteurl] </p>
@@ -1986,7 +2228,7 @@ function rentalcar_settingfn() {
 						}	
 				   ?>
                    </select>
-                   </p>  
+                   </p>                   
                  <h2>Email Address</h2> 
                  <p>From&nbsp;&nbsp;&nbsp;<input type="text" name="rental_emails_from" value="<?php echo get_option('rental_emails_from');?>" style="width:800px;"/></p>
                  <span style="font-size:11px">Notes:You can fill the field on format like name&lt;emailaddress&gt; format.</span>
@@ -2030,6 +2272,11 @@ function set_rentalcar_da()
 function set_rentalcar_du()
 {
 	$lang='du';$langtxt='netherlands';
+	set_rentalcar_lang($lang,$langtxt);
+}
+function set_rentalcar_pt()
+{
+	$lang='pt';$langtxt='Portuguese';
 	set_rentalcar_lang($lang,$langtxt);
 }
 function set_rentalcar_lang($lang,$langtxt)
@@ -2167,24 +2414,24 @@ function set_rentalcar_lang($lang,$langtxt)
                         	 <tr>
                                 <td>Pickup Location</td>
                                 <td>
-                                <input type="text"  name="pickuplocation" value="<?php echo $myoptions["pickuplocation"];?>" class="regular-text"/>
+                                <input type="text"  name="pickuplocation" value="<?php echo stripslashes_deep($myoptions["pickuplocation"]);?>" class="regular-text"/>
                                 </td>
                               </tr>
                               <tr>
                                 <td>Pickup Date</td>
-                                <td><input type="text"  name="pickupdate" value="<?php echo $myoptions["pickupdate"];?>" class="regular-text"/></td>
+                                <td><input type="text"  name="pickupdate" value="<?php echo stripslashes_deep($myoptions["pickupdate"]);?>" class="regular-text"/></td>
                               </tr>
                                <tr>
                                 <td>Dropoff Location</td>
-                                <td><input type="text"  name="dropofflocation" value="<?php echo $myoptions["dropofflocation"];?>" class="regular-text"/></td>
+                                <td><input type="text"  name="dropofflocation" value="<?php echo stripslashes_deep($myoptions["dropofflocation"]);?>" class="regular-text"/></td>
                               </tr>
                               <tr>
                                 <td>Dropoff Date</td>
-                                <td><input type="text"  name="dropoffdate" value="<?php echo $myoptions["dropoffdate"];?>" class="regular-text"/></td>
+                                <td><input type="text"  name="dropoffdate" value="<?php echo stripslashes_deep($myoptions["dropoffdate"]);?>" class="regular-text"/></td>
                               </tr>
                               <tr>
                                 <td>Promo Code</td>
-                                <td><input type="text"  name="promocode" value="<?php echo $myoptions["promocode"];?>" class="regular-text"/></td>
+                                <td><input type="text"  name="promocode" value="<?php echo stripslashes_deep($myoptions["promocode"]);?>" class="regular-text"/></td>
                               </tr>
                              
                         </table>
@@ -2193,36 +2440,36 @@ function set_rentalcar_lang($lang,$langtxt)
                     	<table cellpadding="2" cellspacing="2" border="0" width="100%">
                     	 <tr>
                     <td>Red</td>
-                    <td><input type="text"  name="step3tr1td3" value="<?php echo $myoptions["step3tr1td3"];?>" class="regular-text"/></td>
+                    <td><input type="text"  name="step3tr1td3" value="<?php echo stripslashes_deep($myoptions["step3tr1td3"]);?>" class="regular-text"/></td>
                   </tr>
                    <tr>
                     <td>Orange</td>
-                    <td><input type="text"  name="step3tr2td3" value="<?php echo $myoptions["step3tr2td3"];?>" class="regular-text"/></td>
+                    <td><input type="text"  name="step3tr2td3" value="<?php echo stripslashes_deep($myoptions["step3tr2td3"]);?>" class="regular-text"/></td>
                   </tr>
                    <tr>
                     <td>Green</td>
-                    <td><input type="text"  name="step3tr3td3" value="<?php echo $myoptions["step3tr3td3"];?>" class="regular-text"/></td>
+                    <td><input type="text"  name="step3tr3td3" value="<?php echo stripslashes_deep($myoptions["step3tr3td3"]);?>" class="regular-text"/></td>
                   </tr>
                           <tr>
                             <td>First Name</td>
-                            <td><input type="text"  name="bookingfname" value="<?php echo $myoptions["bookingfname"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="bookingfname" value="<?php echo stripslashes_deep($myoptions["bookingfname"]);?>" class="regular-text"/></td>
                           </tr>
                            <tr>
                             <td>Last Name</td>
-                            <td><input type="text"  name="bookinglname" value="<?php echo $myoptions["bookinglname"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="bookinglname" value="<?php echo stripslashes_deep($myoptions["bookinglname"]);?>" class="regular-text"/></td>
                           </tr>
                            <tr>
                             <td>Email</td>
-                            <td><input type="text"  name="bookingemail" value="<?php echo $myoptions["bookingemail"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="bookingemail" value="<?php echo stripslashes_deep($myoptions["bookingemail"]);?>" class="regular-text"/></td>
                           </tr>
                            
                             <tr>
                             <td>One Way Fee</td>
-                            <td><input type="text"  name="oneway" value="<?php echo $myoptions["oneway"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="oneway" value="<?php echo stripslashes_deep($myoptions["oneway"]);?>" class="regular-text"/></td>
                           </tr>
                            <tr>
                             <td>Booking summary</td>
-                            <td><input type="text"  name="bookingsummary" value="<?php echo $myoptions["bookingsummary"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="bookingsummary" value="<?php echo stripslashes_deep($myoptions["bookingsummary"]);?>" class="regular-text"/></td>
                           </tr>
                    		</table>
                     </td>
@@ -2233,53 +2480,53 @@ function set_rentalcar_lang($lang,$langtxt)
                     	<table cellpadding="2" cellspacing="2" border="0" width="100%">
                         <tr>
                             <td>Campervan Insurance</td>
-                            <td><input type="text"  name="step3th1" value="<?php echo $myoptions["step3th1"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="step3th1" value="<?php echo stripslashes_deep($myoptions["step3th1"]);?>" class="regular-text"/></td>
                           </tr>
                           <tr>
                             <td>Bond</td>
-                            <td><input type="text"  name="step3th2" value="<?php echo $myoptions["step3th2"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="step3th2" value="<?php echo stripslashes_deep($myoptions["step3th2"]);?>" class="regular-text"/></td>
                           </tr>
                           <tr>
                             <td>Select Insurance</td>
-                            <td><input type="text"  name="step3th3" value="<?php echo $myoptions["step3th3"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="step3th3" value="<?php echo stripslashes_deep($myoptions["step3th3"]);?>" class="regular-text"/></td>
                           </tr>
                         	
                             <td>Red Insurance $10 per day</td>
-                            <td><input type="text"  name="step3trtd1" value="<?php echo $myoptions["step3trtd1"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="step3trtd1" value="<?php echo stripslashes_deep($myoptions["step3trtd1"]);?>" class="regular-text"/></td>
                           </tr>
                            <tr>
                             <td>Orange Insurance $15 per day</td>
-                            <td><input type="text"  name="step3trtd2" value="<?php echo $myoptions["step3trtd2"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="step3trtd2" value="<?php echo stripslashes_deep($myoptions["step3trtd2"]);?>" class="regular-text"/></td>
                           </tr>
                            <tr>
                             <td>Green Insurance $25 per day</td>
-                            <td><input type="text"  name="step3trtd3" value="<?php echo $myoptions["step3trtd3"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="step3trtd3" value="<?php echo stripslashes_deep($myoptions["step3trtd3"]);?>" class="regular-text"/></td>
                           </tr>
                          
                             <tr>
                             <td>Average daily rate</td>
-                            <td><input type="text"  name="avgrate" value="<?php echo $myoptions["avgrate"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="avgrate" value="<?php echo stripslashes_deep($myoptions["avgrate"]);?>" class="regular-text"/></td>
                           </tr>
                           <tr>
                             <td>Campervan Hire Quote</td>
-                            <td><input type="text"  name="step3quotetitle" value="<?php echo $myoptions["step3quotetitle"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="step3quotetitle" value="<?php echo stripslashes_deep($myoptions["step3quotetitle"]);?>" class="regular-text"/></td>
                           </tr>
                            <tr>
                             <td>Vehicle Type</td>
-                            <td><input type="text"  name="vehicletype" value="<?php echo $myoptions["vehicletype"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="vehicletype" value="<?php echo stripslashes_deep($myoptions["vehicletype"]);?>" class="regular-text"/></td>
                           </tr>
                            <tr>
                             <td>Pickup</td>
-                            <td><input type="text"  name="pickup" value="<?php echo $myoptions["pickup"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="pickup" value="<?php echo stripslashes_deep($myoptions["pickup"]);?>" class="regular-text"/></td>
                           </tr>
                            <tr>
                             <td>Dropoff</td>
-                            <td><input type="text"  name="dropoff" value="<?php echo $myoptions["dropoff"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="dropoff" value="<?php echo stripslashes_deep($myoptions["dropoff"]);?>" class="regular-text"/></td>
                           </tr>
                            
                             <tr>
                             <td>Total Cost</td>
-                            <td><input type="text"  name="totalcost" value="<?php echo $myoptions["totalcost"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="totalcost" value="<?php echo stripslashes_deep($myoptions["totalcost"]);?>" class="regular-text"/></td>
                           </tr>
                          
                       </table>
@@ -2315,53 +2562,53 @@ function set_rentalcar_lang($lang,$langtxt)
                              <tr>
                            <tr>
                             <td>Click for vehicle info</td>
-                            <td><input type="text"  name="clickinfo" value="<?php echo $myoptions["clickinfo"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="clickinfo" value="<?php echo stripslashes_deep($myoptions["clickinfo"]);?>" class="regular-text"/></td>
                           </tr>
                           <tr>
                             <td>Daily Rate</td>
-                            <td><input type="text"  name="dailyrate" value="<?php echo $myoptions["dailyrate"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="dailyrate" value="<?php echo stripslashes_deep($myoptions["dailyrate"]);?>" class="regular-text"/></td>
                           </tr>
                            <tr>
                             <td>SUB TOTAL</td>
-                            <td><input type="text"  name="subtotal" value="<?php echo $myoptions["subtotal"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="subtotal" value="<?php echo stripslashes_deep($myoptions["subtotal"]);?>" class="regular-text"/></td>
                           </tr>
                           <tr>
                             <td>Insurance</td>
-                            <td><input type="text"  name="insurance" value="<?php echo $myoptions["insurance"];?>" class="regular-text"/></td>
+                            <td><input type="text"  name="insurance" value="<?php echo stripslashes_deep($myoptions["insurance"]);?>" class="regular-text"/></td>
                           </tr>
                        
                             <tr>
                              <td>Back</td>
-                             <td><input type="text"  name="back" value="<?php echo $myoptions["back"];?>" class="regular-text"/></td>
+                             <td><input type="text"  name="back" value="<?php echo stripslashes_deep($myoptions["back"]);?>" class="regular-text"/></td>
                            </tr>
                   		</table>
                     </td>
                 </tr> 
                  <tr>
                     <td>Questions or special requests</td>
-                    <td><input type="text"  name="addition_details" value="<?php echo $myoptions["addition_details"];?>" class="regular-text" style="width:500px"/></td>
+                    <td><input type="text"  name="addition_details" value="<?php echo stripslashes_deep($myoptions["addition_details"]);?>" class="regular-text" style="width:500px"/></td>
                   </tr> 
                   
                     <tr>
                     <td>Subtotal notes</td>
-                    <td><input type="text"  name="subtotal_notes" value="<?php echo $myoptions["subtotal_notes"];?>" class="regular-text" style="width:500px"/></td>
+                    <td><input type="text"  name="subtotal_notes" value="<?php echo stripslashes_deep($myoptions["subtotal_notes"]);?>" class="regular-text" style="width:500px"/></td>
                   </tr> 
                  <tr>
                     <td>Click Here to Change Search Cities & Dates</td>
-                    <td><input type="text"  name="acrodian" value="<?php echo $myoptions["acrodian"];?>" class="regular-text" style="width:500px"/></td>
+                    <td><input type="text"  name="acrodian" value="<?php echo stripslashes_deep($myoptions["acrodian"]);?>" class="regular-text" style="width:500px"/></td>
                   </tr>                 
                    <tr>
                     <td>Campervan Insurance - please select one option Red, Orange or Green Insurance</td>
-                    <td><input type="text"  name="step3title" value="<?php echo $myoptions["step3title"];?>" class="regular-text" style="width:500px"/></td>
+                    <td><input type="text"  name="step3title" value="<?php echo stripslashes_deep($myoptions["step3title"]);?>" class="regular-text" style="width:500px"/></td>
                   </tr>
                   
                   <tr>
                     <td>Click here for more information about Campervan insurance Campervan insurance</td>
-                    <td><input type="text"  name="step3moreinfo" value="<?php echo $myoptions["step3moreinfo"];?>" class="regular-text" style="width:500px"/></td>
+                    <td><input type="text"  name="step3moreinfo" value="<?php echo stripslashes_deep($myoptions["step3moreinfo"]);?>" class="regular-text" style="width:500px"/></td>
                   </tr>
                    <tr>
                     <td>Enter your name & email to check availability</td>
-                    <td><input type="text"  name="step3bookingtitle" value="<?php echo $myoptions["step3bookingtitle"];?>" class="regular-text" style="width:500px;"/></td>
+                    <td><input type="text"  name="step3bookingtitle" value="<?php echo stripslashes_deep($myoptions["step3bookingtitle"]);?>" class="regular-text" style="width:500px;"/></td>
                   </tr>
                     <tr>
                      <td colspan="2">Success Message</td>
@@ -2648,7 +2895,7 @@ function searchtoggle()
 }
 </script>
 <div id="rentalcar_form_section">';
-if($_GET["action"] == 'step2' or $_GET["action"] == 'email'){
+if($_GET["action"] == 'step2' or $_GET["action"] == 'email' or $_GET["action"] == 'detail'){
 	$searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border:2px solid '.get_option('rental_searchform_bg_color').';border-radius:6px;text-align:center;padding:5px;"><a style="text-decoration:underline;color:#fff;font-size:15px;" onclick="searchtoggle()">'.$myoptions["acrodian"].'</a><a id="custom_toggle_a" style="background-position:-96px top !important" onclick="searchtoggle()">^</a></div>
 	<div class="rentalcar_form_div" data-role="content" style="'.$backstyle.'display:none;background-color:'.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-bottom:2px solid '.get_option('rental_searchform_bg_color').';border-radius:0 0 6px 6px">   
 <form method="GET" action="'.get_permalink().'" id="rentalcar">';
@@ -2661,27 +2908,27 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	
 	$searchout .='<div style="clear:both"></div>                          
             	<div class="custom_div_left"> 
-					<label>'.$myoptions["pickuplocation"].'</label>
+					<label>'.stripslashes_deep($myoptions["pickuplocation"]).'</label>
 					<select id="PickupLocation" name="PickupLocation">'.$pickuplocationarr.'</select>
 				</div>
 				<div class="custom_div_right">
-					<label>'.$myoptions["pickupdate"].'</label>
+					<label>'.stripslashes_deep($myoptions["pickupdate"]).'</label>
 					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-shadow ui-btn-up-c">
 					<input type="text" name="PickupDate" size="30" id="PickupDate" value="'.$PickupDate.'" data-theme="a" />
 					</div>
 				</div>
 				<div class="clear5"></div>				
 			<div class="custom_div_left">
-				<label>'.$myoptions["dropofflocation"].'</label>
+				<label>'.stripslashes_deep($myoptions["dropofflocation"]).'</label>
 				<select id="DropOffLocation" name="DropOffLocation">'.$dropofflocationarr.'</select>
 			</div>
 			<div class="custom_div_right">
-				<label>'.$myoptions["dropoffdate"].'</label><div class="clear2"></div>
+				<label>'.stripslashes_deep($myoptions["dropoffdate"]).'</label><div class="clear2"></div>
 				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-shadow ui-btn-up-c"> <input type="text" name="DropOffDate" size="30" id="DropOffDate" value="'.$DropOffDate.'" data-theme="a" /></div>	
 			</div>
 			<div class="clear5"></div>	
 			<div class="custom_div_left">
-					<label>'.$myoptions["promocode"].'</label>
+					<label>'.stripslashes_deep($myoptions["promocode"]).'</label>
 					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-shadow ui-btn-up-c"><input type="text" id="PromoCode" name="PromoCode" size="30" value="'.$PromoCode.'" data-theme="a" /></div>
 				</div>
 			<div class="custom_div_right" style="margin-top:20px;">
@@ -2827,7 +3074,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	}	 
 	elseif($_GET["action"] == 'detail')
 	{
-		$output='';
+		$output=$searchout;
 		$output .=$common.'<style>header{display:none;}nav{display:none;}</style>';
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestVehicleAvailability?PickupLocation='.urlencode($_GET["PickupLocationID"]).'&PickupDate='.urlencode($_GET["PickDate"]).'&PickupTime=12:00&DropOffLocation='.urlencode($_GET["DLocationID"]).'&DropOffDate='.urlencode($_GET["DropoffDate"]).'&DropOffTime=12:00&DriverAge=30&CategoryTypeID='.$CategoryTypeID.'&SecureKey='.urlencode($securekey).'&PromoCode='.urlencode($_GET["promo"]);	
 		
@@ -2872,7 +3119,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 							$rate=$MandatoryFees->item($y)->getElementsByTagName("Rate")->item(0)->nodeValue;
 							$ratename=$MandatoryFees->item($y)->getElementsByTagName("Name")->item(0)->nodeValue;							
 							if($rate!=""){
-							$ratetrtd='<tr><td width="35%"><strong>'.$myoptions["oneway"].':</strong></td>
+							$ratetrtd='<tr><td width="35%"><strong>'.stripslashes_deep($myoptions["oneway"]).':</strong></td>
 							<td>AUD $'.number_format($rate,2,'.','').'</td></tr>';
 							$extrafees = $extrafees + $rate;
 							}
@@ -2950,72 +3197,72 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					}
 					</script>
 		<div class="bookingwrap clearfix">
-			<div class="bookingh1">'.$myoptions["step3title"].'</div>
+			<div class="bookingh1">'.stripslashes_deep($myoptions["step3title"]).'</div>
 				<div class="restdiv">
 						<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tbody>
 					<tr>
-						<td width="45%" align="left"><div class="insuranceth">'.$myoptions["step3th1"].'</div></td>
-						<td align="center" width="35%"><div class="insuranceth">'.$myoptions["step3th2"].'</div></td>
-						<td align="left"><div class="insuranceth">'.$myoptions["step3th3"].'</div></td>
+						<td width="45%" align="left"><div class="insuranceth">'.stripslashes_deep($myoptions["step3th1"]).'</div></td>
+						<td align="center" width="35%"><div class="insuranceth">'.stripslashes_deep($myoptions["step3th2"]).'</div></td>
+						<td align="left"><div class="insuranceth">'.stripslashes_deep($myoptions["step3th3"]).'</div></td>
 					</tr>
 					<tr>
-						<td class="underline" width="45%" align="left">'.$myoptions["step3trtd1"].'</td>						
+						<td class="underline" width="45%" align="left">'.stripslashes_deep($myoptions["step3trtd1"]).'</td>						
 						<td align="center" width="35%" class="underline">$1000</td>
-						<td align="left" class="underline"><input type="radio" checked="" value="10" name="InsuranceID" id="InsuranceID1" onclick="updatedotalcost(\''.$numofday.'\',\''.$extrafees.'\')"/>&nbsp;'.$myoptions["step3tr1td3"].'</td>
+						<td align="left" class="underline"><input type="radio" checked="" value="10" name="InsuranceID" id="InsuranceID1" onclick="updatedotalcost(\''.$numofday.'\',\''.$extrafees.'\')"/>&nbsp;'.stripslashes_deep($myoptions["step3tr1td3"]).'</td>
 					</tr>
 					<tr>
-						<td class="underline" width="45%" align="left">'.$myoptions["step3trtd2"].'</td>
+						<td class="underline" width="45%" align="left">'.stripslashes_deep($myoptions["step3trtd2"]).'</td>
 						<td align="center" width="35%" class="underline">$500</td>
 						<td align="left" class="underline">
-						<input type="radio" value="15" name="InsuranceID" id="InsuranceID2" onclick="updatedotalcost(\''.$numofday.'\',\''.$extrafees.'\')"/>&nbsp;'.$myoptions["step3tr2td3"].'</td>						
+						<input type="radio" value="15" name="InsuranceID" id="InsuranceID2" onclick="updatedotalcost(\''.$numofday.'\',\''.$extrafees.'\')"/>&nbsp;'.stripslashes_deep($myoptions["step3tr2td3"]).'</td>						
 					</tr>
 					<tr>
-						<td class="underline" width="45%" align="left">'.$myoptions["step3trtd3"].'</td>						
+						<td class="underline" width="45%" align="left">'.stripslashes_deep($myoptions["step3trtd3"]).'</td>						
 						<td align="center" width="35%"" class="underline">$0</td>
-						<td align="left" class="underline"><input type="radio" value="25" name="InsuranceID" id="InsuranceID3" onclick="updatedotalcost(\''.$numofday.'\',\''.$extrafees.'\')"/>&nbsp;'.$myoptions["step3tr3td3"].'</td>
+						<td align="left" class="underline"><input type="radio" value="25" name="InsuranceID" id="InsuranceID3" onclick="updatedotalcost(\''.$numofday.'\',\''.$extrafees.'\')"/>&nbsp;'.stripslashes_deep($myoptions["step3tr3td3"]).'</td>
 					</tr>
 					<tr>
-						<td colspan="3" align="left"><a class="various fancybox.iframe" data-fancybox-type="iframe" href="'.plugins_url('insurance.php',__FILE__).'" style="font-size:12px;color:#000;text-decoration:underline;">'.$myoptions["step3moreinfo"].' </a></td>
+						<td colspan="3" align="left"><a class="various fancybox.iframe" data-fancybox-type="iframe" href="'.plugins_url('insurance.php',__FILE__).'" style="font-size:12px;color:#000;text-decoration:underline;">'.stripslashes_deep($myoptions["step3moreinfo"]).' </a></td>
 					</tr>
 					</tbody>
 			</table>	
 						<div class="sep_checkout">&nbsp;</div>
-						<div class="booking_title">'.$myoptions["step3quotetitle"].'</div>
+						<div class="booking_title">'.stripslashes_deep($myoptions["step3quotetitle"]).'</div>
 						<div class="booking_chkoutleft">											
 							<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>	
 							<div class="clear"></div>
-							<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.$myoptions["clickinfo"].'</a>
+							<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.stripslashes_deep($myoptions["clickinfo"]).'</a>
 						</div>
 						<div class="booking_chkoutright">						
 							<table cellpadding="0" cellspacing="0" border="0" width="100%">
 							<tr>
-								<td width="35%"><strong>'.$myoptions["vehicletype"].':</strong></td>
+								<td width="35%"><strong>'.stripslashes_deep($myoptions["vehicletype"]).':</strong></td>
 								<td>'.$catdesc.'</td>
 							</tr>
 							<tr>
-								<td width="35%"><strong>'.$myoptions["pickup"].':</strong></td>
+								<td width="35%"><strong>'.stripslashes_deep($myoptions["pickup"]).':</strong></td>
 								<td>'.$pickup.'</td>
 							</tr>
 							<tr>
-								<td width="35%"><strong>'.$myoptions["dropoff"].':</strong></td>
+								<td width="35%"><strong>'.stripslashes_deep($myoptions["dropoff"]).':</strong></td>
 								<td>'.$dropoff.'</td>
 							</tr>
 							<tr>
-								<td width="35%"><strong>'.$myoptions["dailyrate"].':</strong></td>
+								<td width="35%"><strong>'.stripslashes_deep($myoptions["dailyrate"]).':</strong></td>
 								<td>$'.$rateperday.'&nbsp;/&nbsp;day&nbsp;(total '.$numofday.' days)</td>
 							</tr>
 							<tr>
-								<td width="35%"><strong>'.$myoptions["subtotal"].':</strong></td>
+								<td width="35%"><strong>'.stripslashes_deep($myoptions["subtotal"]).':</strong></td>
 								<td>AUD $'.number_format($subtotal,2,'.','').'<input id="subtotal" type="hidden" value="'.$subtotal.'"/></td>
 							</tr>
 							<tr>
-								<td width="35%"><strong>'.$myoptions["insurance"].':</strong></td>
+								<td width="35%"><strong>'.stripslashes_deep($myoptions["insurance"]).':</strong></td>
 								<td><span id="insurance">AUD $'.number_format($insurance,2,'.','').'</span></td>
 							</tr>
 							'.$ratetrtd.'
 							<tr>
-								<td width="35%" class="calculate_total">'.$myoptions["totalcost"].':</td>
+								<td width="35%" class="calculate_total">'.stripslashes_deep($myoptions["totalcost"]).':</td>
 								<td><span id="totalcost">AUD $'.number_format(($subtotal + $insurance + $extrafees),2,'.','').'</span></td>
 							</tr>
 							</table>													
@@ -3025,17 +3272,17 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				</div>	
 			
 			<div class="bookingwrap clearfix">
-				<div class="bookingh1">'.$myoptions["step3bookingtitle"].'</div>
+				<div class="bookingh1">'.stripslashes_deep($myoptions["step3bookingtitle"]).'</div>
 				<div class="restdiv">
 				<form action="?action=Quote&categoryStatus=1" method="post" name="theForm">
 					<div style="margin-left:5%;width:90%;">
-					<div class="chk_avail_fname_lvl"><strong>'.$myoptions["bookingfname"].'</strong></div>
+					<div class="chk_avail_fname_lvl"><strong>'.stripslashes_deep($myoptions["bookingfname"]).'</strong></div>
 					<div class="chk_avail_fname_input"><input type="text" name="firstname" id="firstname" class="chk_inpt_booking"/></div>
-					<div class="chk_avail_lname_lvl"><strong>'.$myoptions["bookinglname"].'</strong></div>
+					<div class="chk_avail_lname_lvl"><strong>'.stripslashes_deep($myoptions["bookinglname"]).'</strong></div>
 					<div class="chk_avail_lname_input"><input type="text" name="lastname" id="lastname" class="chk_inpt_booking"/></div>
 					
 					<div class="clear5"></div>					
-					<div class="chk_avail_email_lvl"><strong>'.$myoptions["bookingemail"].'</strong></div>
+					<div class="chk_avail_email_lvl"><strong>'.stripslashes_deep($myoptions["bookingemail"]).'</strong></div>
 					<div class="chk_avail_email_input">
 						<input type="text" name="CustomerEmail" id="CustomerEmail" class="inpt_booking_extend"/></div>
 					<div class="clear5"></div>
@@ -3065,7 +3312,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				<div class="clear"></div>
 			</div>
 		</div>';
-		$output .='<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.$myoptions["back"].'</a></div>
+		$output .='<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.stripslashes_deep($myoptions["back"]).'</a></div>
 										<div class="clear"></div>';	
 			}		
 	}	
@@ -3228,48 +3475,48 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 		'.$addIEstyle.'<style>'.$stylesheet.'</style>
 			<div class="bookingwrap clearfix">
 		<form id="Rate" name="Rate" action="" method="post">
-			<div class="bookingh1">'.$myoptions["bookingsummary"].'</div>
+			<div class="bookingh1">'.stripslashes_deep($myoptions["bookingsummary"]).'</div>
 				<div class="restdiv">
 					<div class="booking_chkoutleft">											
 						<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>
 						<div class="clear"></div>
-							<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.$myoptions["clickinfo"].'</a>
+							<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.stripslashes_deep($myoptions["clickinfo"]).'</a>
 					</div>
 					<div class="booking_checkout_center">
-						<div class="lvl">'.$myoptions["vehicletype"].':</div>
+						<div class="lvl">'.stripslashes_deep($myoptions["vehicletype"]).':</div>
 						<div class="lvl_val">'.$catdesc.'</div>
 						<div class="clear5"></div>
 						
-						<div class="lvl">'.$myoptions["pickup"].':</div>
+						<div class="lvl">'.stripslashes_deep($myoptions["pickup"]).':</div>
 						<div class="lvl_val">'.$pickup.'</div>
 						<div class="clear5"></div>
 						
-						<div class="lvl">'.$myoptions["dropoff"].':</div>
+						<div class="lvl">'.stripslashes_deep($myoptions["dropoff"]).':</div>
 						<div class="lvl_val">'.$dropoff.'</div>
 						<div class="clear5"></div>
 						
-						<div class="lvl">'.$myoptions["dailyrate"].':</div>
+						<div class="lvl">'.stripslashes_deep($myoptions["dailyrate"]).':</div>
 						<div class="lvl_val">$'.$rateperday.'&nbsp;/&nbsp;day&nbsp;(total '.$numofday.' days)</div>
 						<div class="clear5"></div>
 						
-						<div class="lvl">'.$myoptions["subtotal"].':</div>
+						<div class="lvl">'.stripslashes_deep($myoptions["subtotal"]).':</div>
 						<div class="lvl_val">AUD $'.$subtotal.'</div>
 						<div class="clear5"></div>
-						<div style="padding: 0px; margin: 0px; font-size: 11px; line-height: 1.4em;">'.$myoptions["subtotal_notes"].'</div>						
+						<div style="padding: 0px; margin: 0px; font-size: 11px; line-height: 1.4em;">'.stripslashes_deep($myoptions["subtotal_notes"]).'</div>						
 					</div>
 					<div class="clear5"></div>	
 					<div style="width:90%;margin:0 auto">
-						<div class="lvl underline">'.$myoptions["bookingfname"].':</div>
+						<div class="lvl underline">'.stripslashes_deep($myoptions["bookingfname"]).':</div>
                     	<div class="lvl_val underline">
 							<input type="text" class="customerfield" maxlength="30" name="firstname" id="firstname"/>
                   		</div>
 						<div class="clear5"></div>
-                  		<div class="lvl underline">'.$myoptions["bookinglname"].':</div>
+                  		<div class="lvl underline">'.stripslashes_deep($myoptions["bookinglname"]).':</div>
                     	<div class="lvl_val underline">
 							<input type="text" class="customerfield" maxlength="30" name="lastname" id="lastname"/>
                   		</div>
 						<div class="clear5"></div>
-                  		<div class="lvl underline">'.$myoptions["bookingemail"].':</div>
+                  		<div class="lvl underline">'.stripslashes_deep($myoptions["bookingemail"]).':</div>
                     	<div class="lvl_val underline">
 							<input type="text" class="customerfield" maxlength="50" name="CustomerEmail" id="CustomerEmail"/>
                     	</div>
@@ -3294,7 +3541,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						<img border="0" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" class="emailqu" onclick="validatequote();"/>
 						</div>
 						<div class="clear5"></div>
-                  		<div class="lvl" style="width:100%;">'.$myoptions["addition_details"].':</div>
+                  		<div class="lvl" style="width:100%;">'.stripslashes_deep($myoptions["addition_details"]).':</div>
                     	<div class="lvl_val" style="width:100%">
 							<textarea name="Notes" class="emailqu_textarea"></textarea>
                     	</div>
@@ -3302,7 +3549,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					<div class="clear5"></div>
 				</div>
 				<div class="clear5"></div>
-				<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.$myoptions["back"].'</a></div>			
+				<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.stripslashes_deep($myoptions["back"]).'</a></div>			
 				</form>
 		</div>
 		';
@@ -3360,7 +3607,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 									<div class="restdiv">
 										<div class="bookingleft"><img src="'.$imgsrc.'" border="0"/>
 											<div class="clear"></div>
-											<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.$myoptions["clickinfo"].'</a>
+											<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.stripslashes_deep($myoptions["clickinfo"]).'</a>
 										</div>
 										<div class="bookingcentre">
 												<div class="desc">'.$desc.'</div>
@@ -3370,7 +3617,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 										<div class="bookingright">
 											<div class="TotalCost">
 												<div class="price">
-													<strong>'.$price.'</strong><div class="dailyrate_small">'.$myoptions["avgrate"].'</div>
+													<strong>'.$price.'</strong><div class="dailyrate_small">'.stripslashes_deep($myoptions["avgrate"]).'</div>
 												</div>												
 													<a href="'.get_permalink().'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=detail"><img border="0" oldsrc="'.$continuebtn.'" srcover="'.$continuebtn_ho.'" src="'.$continuebtn.'" style="box-shadow:none;border:none;border-radius:none;"/></a>
 											</div>
@@ -3379,7 +3626,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 									</div>									
 								</div>';	
 				}
-				$output .='<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.$myoptions["back"].'</a></div>
+				$output .='<div align="left"><a onclick="javascript:history.back(-1)" href="javascript:void(0)" style="font-size:13px;color:#000;font-weight:bold;text-decoration:underline;">'.stripslashes_deep($myoptions["back"]).'</a></div>
 										<div class="clear"></div>';
 			}		
 	}
@@ -3387,6 +3634,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	{		
 		$output=$searchout;	
 	}
-	return $output;
+	$trackingcode=stripslashes(get_option('car_trackingcode'));
+	return $output.$trackingcode;
 }
 ?>
