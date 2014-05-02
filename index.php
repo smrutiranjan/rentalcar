@@ -37,7 +37,7 @@ function rentalcar_install()
       <td colspan="2"><table border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td><strong>TURN IN IHR ZITAT eine Buchungsanfrage <a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[refkey]&amp;E604=[today]" target="_blank"><font color="#FF0000">KLICKEN SIE HIER</font></a></strong></td>
-          <td><img src="https://secure.rentalcarmanager.com.au/images/SafePayment.jpg" alt="231312" border="0" id="_x0000_i1026" /></td>
+          <td><img src="https://secure.rentalcarmanager.com.au/images/SafePayment.jpg" alt="231312" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" id="_x0000_i1026" /></td>
         </tr>
         <tr>
           <td colspan="2">'.ConvertCharacters('Hinweis: Wenn Sie diese Mail im Textmodus und Schwierigkeiten Öffnen der Link oben, bitte versuchen Sie das Kopieren und die folgende gesamte Link einfügen in die Adressleiste Ihres Internet-Homepage.').'</td>
@@ -74,7 +74,7 @@ function rentalcar_install()
     </tr>
     <tr>
       <td>&nbsp;</td>
-      <td><img src="[imgsrc]" alt="logo" width="192" border="0" id="_x0000_i1027" /></td>
+      <td><img src="[imgsrc]" alt="logo" width="192" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" id="_x0000_i1027" /></td>
     </tr>
     <tr>
       <td>Pickup Standort: </td>
@@ -650,7 +650,7 @@ vertical-align:middle;
 ';
 $layout='/* Desktops and laptops ----------- */
 @media only screen and (min-width : 1224px) {
-	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;max-width:500px; }
+	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;max-width:100%; }
 	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
 	.chk_avail_fname_lvl{float:left;width:15%;}
 .chk_avail_fname_input{float:left;width:30%;}
@@ -1370,6 +1370,7 @@ color:#111;
 vertical-align:middle;
 }	
 .error{text-align:center;font-weight:bold;color:red;}
+h1.single,#breadcrumb{display:none;}
 ';
 	$sucessmsg='<div align="center"><h1>Thank you for your quote with travelwheels.</h1><p>Our friendly staff will soon be in touch and if you have any further questions you can email us at <a title="Send email to Travelwheels" href="mailto:info@travelwheels.com.au">info@travelwheels.com.au</a></p><p>This page will be automatically redirect to home page in 5 sec or you can click on <a href="/">home</a> to go this page.</p></div>';
 	$optionsarr['en']=array(					 
@@ -1616,7 +1617,7 @@ vertical-align:middle;
       <td colspan="2"><table border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td><strong>TURN YOUR QUOTE INTO A BOOKING REQUEST <a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[refkey]&amp;E604=[today]" target="_blank"><font color="#FF0000">CLICK HERE</font></a></strong></td>
-          <td><img src="https://secure.rentalcarmanager.com.au/images/SafePayment.jpg" alt="231312" border="0" id="_x0000_i1026" /></td>
+          <td><img src="https://secure.rentalcarmanager.com.au/images/SafePayment.jpg" alt="231312" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" id="_x0000_i1026" /></td>
         </tr>
         <tr>
           <td colspan="2">Note : If you are viewing this message in text mode and      having difficulties opening the above link, please try copying and pasting      the following entire link into the address bar of your Internet homepage.</td>
@@ -1653,7 +1654,7 @@ vertical-align:middle;
     </tr>
     <tr>
       <td>&nbsp;</td>
-      <td><img src="[imgsrc]" alt="logo" width="192" border="0" id="_x0000_i1027" /></td>
+      <td><img src="[imgsrc]" alt="logo" width="192" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" id="_x0000_i1027" /></td>
     </tr>
     <tr>
       <td>Pickup Location: </td>
@@ -1709,9 +1710,9 @@ vertical-align:middle;
 </div>
 <p align="center">[sitetitle]<br/>[siteurl]</p>';
 		
-	delete_option('rental_option_en');//delete_option('rental_option_fr');
+	delete_option('rental_option_en');delete_option('rental_option_fr');
 	delete_option('rental_option_da');delete_option('rental_option_du');	delete_option('rental_option_pt');
-	add_option('rental_option_en',$optionsarr['en']);//add_option('rental_option_fr',$optionsarr['fr']);
+	add_option('rental_option_en',$optionsarr['en']);add_option('rental_option_fr',$optionsarr['fr']);
 	add_option('rental_option_da',$optionsarr['da']);add_option('rental_option_du',$optionsarr['du']);
 	add_option('rental_option_pt',$optionsarr['pt']);
 	
@@ -2765,13 +2766,13 @@ function rentalcarmanagementsearchresults($attr)
 		$backstyle='background-image:url('.plugins_url('/upload/'.get_option( 'rental_searchform_bg_img') , __FILE__ ).');';
 	}
 	if($lang_res['rental_headerimgurl']!=""){
-		$headertxt= '<img src="'.$lang_res['rental_headerimgurl'].'" border="0" onclick="searchtoggle()"/>';
+		$headertxt= '<img src="'.$lang_res['rental_headerimgurl'].'" onclick="searchtoggle()" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;"/>';
 	} else {
 		$headertxt= '<h1 onclick="searchtoggle()">Enter Your Travel Details</h1>'; } 
 	
 	$addIEstyle='<!--[if IE 8]>
 	<style>
-	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;max-width:500px; }
+	.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;max-width:100%; }
 	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
 	.chk_avail_fname_lvl{float:left;width:15%;}
 .chk_avail_fname_input{float:left;width:30%;}
@@ -2836,9 +2837,11 @@ function rentalcarmanagementsearchresults($attr)
 	if($mac){$stylesheet=get_option('css_mac');}
 	if($resonly == ""){
 	$searchout .='<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" />
-          <link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-          <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+          <link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />';
+		  //if($attr["theme"] == 'classipress'){}else{
+			  $searchout .='<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>';
+		  //}
+          $searchout .='<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/i18n/jquery-ui-i18n.min.js"></script>	
           <script src="'.plugins_url('jquery.selectBoxIt.js', __FILE__).'"></script> 
 		  '.$addIEstyle.'<style>'.$stylesheet.'
@@ -2853,31 +2856,7 @@ function rentalcarmanagementsearchresults($attr)
 #custom_toggle_a:hover{background-color:#333;}
             </style>
  <script>
-jQuery( document ).ready(function($) {		
-		';
-		if($lang == 'en') { $searchout .= 'jQuery.datepicker.setDefaults( jQuery.datepicker.regional[""] );';}
-		else if($lang == 'ge') { $searchout .= '$.datepicker.setDefaults( $.datepicker.regional[ "de" ] );';}
-		else if($lang == 'fr') { $searchout .= '$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );';}
-		else if($lang == 'du') { $searchout .= '$.datepicker.setDefaults( $.datepicker.regional[ "nl" ] );';}
-		else { $searchout.='$.datepicker.setDefaults( $.datepicker.regional[ "" ] );';}  
-$searchout .='jQuery("#PickupLocation,#DropOffLocation").selectBoxIt({theme: "jquerymobile"});
-$("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",
-						onSelect: function (dateText, inst) {
-								var date = $(this).datepicker("getDate");
-								var date1 = $(this).datepicker("getDate");
-								if (date){
-									date.setDate(date.getDate() + 12);
-									$( "#DropOffDate" ).val($.datepicker.formatDate("dd/mm/yy",date));
-									
-									date1.setDate(date1.getDate() + 1);
-									$( "#DropOffDate" ).datepicker( "option", "minDate", date1 );
-								}
-						}
-									});
-		
-		$("#DropOffDate").datepicker({ numberOfMonths: 3,dateFormat: "dd/mm/yy"});
-});
-var j = jQuery.noConflict();
+ var j = jQuery.noConflict();
 function searchtoggle()
 {	
 	if(j(".rentalcar_form_div").css("display") == "none"){
@@ -2893,6 +2872,31 @@ function searchtoggle()
 	}
 		
 }
+j(function() {	
+		';
+		if($lang == 'en') { $searchout .= 'j.datepicker.setDefaults( j.datepicker.regional[""] );';}
+		else if($lang == 'ge') { $searchout .= 'j.datepicker.setDefaults( j.datepicker.regional[ "de" ] );';}
+		else if($lang == 'fr') { $searchout .= 'j.datepicker.setDefaults( j.datepicker.regional[ "fr" ] );';}
+		else if($lang == 'du') { $searchout .= 'j.datepicker.setDefaults( j.datepicker.regional[ "nl" ] );';}
+		else { $searchout.='j.datepicker.setDefaults( j.datepicker.regional[ "" ] );';}  
+$searchout .='j("#PickupLocation,#DropOffLocation").selectBoxIt({theme: "jquerymobile"});
+j("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",
+						onSelect: function (dateText, inst) {
+								var date = j(this).datepicker("getDate");
+								var date1 = j(this).datepicker("getDate");
+								if (date){
+									date.setDate(date.getDate() + 12);
+									j( "#DropOffDate" ).val(j.datepicker.formatDate("dd/mm/yy",date));
+									
+									date1.setDate(date1.getDate() + 1);
+									j( "#DropOffDate" ).datepicker( "option", "minDate", date1 );
+								}
+						}
+									});
+		
+		j("#DropOffDate").datepicker({ numberOfMonths: 3,dateFormat: "dd/mm/yy"});
+});
+
 </script>
 <div id="rentalcar_form_section">';
 if($_GET["action"] == 'step2' or $_GET["action"] == 'email' or $_GET["action"] == 'detail'){
@@ -2933,7 +2937,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				</div>
 			<div class="custom_div_right" style="margin-top:20px;">
 				<input type="hidden" name="action" value="step2"/>
-				<img border="0" oldsrc="'.plugins_url('/upload/'.$myoptions['searchbtn'], __FILE__).'" srcover="'.plugins_url('/upload/'.$myoptions['searchbtn_ho'], __FILE__).'" src="'.plugins_url('/upload/'.$myoptions['searchbtn'], __FILE__).'" onclick="document.getElementById(\'rentalcar\').submit()"/>
+				<img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.plugins_url('/upload/'.$myoptions['searchbtn'], __FILE__).'" srcover="'.plugins_url('/upload/'.$myoptions['searchbtn_ho'], __FILE__).'" src="'.plugins_url('/upload/'.$myoptions['searchbtn'], __FILE__).'" onclick="document.getElementById(\'rentalcar\').submit()"/>
 			</div>
 			<div style="clear:both"></div>			
 	 </form>
@@ -3008,7 +3012,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						$quote=$elements->getElementsByTagName("ReferenceNo");$refquote=$quote->item(0)->nodeValue;
 						$ReservationNo=$elements->getElementsByTagName("ReservationNo");$refkey=$ReservationNo->item(0)->nodeValue;
 						$output .='<script>
-						jQuery(document).ready(function($) { setTimeout(function() { $("#timeoutmsg").fadeOut(); document.location="'.get_permalink().'";}, 5000); 
+						j(function() { setTimeout(function() { j("#timeoutmsg").fadeOut(); document.location="'.get_permalink().'";}, 5000); 
 						});</script><div id="timeoutmsg">'.$sucess_msg.'</div>';
 						$subject='Online Quotation with Travelwheels - Ref #'.$quote->item(0)->nodeValue.'('.$_POST["pickuplocation"].')';
 						
@@ -3187,12 +3191,6 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 								 document.theForm.CustomerEmail.focus();
 								 return false;
 							  }
-						 /*  if (document.theForm.Phone.value == "")
-						  {  
-						  	  alert("Phone No required.");
-							  document.theForm.Phone.focus();
-							  return (false);
-						  }*/
 						document.theForm.submit();
 					}
 					</script>
@@ -3230,7 +3228,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						<div class="sep_checkout">&nbsp;</div>
 						<div class="booking_title">'.stripslashes_deep($myoptions["step3quotetitle"]).'</div>
 						<div class="booking_chkoutleft">											
-							<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>	
+							<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;"/></a>	
 							<div class="clear"></div>
 							<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.stripslashes_deep($myoptions["clickinfo"]).'</a>
 						</div>
@@ -3287,9 +3285,9 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 						<input type="text" name="CustomerEmail" id="CustomerEmail" class="inpt_booking_extend"/></div>
 					<div class="clear5"></div>
 				
-					<div class="chk_avail_emailquote"><img border="0" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;" onclick="validatebookingfrm()"/></div>
+					<div class="chk_avail_emailquote"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;" onclick="validatebookingfrm()"/></div>
 					
-					<div class="chk_avail_availbtn"><img border="0" oldsrc="'.$checkavailbtn.'" srcover="'.$checkavailbtn_ho.'" src="'.$checkavailbtn.'" style="box-shadow:none;border:none;border-radius:none;" onclick="validatebookingfrm()"/></div>						
+					<div class="chk_avail_availbtn"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$checkavailbtn.'" srcover="'.$checkavailbtn_ho.'" src="'.$checkavailbtn.'" style="box-shadow:none;border:none;border-radius:none;" onclick="validatebookingfrm()"/></div>						
 					
 					<input type="hidden" name="CarSizeID" size="5" value="'.$carid.'" />
 					<input type="hidden" name="refkey" size="5" value="'.$refkey.'" />
@@ -3478,7 +3476,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 			<div class="bookingh1">'.stripslashes_deep($myoptions["bookingsummary"]).'</div>
 				<div class="restdiv">
 					<div class="booking_chkoutleft">											
-						<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" border="0"/></a>
+						<a onclick="openMoreInfo('.$carid.');" href="#"><img src="'.$imgsrc.'" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;"/></a>
 						<div class="clear"></div>
 							<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.stripslashes_deep($myoptions["clickinfo"]).'</a>
 					</div>
@@ -3538,7 +3536,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 							<input type="hidden" name="pickup" value="'.$pickup.'"/>
 							<input type="hidden" name="dropoff" value="'.$dropoff.'"/>
 							<input type="hidden" name="action" value="sent"/>
-						<img border="0" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" class="emailqu" onclick="validatequote();"/>
+						<img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" class="emailqu" onclick="validatequote();"/>
 						</div>
 						<div class="clear5"></div>
                   		<div class="lvl" style="width:100%;">'.stripslashes_deep($myoptions["addition_details"]).':</div>
@@ -3605,21 +3603,21 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 					$output .='<div class="bookingwrap clearfix">
 									<div class="bookingh1">'.$catdesc.'</div>
 									<div class="restdiv">
-										<div class="bookingleft"><img src="'.$imgsrc.'" border="0"/>
+										<div class="bookingleft"><img src="'.$imgsrc.'" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;"/>
 											<div class="clear"></div>
 											<a data-fancybox-type="iframe" class="various fancybox.iframe" href="'.plugins_url('moreinfo.php?lang='.$lang.'&id='.$carid,__FILE__).'" style="font-size: 13px;text-decoration:underline;">'.stripslashes_deep($myoptions["clickinfo"]).'</a>
 										</div>
 										<div class="bookingcentre">
 												<div class="desc">'.$desc.'</div>
 												<div class="emailme">
-												<a href="'.get_permalink().'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=email"><img border="0" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;"/></a></div>
+												<a href="'.get_permalink().'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=email"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;"/></a></div>
 										</div>
 										<div class="bookingright">
 											<div class="TotalCost">
 												<div class="price">
 													<strong>'.$price.'</strong><div class="dailyrate_small">'.stripslashes_deep($myoptions["avgrate"]).'</div>
 												</div>												
-													<a href="'.get_permalink().'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=detail"><img border="0" oldsrc="'.$continuebtn.'" srcover="'.$continuebtn_ho.'" src="'.$continuebtn.'" style="box-shadow:none;border:none;border-radius:none;"/></a>
+													<a href="'.get_permalink().'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=detail"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$continuebtn.'" srcover="'.$continuebtn_ho.'" src="'.$continuebtn.'" style="box-shadow:none;border:none;border-radius:none;"/></a>
 											</div>
 										</div>										
 										<div class="clear"></div>										
