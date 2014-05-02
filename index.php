@@ -17,119 +17,6 @@ function ConvertCharacters($str)
 }
 function rentalcar_install()
 {
-	
-	$emailquote_template_da ='<p align="center"><img src="http://secure.rentalcarmanager.com.au/db/AUTravelWheels107/logo.gif" alt="121" /></p>
-<div align="center">
-  <table border="0" cellspacing="0" cellpadding="4" width="650" style="border:1px solid #F69812;font-size:13px;line-height:1.2em;font-family:Arial">
-    <tr>
-      <td colspan="2" bgcolor="#F69812" style="padding:3px 4px">Online-Angebot mit Travelwheels - Ref #[refquote]  ([pickuplocation]) </td>
-    </tr>
-    <tr>
-      <td colspan="2">Vielen Dank für Ihr Online-Angebot mit Travelwheels.</td>
-    </tr>
-    <tr>
-      <td colspan="2">Dieses Online-Angebot ist nun der Ort weitergeleitet wurde - [pickuplocation].</td>
-    </tr>
-    <tr>
-      <td colspan="2">'.ConvertCharacters('Wenn Sie möchten, mit diesem Zitat gehen').' :</td>
-    </tr>
-    <tr>
-      <td colspan="2"><table border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td><strong>TURN IN IHR ZITAT eine Buchungsanfrage <a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[refkey]&amp;E604=[today]" target="_blank"><font color="#FF0000">KLICKEN SIE HIER</font></a></strong></td>
-          <td><img src="https://secure.rentalcarmanager.com.au/images/SafePayment.jpg" alt="231312" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" id="_x0000_i1026" /></td>
-        </tr>
-        <tr>
-          <td colspan="2">'.ConvertCharacters('Hinweis: Wenn Sie diese Mail im Textmodus und Schwierigkeiten Öffnen der Link oben, bitte versuchen Sie das Kopieren und die folgende gesamte Link einfügen in die Adressleiste Ihres Internet-Homepage.').'</td>
-        </tr>
-        <tr>
-          <td colspan="2"><a href="https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[refkey]&amp;E604=[today]&amp;VD2=" target="_blank">https://secure.rentalcarmanager.com.au/s_QPay.asp?id=107&amp;MC2=19&amp;ferq=[refkey]&amp;E604=[today]&amp;VD2=</a></td>
-        </tr>
-      </table></td>
-    </tr>
-    <tr>
-      <td colspan="2">Ihr Zitat Details sind wie folgt:</td>
-    </tr>
-    <tr>
-      <td colspan="2" style="border-bottom:1px solid #F69812;margin-bottom:2px;">Angebotsdatum: [today]</td>
-    </tr>   
-    <tr>
-      <td style="margin-top:2px;"><strong>Ref:</strong></td>
-      <td style="margin-top:2px;">[refquote] ([pickuplocation])</td>
-    </tr>
-    <tr>
-      <td>Name: </td> 
-      <td>[customer_name]</td>
-    </tr>
-	<tr>
-      <td colspan="2">[notes]</td>
-    </tr>
-    <tr>
-      <td style="border-bottom:1px solid #F69812;margin-bottom:2px;">Email: </td>
-      <td style="border-bottom:1px solid #F69812;margin-bottom:2px;"><a href="mailto:[customer_email]" target="_blank">[customer_email]</a></td>
-    </tr>
-    <tr>
-      <td style="margin-top:2px;">Fahrzeugtyp </td>
-      <td style="margin-top:2px;">[vehicle_type]</td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td><img src="[imgsrc]" alt="logo" width="192" style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" id="_x0000_i1027" /></td>
-    </tr>
-    <tr>
-      <td>Pickup Standort: </td>
-      <td>[pickuplocation]</td>
-    </tr>
-    <tr>
-      <td>Abholdatum: </td>
-      <td>[pickupdate]&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Dropoff Location: </td>
-      <td>[dropofflocation]</td>
-    </tr>
-    <tr>
-      <td>Dropoff Date: </td>
-      <td>[dropoffdate]&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="2">'.ConvertCharacters('Mietpreis und Gebühren').'</td>
-    </tr>
-    <tr>
-      <td colspan="2" style="border-bottom:1px solid #F69812;margin-bottom:2px;"><table border="0" cellpadding="0" width="100%">
-        <tr>
-          <td>[totalrentaldays]&nbsp;days @&nbsp;AU$[rateperday]&nbsp;(per day)&nbsp;</td>
-          <td align="right">&nbsp;AU$[subtotal]</td>
-        </tr>
-		[insurance]
-		[oneway]
-        <tr>
-          <td><strong>Total:</strong></td>
-          <td align="right">AU$[totalcost]</td>
-        </tr>
-        <tr>
-          <td colspan="2" align="right">(Alle Preise inkl. GST)</td>
-        </tr>
-      </table></td>
-    </tr>    
-    <tr>
-      <td colspan="2" style="margin-top:2px;"><strong>Stornierungsbedingungen</strong><br />
-       '.ConvertCharacters('Wenn Sie leider um Ihre Termine / Reisepläne ändern, dann werden wir unser Bestes tun, um Sie mit einem anderen Wohnmobil stellen, wenn wir die Verfügbarkeit ohne zusätzliche Stornokosten. Wenn Sie Ihre Buchung stornieren müssen vollständig, dann sind die folgenden Gebühren gilt für alle Buchungen:<br />
-        Wenn mehr als 30 Tage vor storniert, Pick-up Datum: Stornogebühr von 25% des vollen Mietpreis gilt (entspricht der nicht rückzahlbare Anzahlung zu, um die Buchung) Wenn innerhalb von 29-8 Tagen abholen abgesagt: 50% der vollen Miete gilt.<br />
-        Wenn innerhalb von 7-1 Tagen storniert vor Übernahme: 75% des Mietpreises gilt. Wenn am Tag der Abholung oder No-Show abgesagt: Keine Rückerstattungen sorry, & die volle Miete wird Ihre Kreditkarte belastet.<br/>').'</td>
-    </tr>   
-    <tr>
-      <td colspan="2"><strong>Travelwheels</strong><br/>[pickuplocation]</td>
-    </tr>  
-    <tr>
-      <td colspan="2" bgcolor="#F69812" align="center">155 - 159 William    St<br />
-        Darlinghurst Sydney,&nbsp;NSW&nbsp;2010&nbsp;Australia<br />
-        Phone:1800 289 222 then dial 2&nbsp;&nbsp;&nbsp;Fax: 02 9666    4695&nbsp;&nbsp;Free Phone: 1800 289 222 THEN PRESS 2</td>
-    </tr>
-  </table>
-</div>
-<p align="center">[sitetitle]<br/>[siteurl]</p>';
-	
 $mac_style='.inpt_booking_extend{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
 	.chk_inpt_booking{border:1px solid #F69812;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);height:22px;margin:0px;line-height:15px;font-size:14px;width:100%;}
 	.chk_avail_fname_lvl{float:left;width:15%;}
@@ -1708,20 +1595,57 @@ h1.single,#breadcrumb{display:none;}
     </tr>
   </table>
 </div>
-<p align="center">[sitetitle]<br/>[siteurl]</p>';
-		
+<p align="center">[sitetitle]<br/>[siteurl]</p>';		
+	$car_insurance_page='<div align="center"><img src="'.plugins_url('insurance.gif',__FILE__).'" border="0"/></div>';
 	delete_option('rental_option_en');delete_option('rental_option_fr');
 	delete_option('rental_option_da');delete_option('rental_option_du');	delete_option('rental_option_pt');
 	add_option('rental_option_en',$optionsarr['en']);add_option('rental_option_fr',$optionsarr['fr']);
 	add_option('rental_option_da',$optionsarr['da']);add_option('rental_option_du',$optionsarr['du']);
 	add_option('rental_option_pt',$optionsarr['pt']);
 	
-	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9','emailquote_template_en'=>$emailquote_template,'emailquote_template_da'=>$emailquote_template,'emailquote_template_du'=>$emailquote_template,'emailquote_template_fr'=>$emailquote_template,'emailquote_template_pt'=>$emailquote_template,'successmsg_pt'=>$sucessmsg,'successmsg_en'=>$sucessmsg,'successmsg_fr'=>$sucessmsg,'successmsg_da'=>$sucessmsg,'successmsg_du'=>$sucessmsg,'rentalcar_timediff'=>'13','rental_emails_from'=>'Travelwheels <'.get_bloginfo('admin_email').'>','rental_emails_to'=>'info <info@travelwheels.com.au>,info <gino@travelwheels.com.au>,Developer <smrutiniit@gmail.com>','css_mac'=>$mac_style);
+	$generalarr=array('rental_searchform_css'=>$layout,'rental_searchform_bg_color'=>'#026CD6','rental_searchform_bg_img'=>'widget-background.jpg','rental_searchform_bg_stat'=>'disabled','rental_env_mode' => 'live','rental_type'=>'9','emailquote_template_en'=>$emailquote_template,'emailquote_template_da'=>$emailquote_template,'emailquote_template_du'=>$emailquote_template,'emailquote_template_fr'=>$emailquote_template,'emailquote_template_pt'=>$emailquote_template,'successmsg_pt'=>$sucessmsg,'successmsg_en'=>$sucessmsg,'successmsg_fr'=>$sucessmsg,'successmsg_da'=>$sucessmsg,'successmsg_du'=>$sucessmsg,'rentalcar_timediff'=>'13','rental_emails_from'=>'Travelwheels <'.get_bloginfo('admin_email').'>','rental_emails_to'=>'info <info@travelwheels.com.au>,info <gino@travelwheels.com.au>,Developer <smrutiniit@gmail.com>','css_mac'=>$mac_style,'car_insurance'=>$car_insurance_page);
 	
 	foreach($generalarr as $ky => $value)
 	{
 		delete_option($ky);
 		add_option($ky,$value, '', 'yes' );
+	}
+	$carlisting_title=array('2 Person Campervan','2-3 Person Campervan - most popular campervan we hire','2-3 Person Campervan (New Shape)','5 Person Automatic Campervan great for groups or families');
+	$carlisting_id_meta=array('3','6','17','18');
+	$carlisting_desc_meta=array('<div align="center"><h1><b>2 Person Campervan</b></h1></p>
+<p>&nbsp;&nbsp;&nbsp;Our smallest campervan for 2 people with 55L fridge and not an icebox!</p>
+<iframe src="//www.youtube.com/embed/iW7WGPI7oJQ" allowfullscreen="allowfullscreen" frameborder="0" align="middle" height="333" width="450"></iframe></div>','<div align="center"><h1><b>2-3 Person Campervan – most popular campervan we hire</b></h1></p><p>   Australia\'s most popular campervan for 2-3 people – great value for money     </p>
+<p>&nbsp;&nbsp;&nbsp;Our smallest campervan for 2 people with 55L fridge and not an icebox!</p>
+<iframe src="//www.youtube.com/embed/YJkAk9BlcI0" allowfullscreen="allowfullscreen" frameborder="0" align="middle" height="333" width="450"></iframe></div>','<div align="center"><h1><b>2-3 Person Campervan (New Shape)</b></h1></p>
+<p>&nbsp;&nbsp;&nbsp;Newer model with big comfy bed and great kitchen & living area </p>
+<iframe src="//www.youtube.com/embed/MhALH8yUijo" allowfullscreen="allowfullscreen" frameborder="0" align="middle" height="333" width="450"></iframe></div>','<div align="center"><h1><b>5 Person Automatic Campervan great for groups or families</b></h1></p>
+<p>&nbsp;&nbsp;&nbsp;Automatic easy to drive - very popular with groups & families </p>
+<iframe src="//www.youtube.com/embed/WDKGtFyBBV4" allowfullscreen="allowfullscreen" frameborder="0" align="middle" height="333" width="450"></iframe></div>');
+	
+	global $post;
+	$args11 = array('post_type'=>'rentalcar');
+	$post_type_data=false;
+	$query = new WP_Query( $args11 );
+		if ( $query->have_posts() ) :
+		$post_type_data=true;
+		wp_reset_query();
+	 	 else:			 	
+	  endif;
+	if($post_type_data == false){
+		foreach($carlisting_title as $kkey => $title_val)
+		{
+			$my_post = array(
+			  'post_title'    => $title_val,
+			  'post_status'   => 'publish',
+			  'post_type'=>'rentalcar',
+			  'post_author'   => 1
+			);
+			
+			global $post_id;
+			$post_id = wp_insert_post( $my_post );
+			add_post_meta($post_id, 'carid',$carlisting_id_meta[$kkey]);
+			add_post_meta($post_id, 'car_desc_en',$carlisting_desc_meta[$kkey]);
+		}
 	}
 }
 add_action( 'init', 'rentalcar_front_js' );
@@ -2111,25 +2035,30 @@ function set_help_info()
     <h2>Help Information</h2>
     <p>Shortcode for english<br/>
     display search form at top and display search result under search form - [rcm_search_results lang='en']<br/>
-    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='en' only="result"]    
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='en' only="result"]  <br/>
+    put header ,navigation bar on step3 shortcode   [rcm_search_results lang='en' header="yes" navigation="yes"] 
     </p>
     
     <p>Shortcode for french<br/>
     display search form at top and display search result under search form - [rcm_search_results lang='fr']<br/>
-    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='fr' only="result"]    
-    
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='fr' only="result"]<br/>    
+     put header ,navigation bar on step3 shortcode   [rcm_search_results lang='fr' header="yes" navigation="yes"] 
+     </p>
     <p>Shortcode for german<br/>
     display search form at top and display search result under search form - [rcm_search_results lang='da']<br/>
-    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='da' only="result"]    
-    
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='da' only="result"]  <br/>  
+     put header ,navigation bar on step3 shortcode   [rcm_search_results lang='da' header="yes" navigation="yes"] 
+     </p>
     <p>Shortcode for netherland<br/>
     display search form at top and display search result under search form - [rcm_search_results lang='du']<br/>
-    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='du' only="result"] 
-    
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='du' only="result"] <br/>
+     put header ,navigation bar on step3 shortcode   [rcm_search_results lang='du' header="yes" navigation="yes"] 
+     </p>
      <p>Shortcode for Portuguese<br/>
     display search form at top and display search result under search form - [rcm_search_results lang='pt']<br/>
-    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='pt' only="result"]    
-    
+    display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='pt' only="result"]  <br/>  
+     put header ,navigation bar on step3 shortcode   [rcm_search_results lang='pt' header="yes" navigation="yes"] 
+     </p>
     <p>Available email template variables are following</p>
     <p>[refquote],[refkey],[today],[customer_name],[customer_email],[notes],[vehicle_type],[imgsrc],[pickuplocation],[pickupdate],[dropofflocation],[dropoffdate],[totalrentaldays],[rateperday],[subtotal],[insurance],[oneway],[totalcost],[sitetitle],[siteurl] </p>
     
@@ -3079,7 +3008,10 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	elseif($_GET["action"] == 'detail')
 	{
 		$output=$searchout;
-		$output .=$common.'<style>header{display:none;}nav{display:none;}</style>';
+		if($attr["header"]=='yes'){$header_style='';}else{$header_style='header{display:none;}';}
+		if($attr["navigation"]=='yes'){$nav_style='';}else{$nav_style='nav{display:none;}';}
+		if($nav_style!="" or $header_style!=""){$exstyle='<style>'.$header_style.$nav_style.'</style>';}
+		$output .=$common.$exstyle;
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestVehicleAvailability?PickupLocation='.urlencode($_GET["PickupLocationID"]).'&PickupDate='.urlencode($_GET["PickDate"]).'&PickupTime=12:00&DropOffLocation='.urlencode($_GET["DLocationID"]).'&DropOffDate='.urlencode($_GET["DropoffDate"]).'&DropOffTime=12:00&DriverAge=30&CategoryTypeID='.$CategoryTypeID.'&SecureKey='.urlencode($securekey).'&PromoCode='.urlencode($_GET["promo"]);	
 		
 			$articles = file_get_contents($url);
