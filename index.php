@@ -2036,7 +2036,7 @@ function set_help_info()
     <p>Shortcode for english<br/>
     display search form at top and display search result under search form - [rcm_search_results lang='en']<br/>
     display search result without search form. this is case when we have sidebar search form - [rcm_search_results lang='en' only="result"]  <br/>
-    put header ,navigation bar on step3 shortcode   [rcm_search_results lang='en' header="yes" navigation="yes"] 
+    put header ,navigation bar on step3 shortcode [rcm_search_results lang='en' header="yes" navigation="yes"] 
     </p>
     
     <p>Shortcode for french<br/>
@@ -2124,6 +2124,21 @@ function rentalcar_settingfn() {
 			delete_option( 'rental_emails_from');
 			add_option( 'rental_emails_from',$_POST["rental_emails_from"], '', 'yes' ); 
 		}
+		if(isset($_POST['car_webstep2_action']))
+		{
+			delete_option( 'car_webstep2_action');
+			add_option( 'car_webstep2_action',$_POST["car_webstep2_action"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_webstep3_action']))
+		{
+			delete_option( 'car_webstep3_action');
+			add_option( 'car_webstep3_action',$_POST["car_webstep3_action"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_emailquote_action']))
+		{
+			delete_option( 'car_emailquote_action');
+			add_option( 'car_emailquote_action',$_POST["car_emailquote_action"], '', 'yes' ); 
+		}
 		$msg="Setting has been saved successfully.";
 	}
 	if(isset($_POST['reset'])){
@@ -2158,8 +2173,57 @@ function rentalcar_settingfn() {
 						}	
 				   ?>
                    </select>
-                   </p>                   
-                 <h2>Email Address</h2> 
+                   </p>    
+                 <h2>Define Web Action</h2>                        
+                 <p>Web action step2 page&nbsp;&nbsp;<select name="car_webstep2_action">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_webstep2_action') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                        </select>&nbsp;&nbsp;place shortcode on page like [rcm_search_results lang="en"]</p>
+            <p>Web action step3(final step) page&nbsp;&nbsp;<select name="car_webstep3_action">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_webstep3_action') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                        </select>&nbsp;&nbsp;place shortcode on page like [rcm_search_results lang="en"]</p>
+            <p>Web action for email quote page&nbsp;&nbsp;<select name="car_emailquote_action">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_emailquote_action') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                 </select>&nbsp;&nbsp;place shortcode on page like [rcm_search_results lang="en"]</p>                                                
+              <h2>Email Address</h2> 
                  <p>From&nbsp;&nbsp;&nbsp;<input type="text" name="rental_emails_from" value="<?php echo get_option('rental_emails_from');?>" style="width:800px;"/></p>
                  <span style="font-size:11px">Notes:You can fill the field on format like name&lt;emailaddress&gt; format.</span>
                  <p>To&nbsp;&nbsp;&nbsp;<input type="text" name="rental_emails_to" value="<?php echo get_option('rental_emails_to');?>"  style="width:800px;"/></p>
@@ -2645,6 +2709,10 @@ function rentalcarmanagementsearchresults($attr)
 	if(get_option('rental_env_mode') == 'live'){$securekey=get_option('rental_live_api');} else {$securekey=get_option('rental_test_api');}
 	if(get_option('rental_type') == '9'){$CategoryTypeID='9';}else{$CategoryTypeID='1';}
 	
+	if(get_option('car_webstep2_action') != ''){$step2actionid=get_option('car_webstep2_action');}else{$step2action='';}
+	if(get_option('car_webstep3_action') != ''){$step3actionid=get_option('car_webstep3_action');}else{$step3action='';}
+	if(get_option('car_emailquote_action') != ''){$emailquoteid=get_option('car_emailquote_action');}else{$emailquoteid='';}
+	
 	$myoptions=get_option('rental_option_'.$lang);
 	
 	$sucess_msg=stripslashes_deep(get_option("successmsg_".$lang,true));
@@ -2831,12 +2899,12 @@ j("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",
 if($_GET["action"] == 'step2' or $_GET["action"] == 'email' or $_GET["action"] == 'detail'){
 	$searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border:2px solid '.get_option('rental_searchform_bg_color').';border-radius:6px;text-align:center;padding:5px;"><a style="text-decoration:underline;color:#fff;font-size:15px;" onclick="searchtoggle()">'.$myoptions["acrodian"].'</a><a id="custom_toggle_a" style="background-position:-96px top !important" onclick="searchtoggle()">^</a></div>
 	<div class="rentalcar_form_div" data-role="content" style="'.$backstyle.'display:none;background-color:'.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-bottom:2px solid '.get_option('rental_searchform_bg_color').';border-radius:0 0 6px 6px">   
-<form method="GET" action="'.get_permalink().'" id="rentalcar">';
+<form method="GET" action="'.get_permalink($step2actionid).'" id="rentalcar">';
 }
 else
 {
 $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border-top:2px solid '.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-radius:6px 6px 0 0;text-align:center;padding:5px;">'.$headertxt.'<a id="custom_toggle_a" onclick="searchtoggle()">^</a></div><div class="rentalcar_form_div" data-role="content" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-bottom:2px solid '.get_option('rental_searchform_bg_color').';border-radius:0 0 6px 6px">   
-<form method="GET" action="'.get_permalink().'" id="rentalcar">';
+<form method="GET" action="'.get_permalink($step2actionid).'" id="rentalcar">';
 }
 	
 	$searchout .='<div style="clear:both"></div>                          
@@ -3490,8 +3558,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	{	
 		$output=$searchout;
 		
-		$output .=$common;
-		
+		$output .=$common;		
 		$pickupdatearr=explode("/",$_GET["PickupDate"]);
 		$pickupdate=$pickupdatearr[1].'/'.$pickupdatearr[0].'/'.$pickupdatearr[2];
 		$dropoffdatearr=explode("/",$_GET["DropOffDate"]);
@@ -3542,14 +3609,14 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 										<div class="bookingcentre">
 												<div class="desc">'.$desc.'</div>
 												<div class="emailme">
-												<a href="'.get_permalink().'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=email"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;"/></a></div>
+												<a href="'.get_permalink($emailquoteid).'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=email"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;"/></a></div>
 										</div>
 										<div class="bookingright">
 											<div class="TotalCost">
 												<div class="price">
 													<strong>'.$price.'</strong><div class="dailyrate_small">'.stripslashes_deep($myoptions["avgrate"]).'</div>
 												</div>												
-													<a href="'.get_permalink().'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=detail"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$continuebtn.'" srcover="'.$continuebtn_ho.'" src="'.$continuebtn.'" style="box-shadow:none;border:none;border-radius:none;"/></a>
+													<a href="'.get_permalink($step3actionid).'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=detail"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$continuebtn.'" srcover="'.$continuebtn_ho.'" src="'.$continuebtn.'" style="box-shadow:none;border:none;border-radius:none;"/></a>
 											</div>
 										</div>										
 										<div class="clear"></div>										
