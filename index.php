@@ -2701,17 +2701,29 @@ function rentalcarmanagementsearchresults($attr)
 	if(is_array($attr)){
 		if($attr["lang"] !=""){$lang=$attr["lang"];}else{$lang='en';}
 		if($attr["only"] !=""){$resonly=$attr["only"];}else{$resonly='';}
+		
+		if($attr["pagetype"] == 'nonwp'){
+			$pagetype="nonwp";
+			$step2url=$attr["baseurl"]."/rcm";
+			$step3url=$attr["baseurl"]."/webstep3";
+			$emailquoteurl=$attr["baseurl"]."/emailquote";
+		} else{
+			$pagetype="";
+			if(get_option('car_webstep2_action') != ''){$step2url=get_permalink(get_option('car_webstep2_action'));}else{$step2url='';}
+			if(get_option('car_webstep3_action') != ''){$step3url=get_permalink(get_option('car_webstep3_action'));}else{$step3url='';}
+			if(get_option('car_emailquote_action') != ''){$emailquoteurl=get_permalink(get_option('car_emailquote_action'));}else{$emailquoteurl='';}
+		}
 	}
 	else
 	{
+		$pagetype="";
 		$lang='en';$resonly='';
+		if(get_option('car_webstep2_action') != ''){$step2url=get_permalink(get_option('car_webstep2_action'));}else{$step2url='';}
+		if(get_option('car_webstep3_action') != ''){$step3url=get_permalink(get_option('car_webstep3_action'));}else{$step3url='';}
+		if(get_option('car_emailquote_action') != ''){$emailquoteurl=get_permalink(get_option('car_emailquote_action'));}else{$emailquoteurl='';}
 	}
 	if(get_option('rental_env_mode') == 'live'){$securekey=get_option('rental_live_api');} else {$securekey=get_option('rental_test_api');}
 	if(get_option('rental_type') == '9'){$CategoryTypeID='9';}else{$CategoryTypeID='1';}
-	
-	if(get_option('car_webstep2_action') != ''){$step2actionid=get_option('car_webstep2_action');}else{$step2action='';}
-	if(get_option('car_webstep3_action') != ''){$step3actionid=get_option('car_webstep3_action');}else{$step3action='';}
-	if(get_option('car_emailquote_action') != ''){$emailquoteid=get_option('car_emailquote_action');}else{$emailquoteid='';}
 	
 	$myoptions=get_option('rental_option_'.$lang);
 	
@@ -2838,6 +2850,9 @@ function rentalcarmanagementsearchresults($attr)
 		  //if($attr["theme"] == 'classipress'){}else{
 			  $searchout .='<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>';
 		  //}
+		  if($pagetype == 'nonwp'){
+			  $searchout .='<script src="http://www.travelwheels.com.au/Rentalcar/rollover1.js"></script>';
+		  }
           $searchout .='<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/i18n/jquery-ui-i18n.min.js"></script>	
           <script src="'.plugins_url('jquery.selectBoxIt.js', __FILE__).'"></script> 
@@ -2851,6 +2866,7 @@ function rentalcarmanagementsearchresults($attr)
 			#custom_toggle_a{background-position:-80px top !important;background-image:url(http://static.olark.com/themes/azul/buttons-light.png);background-position:0 top;background-repeat:no-repeat !important;border-radius:5px !important;cursor:pointer !important;float:right;height:16px;line-height:1000;margin-right:10px;margin-top:5px;overflow:hidden;padding:0;width:16px;
 }
 #custom_toggle_a:hover{background-color:#333;}
+.entry-header{display:none;}
             </style>
  <script>
  var j = jQuery.noConflict();
@@ -2899,12 +2915,12 @@ j("#PickupDate").datepicker({numberOfMonths: 3,dateFormat: "dd/mm/yy",
 if($_GET["action"] == 'step2' or $_GET["action"] == 'email' or $_GET["action"] == 'detail'){
 	$searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border:2px solid '.get_option('rental_searchform_bg_color').';border-radius:6px;text-align:center;padding:5px;"><a style="text-decoration:underline;color:#fff;font-size:15px;" onclick="searchtoggle()">'.$myoptions["acrodian"].'</a><a id="custom_toggle_a" style="background-position:-96px top !important" onclick="searchtoggle()">^</a></div>
 	<div class="rentalcar_form_div" data-role="content" style="'.$backstyle.'display:none;background-color:'.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-bottom:2px solid '.get_option('rental_searchform_bg_color').';border-radius:0 0 6px 6px">   
-<form method="GET" action="'.get_permalink($step2actionid).'" id="rentalcar">';
+<form method="GET" action="'.$step2url.'" id="rentalcar">';
 }
 else
 {
 $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border-top:2px solid '.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-radius:6px 6px 0 0;text-align:center;padding:5px;">'.$headertxt.'<a id="custom_toggle_a" onclick="searchtoggle()">^</a></div><div class="rentalcar_form_div" data-role="content" style="'.$backstyle.'background-color:'.get_option('rental_searchform_bg_color').';border-right:2px solid '.get_option('rental_searchform_bg_color').';border-left:2px solid '.get_option('rental_searchform_bg_color').';border-bottom:2px solid '.get_option('rental_searchform_bg_color').';border-radius:0 0 6px 6px">   
-<form method="GET" action="'.get_permalink($step2actionid).'" id="rentalcar">';
+<form method="GET" action="'.$step2url.'" id="rentalcar">';
 }
 	
 	$searchout .='<div style="clear:both"></div>                          
@@ -2948,14 +2964,14 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	{
 		$output='';
 			$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/PopulateWebBookingTotal?RCMReferenceKey='.urlencode($_POST["refkey"]);
-			$populatetotal=file_get_contents($url);
+			$populatetotal=@file_get_contents($url);
 			
 			$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/confirmBookingTotal?CustomerEmailID='.urlencode($_POST["CustomerEmail"]).'&RCMReferenceKey='.urlencode($_POST["refkey"]);
-			$confirmBookingTotal=file_get_contents($url);
+			$confirmBookingTotal=@file_get_contents($url);
 		
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/confirmVehicleSelection?CarID='.$_POST["CarSizeID"].'&RCMReferenceKey='.urlencode($_POST["refkey"]);	
 		
-			$articles = file_get_contents($url);
+			$articles = @file_get_contents($url);
 			$dom = new DOMDocument();
 			$dom->loadXML($articles);
 			$dom->preserveWhiteSpace = false;
@@ -2970,12 +2986,12 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 			{
 				
 				$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestExtras?RCMReferenceKey='.urlencode($_POST["refkey"]);
-				$articles = file_get_contents($url);
+				$articles = @file_get_contents($url);
 				$requestExtras=$articles;
 				
 				$insuranceid=$_POST["isureid"];
 				$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/confirmInsuranceFees?InsuranceID='.$insuranceid.'&RCMReferenceKey='.urlencode($_POST["refkey"]);
-				$articles = file_get_contents($url);
+				$articles = @file_get_contents($url);
 				$dom = new DOMDocument();
 				$dom->loadXML($articles);
 				$dom->preserveWhiteSpace = false;
@@ -2988,13 +3004,13 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 				else
 				{
 					$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestCustomerCountryDetails?RCMReferenceKey='.urlencode($_POST["refkey"]);
-			$requestCustomerCountryDetails=file_get_contents($url);
+			$requestCustomerCountryDetails=@file_get_contents($url);
 			
 					$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestRentalSource?RCMReferenceKey='.urlencode($_POST["refkey"]);
-					$requestRentalSource=file_get_contents($url);
+					$requestRentalSource=@file_get_contents($url);
 					
 					$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/confirmVehicleBookingQuote?CustomerFirstName='.urlencode($_POST["firstname"]).'&CustomerLastName='.urlencode($_POST["lastname"]).'&PrimaryDriverDOB=&PrimaryDriverLicenseNo=&LicenseIssuedCountryID=7&LicenseExpiryDate=&Address=&City=&StateProvince=&PostalCode=&CountryID=7&CustomerEmailID='.urlencode($_POST["CustomerEmail"]).'&CustomerPhone=985985&ArrivalFlight=&PickUpRequiredFrom=&DropOffRequiredTo=&NoOfTravelling=&CarTransmissionPreferenceID=&RentalSourceID='.$_POST["PickupLocationID"].'&AdditionalDetails=&CreditCardTypeID=&CreditCardNumber=&CCV=&NameOnCreditCard=&CreditCardExpiryDate=&RCMReferenceKey='.urlencode($_POST["refkey"]).'&BookingType=quote';
-					$articles = file_get_contents($url);
+					$articles = @file_get_contents($url);
 					$dom = new DOMDocument();
 					$dom->loadXML($articles);
 					$dom->preserveWhiteSpace = false;
@@ -3076,13 +3092,15 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	elseif($_GET["action"] == 'detail')
 	{
 		$output=$searchout;
+		if($pagetype == 'nonwp'){$header_style='';$nav_style='';}else{
 		if($attr["header"]=='yes'){$header_style='';}else{$header_style='header{display:none;}';}
 		if($attr["navigation"]=='yes'){$nav_style='';}else{$nav_style='nav{display:none;}';}
+		}
 		if($nav_style!="" or $header_style!=""){$exstyle='<style>'.$header_style.$nav_style.'</style>';}
-		$output .=$common.$exstyle;
+		$output .=$common.$exstyle.'<style>.customgsearch{display:none;}</style>';
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestVehicleAvailability?PickupLocation='.urlencode($_GET["PickupLocationID"]).'&PickupDate='.urlencode($_GET["PickDate"]).'&PickupTime=12:00&DropOffLocation='.urlencode($_GET["DLocationID"]).'&DropOffDate='.urlencode($_GET["DropoffDate"]).'&DropOffTime=12:00&DriverAge=30&CategoryTypeID='.$CategoryTypeID.'&SecureKey='.urlencode($securekey).'&PromoCode='.urlencode($_GET["promo"]);	
 		
-			$articles = file_get_contents($url);
+			$articles = @file_get_contents($url);
 			
 			$dom = new DOMDocument();
 			$dom->loadXML($articles);
@@ -3272,7 +3290,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 			<div class="bookingwrap clearfix">
 				<div class="bookingh1">'.stripslashes_deep($myoptions["step3bookingtitle"]).'</div>
 				<div class="restdiv">
-				<form action="?action=Quote&categoryStatus=1" method="post" name="theForm">
+				<form action="'.$step3url.'?action=Quote&categoryStatus=1" method="post" name="theForm">
 					<div style="margin-left:5%;width:90%;">
 					<div class="chk_avail_fname_lvl"><strong>'.stripslashes_deep($myoptions["bookingfname"]).'</strong></div>
 					<div class="chk_avail_fname_input"><input type="text" name="firstname" id="firstname" class="chk_inpt_booking"/></div>
@@ -3321,14 +3339,14 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 		{
 			$searchout='';
 			$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/PopulateWebBookingTotal?RCMReferenceKey='.urlencode($_POST["refkey"]);
-			$populatetotal=file_get_contents($url);
+			$populatetotal=@file_get_contents($url);
 			
 			$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/confirmBookingTotal?CustomerEmailID='.urlencode($_POST["CustomerEmail"]).'&RCMReferenceKey='.urlencode($_POST["refkey"]);
-			$confirmBookingTotal=file_get_contents($url);
+			$confirmBookingTotal=@file_get_contents($url);
 		
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/confirmVehicleSelection?CarID='.$_POST["CarSizeID"].'&RCMReferenceKey='.urlencode($_POST["refkey"]);	
 		
-			$articles = file_get_contents($url);
+			$articles = @file_get_contents($url);
 			$dom = new DOMDocument();
 			$dom->loadXML($articles);
 			$dom->preserveWhiteSpace = false;
@@ -3342,13 +3360,13 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 			else
 			{
 					$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestCustomerCountryDetails?RCMReferenceKey='.urlencode($_POST["refkey"]);
-			$requestCustomerCountryDetails=file_get_contents($url);
+			$requestCustomerCountryDetails=@file_get_contents($url);
 			
 				$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestRentalSource?RCMReferenceKey='.urlencode($_POST["refkey"]);
-			$requestRentalSource=file_get_contents($url);
+			$requestRentalSource=@file_get_contents($url);
 					
 					$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/confirmVehicleBookingQuote?CustomerFirstName='.urlencode($_POST["firstname"]).'&CustomerLastName='.urlencode($_POST["lastname"]).'&PrimaryDriverDOB=&PrimaryDriverLicenseNo=&LicenseIssuedCountryID=7&LicenseExpiryDate=&Address=&City=&StateProvince=&PostalCode=&CountryID=7&CustomerEmailID='.urlencode($_POST["CustomerEmail"]).'&CustomerPhone=9999&ArrivalFlight=&PickUpRequiredFrom=&DropOffRequiredTo=&NoOfTravelling=&CarTransmissionPreferenceID=&RentalSourceID='.$_POST["PickupLocationID"].'&AdditionalDetails='.urlencode($_POST["Notes"]).'&CreditCardTypeID=&CreditCardNumber=&CCV=&NameOnCreditCard=&CreditCardExpiryDate=&RCMReferenceKey='.urlencode($_POST["refkey"]).'&BookingType=quote';
-					$articles = file_get_contents($url);
+					$articles = @file_get_contents($url);
 					$dom = new DOMDocument();
 					$dom->loadXML($articles);
 					$dom->preserveWhiteSpace = false;
@@ -3406,7 +3424,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 			$output=$searchout;
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestVehicleAvailability?PickupLocation='.urlencode($_GET["PickupLocationID"]).'&PickupDate='.urlencode($_GET["PickDate"]).'&PickupTime=12:00&DropOffLocation='.urlencode($_GET["DLocationID"]).'&DropOffDate='.urlencode($_GET["DropoffDate"]).'&DropOffTime=12:00&DriverAge=30&CategoryTypeID='.$CategoryTypeID.'&SecureKey='.urlencode($securekey).'&PromoCode='.urlencode($_GET["promo"]);	
 		
-			$articles = file_get_contents($url);
+			$articles = @file_get_contents($url);
 			$dom = new DOMDocument();
 			$dom->loadXML($articles);
 			$dom->preserveWhiteSpace = false;
@@ -3472,7 +3490,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	document.getElementById("Rate").submit();}</script>
 		'.$addIEstyle.'<style>'.$stylesheet.'</style>
 			<div class="bookingwrap clearfix">
-		<form id="Rate" name="Rate" action="" method="post">
+		<form id="Rate" name="Rate" action="'.$emailquoteurl.'?action=email" method="post">
 			<div class="bookingh1">'.stripslashes_deep($myoptions["bookingsummary"]).'</div>
 				<div class="restdiv">
 					<div class="booking_chkoutleft">											
@@ -3566,7 +3584,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 		
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestVehicleAvailability?PickupLocation='.urlencode($_GET["PickupLocation"]).'&PickupDate='.urlencode($pickupdate).'&PickupTime=12:00&DropOffLocation='.urlencode($_GET["DropOffLocation"]).'&DropOffDate='.urlencode($dropoffdate).'&DropOffTime=12:00&DriverAge=30&CategoryTypeID='.$CategoryTypeID.'&SecureKey='.urlencode($securekey).'&PromoCode='.urlencode($_GET["PromoCode"]);	
 		
-			$articles = file_get_contents($url);
+			$articles = @file_get_contents($url);
 			$dom = new DOMDocument();
 			$dom->loadXML($articles);
 			$dom->preserveWhiteSpace = false;
@@ -3609,14 +3627,14 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 										<div class="bookingcentre">
 												<div class="desc">'.$desc.'</div>
 												<div class="emailme">
-												<a href="'.get_permalink($emailquoteid).'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=email"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;"/></a></div>
+												<a href="'.$emailquoteurl.'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=email"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$emailquote.'" srcover="'.$emailquote_ho.'" src="'.$emailquote.'" style="box-shadow:none;border:none;border-radius:none;"/></a></div>
 										</div>
 										<div class="bookingright">
 											<div class="TotalCost">
 												<div class="price">
 													<strong>'.$price.'</strong><div class="dailyrate_small">'.stripslashes_deep($myoptions["avgrate"]).'</div>
 												</div>												
-													<a href="'.get_permalink($step3actionid).'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=detail"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$continuebtn.'" srcover="'.$continuebtn_ho.'" src="'.$continuebtn.'" style="box-shadow:none;border:none;border-radius:none;"/></a>
+													<a href="'.$step3url.'?CarSizeID='.$carid.'&PickupLocationID='.$_GET["PickupLocation"].'&DLocationID='.$_GET["DropOffLocation"].'&PickDate='.$pickupdate.'&DropoffDate='.$dropoffdate.'&promo='.urlencode($_GET["PromoCode"]).'&action=detail"><img style="background:none;border:none;border-radius:0;box-shadow:none;padding:0;margin:0;" oldsrc="'.$continuebtn.'" srcover="'.$continuebtn_ho.'" src="'.$continuebtn.'" style="box-shadow:none;border:none;border-radius:none;"/></a>
 											</div>
 										</div>										
 										<div class="clear"></div>										
