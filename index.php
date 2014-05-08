@@ -620,6 +620,7 @@ $layout='/* Desktops and laptops ----------- */
 .customerfield{width:100%;background:#fff;vertical-align:middle;margin:0 1px 2px;font-size:1em;font-family:Arial,Helvetica,sans-serif;border:1px solid #F69812;}
 
 .chk_avail_fname_lvl,.chk_avail_fname_input,.chk_avail_lname_lvl,.chk_avail_lname_lvl,.chk_avail_lname_input,.chk_avail_email_lvl,.chk_avail_email_input,.chk_avail_emailquote,.chk_avail_availbtn{float:none;width:100%;text-align:center;}
+.chk_avail_availbtn{margin:10px 0;}
 }
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 481px) and (max-device-width : 640px) {
@@ -1876,6 +1877,218 @@ function rentalcar_form_setting() {
 	add_submenu_page('rentalcar_setting', __( 'Car listing', 'rentalcar_form'), __( 'Car listing', 'rentalcar_form' ), 'manage_options', 'edit.php?post_type=rentalcar');	
 	add_submenu_page('rentalcar_setting', __( 'Insurance', 'rentalcar_form'), __( 'Insurance', 'rentalcar_form' ), 'manage_options', 'set_insurancepage','set_insurancepage');	
 	add_submenu_page('rentalcar_setting', __( 'Tracking Code', 'rentalcar_form'), __( 'Tracking Code', 'rentalcar_form' ), 'manage_options', 'set_trackingcode','set_trackingcode');
+	add_submenu_page('rentalcar_setting', __( 'Import/Export', 'rentalcar_form'), __( 'Import/Export', 'rentalcar_form' ), 'manage_options', 'exportimport_carsetting','exportimport_carsetting');	
+}
+
+function output_file($file, $name, $mime_type='')
+{
+ /*
+ This function takes a path to a file to output ($file),  the filename that the browser will see ($name) and  the MIME type of the file ($mime_type, optional).
+ */
+ 
+ //Check the file premission
+ if(!is_readable($file)) die('File not found or inaccessible!');
+ 
+ $size = filesize($file);
+ $name = rawurldecode($name);
+ 
+ /* Figure out the MIME type | Check in array */
+ $known_mime_types=array(
+ 	"pdf" => "application/pdf",
+ 	"txt" => "text/plain",
+ 	"html" => "text/html",
+ 	"htm" => "text/html",
+	"exe" => "application/octet-stream",
+	"zip" => "application/zip",
+	"doc" => "application/msword",
+	"xls" => "application/vnd.ms-excel",
+	"ppt" => "application/vnd.ms-powerpoint",
+	"gif" => "image/gif",
+	"png" => "image/png",
+	"jpeg"=> "image/jpg",
+	"jpg" =>  "image/jpg",
+	"php" => "text/plain"
+ );
+ 
+ if($mime_type==''){
+	 $file_extension = strtolower(substr(strrchr($file,"."),1));
+	 if(array_key_exists($file_extension, $known_mime_types)){
+		$mime_type=$known_mime_types[$file_extension];
+	 } else {
+		$mime_type="application/force-download";
+	 };
+ };
+ 
+ //turn off output buffering to decrease cpu usage
+ @ob_end_clean(); 
+ 
+ // required for IE, otherwise Content-Disposition may be ignored
+ if(ini_get('zlib.output_compression'))
+  ini_set('zlib.output_compression', 'Off');
+ 
+ header('Content-Type: ' . $mime_type);
+ header('Content-Disposition: attachment; filename="'.$name.'"');
+ header("Content-Transfer-Encoding: binary");
+ header('Accept-Ranges: bytes');
+ 
+ /* The three lines below basically make the 
+    download non-cacheable */
+ header("Cache-control: private");
+ header('Pragma: private');
+ header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+ 
+ // multipart-download and download resuming support
+ if(isset($_SERVER['HTTP_RANGE']))
+ {
+	list($a, $range) = explode("=",$_SERVER['HTTP_RANGE'],2);
+	list($range) = explode(",",$range,2);
+	list($range, $range_end) = explode("-", $range);
+	$range=intval($range);
+	if(!$range_end) {
+		$range_end=$size-1;
+	} else {
+		$range_end=intval($range_end);
+	}
+	/*
+	------------------------------------------------------------------------------------------------------
+	//This application is developed by www.webinfopedia.com
+	//visit www.webinfopedia.com for PHP,Mysql,html5 and Designing tutorials for FREE!!!
+	------------------------------------------------------------------------------------------------------
+ 	*/
+	$new_length = $range_end-$range+1;
+	header("HTTP/1.1 206 Partial Content");
+	header("Content-Length: $new_length");
+	header("Content-Range: bytes $range-$range_end/$size");
+ } else {
+	$new_length=$size;
+	header("Content-Length: ".$size);
+ }
+ 
+ /* Will output the file itself */
+ $chunksize = 1*(1024*1024); //you may want to change this
+ $bytes_send = 0;
+ if ($file = fopen($file, 'r'))
+ {
+	if(isset($_SERVER['HTTP_RANGE']))
+	fseek($file, $range);
+ 
+	while(!feof($file) && 
+		(!connection_aborted()) && 
+		($bytes_send<$new_length)
+	      )
+	{
+		$buffer = fread($file, $chunksize);
+		print($buffer); //echo($buffer); // can also possible
+		flush();
+		$bytes_send += strlen($buffer);
+	}
+ fclose($file);
+ } else
+ //If no permissiion
+ die('Error - can not open file.');
+ //die
+die();
+}
+function exportimport_carsetting()
+{
+	$msg='';$somecontent='';
+	if(isset($_POST['export'])){
+	$somecontent='<?php '."\n";
+	$somecontent .='$findurl=\''.plugins_url('',__FILE__).'\';'."\n";
+	$langarr=array('en','fr','da','du','pt');
+	foreach($langarr as $lang){	
+		$langopt=get_option('rental_option_'.$lang);
+		$langkeyarr=array('header_img','searchbtn','searchbtn_ho','emailquote','emailquote_ho','continuebtn','continuebtn_ho',					'checkavailbtn','checkavailbtn_ho','pickuplocation','pickupdate','dropofflocation','dropoffdate','promocode','acrodian','step3tr1td3','step3tr2td3','step3tr3td3','bookingfname','bookinglname','bookingemail','step3th1','step3th2','step3th3','step3trtd1','step3trtd2','step3trtd3','avgrate','step3quotetitle','vehicletype','pickup','step3bookingtitle','dropoff','clickinfo','dailyrate','subtotal','insurance','totalcost','back','step3title','step3moreinfo','oneway','subtotal_notes','bookingsummary');
+		foreach($langkeyarr as $langk)
+		{
+			$somecontent .='$optionsarr['.$lang.']['.$langk.']=\''.addslashes(ConvertCharacters($langopt[$langk])).'\';'."\n";
+		}	
+	}
+	
+	$generalarr=array('rental_searchform_css','rental_searchform_bg_color','rental_searchform_bg_img','rental_searchform_bg_stat','rental_env_mode','rental_type','emailquote_template_en','emailquote_template_da','emailquote_template_du','emailquote_template_fr','emailquote_template_pt','successmsg_pt','successmsg_en','successmsg_fr','successmsg_da','successmsg_du','rentalcar_timediff','rental_emails_from','rental_emails_to','css_mac','car_insurance','rental_test_api','rental_live_api');
+	
+	foreach($generalarr as $ky => $value)
+	{
+		$somecontent .='$generalarr['.$value.']=\''.addslashes(get_option($value,true)).'\';'."\n";
+	}
+		$somecontent .="\n".'?>'."\n";
+		$filename = plugin_dir_path(__FILE__).'backup/setting'.strtotime("now").'.php';
+		if (!$handle = fopen($filename, 'w+')) {
+			 echo "Cannot open file ($filename)";
+			 exit;
+		}	
+		// Write $somecontent to our opened file.
+		if (fwrite($handle, $somecontent) === FALSE) {
+			echo "Cannot write to file ($filename)";
+			exit;
+		}	
+		fclose($handle);	
+		$msg="Export process has done. you can now download.";
+		output_file($filename,'setting'.strtotime("now").'.php', 'text/plain');
+	}
+	if(isset($_POST['import'])){
+		$allowedExts = array("php");
+		$temp = explode(".", $_FILES["settingfile"]["name"]);
+		$extension = end($temp);
+		if(in_array($extension, $allowedExts)) {
+		  if($_FILES["settingfile"]["error"] > 0) {
+			   $msg="Error: " . $_FILES["settingfile"]["error"]."\n";
+		  }
+		  else
+		  {
+			  $pathdir = plugin_dir_path(__FILE__).'backup/';
+			  move_uploaded_file($_FILES["settingfile"]["tmp_name"],$pathdir.$_FILES["settingfile"]["name"]);
+			  include_once($pathdir.$_FILES["settingfile"]["name"]);
+			  delete_option('rental_option_en');delete_option('rental_option_fr');
+			  delete_option('rental_option_da');delete_option('rental_option_du');	delete_option('rental_option_pt');
+			  add_option('rental_option_en',$optionsarr[en]);add_option('rental_option_fr',$optionsarr[fr]);
+			  add_option('rental_option_da',$optionsarr[da]);add_option('rental_option_du',$optionsarr[du]);
+			  add_option('rental_option_pt',$optionsarr[pt]);
+			foreach($generalarr as $ky => $value)
+			{
+				delete_option($ky);
+				add_option($ky,$value, '', 'yes' );
+			}
+			  $msg="Import process has been done.";
+		  }
+		}
+	}	
+	?>
+    <div class="wrap">
+		<h2>Car Rental - Import/Export</h2>
+        <?php if($msg!=""){ echo '<div class="msg">'.$msg.'</div>';}?>
+    <table class="form-table">
+    <tbody>
+        <tr>
+            <th scope="row"><b>Import Settings File<p></p></b></th>
+            <td>
+                <p>Upload the data file (<code>.php</code>) from your computer and we'll import your settings.</p>
+                <p>Choose the file from your computer and click "Upload file and Import"</p>
+                <p>
+                    </p><form action="" method="post" enctype="multipart/form-data">
+                    <input type="file" size="25" name="settingfile" id="settingfile">
+                        <p class="submit"><input type="submit" value="Upload File and Import" class="button button-primary" id="import" name="import"></p>								</form>
+                <p></p>
+            </td>
+        </tr>
+
+        <tr>
+            <th scope="row"><b>Export Settings File</b></th>
+            <td>
+                <p>When you click the button below, We will generate a data files (<code>.php</code>) for you to save to your computer.</p>
+                <p>Once you have saved the download file, you can use the import function on another site to import this data.</p>
+                <p>
+                    </p><form action="" method="post">
+                     <p class="submit"><input type="submit" value="Download Export File" class="button button-primary" id="export" name="export"></p>								</form>
+                <p></p>
+            </td>
+        </tr>
+
+        
+    </tbody>
+</table>
+</div>
+    <?php
 }
 function set_insurancepage()
 {
