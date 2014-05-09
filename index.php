@@ -3214,12 +3214,12 @@ function rentalcarmanagementsearchresults($attr)
 				}
 				else
 				{
-						if(get_option('car_webstep2_action_en') != ''){
-						$step2url=get_permalink(get_option('car_webstep2_action_en'));}else{$step2url='';}
-						if(get_option('car_webstep3_action_en') != ''){
-							$step3url=get_permalink(get_option('car_webstep3_action_en'));}else{$step3url='';}
-						if(get_option('car_emailquote_action_en') != ''){
-							$emailquoteurl=get_permalink(get_option('car_emailquote_action_en'));}
+						if(get_option('car_webstep2_action_'.$lang) != ''){
+						$step2url=get_permalink(get_option('car_webstep2_action_'.$lang));}else{$step2url='';}
+						if(get_option('car_webstep3_action_'.$lang) != ''){
+							$step3url=get_permalink(get_option('car_webstep3_action_'.$lang));}else{$step3url='';}
+						if(get_option('car_emailquote_action_'.$lang) != ''){
+							$emailquoteurl=get_permalink(get_option('car_emailquote_action_'.$lang));}
 						else{$emailquoteurl='';}
 				}
 			}
