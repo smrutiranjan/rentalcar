@@ -2337,21 +2337,87 @@ function rentalcar_settingfn() {
 			delete_option( 'rental_emails_from');
 			add_option( 'rental_emails_from',$_POST["rental_emails_from"], '', 'yes' ); 
 		}
-		if(isset($_POST['car_webstep2_action']))
+		/*action page for enaglish only*/
+		if(isset($_POST['car_webstep2_action_en']))
 		{
-			delete_option( 'car_webstep2_action');
-			add_option( 'car_webstep2_action',$_POST["car_webstep2_action"], '', 'yes' ); 
+			delete_option( 'car_webstep2_action_en');
+			add_option( 'car_webstep2_action_en',$_POST["car_webstep2_action_en"], '', 'yes' ); 
 		}
-		if(isset($_POST['car_webstep3_action']))
+		if(isset($_POST['car_webstep3_action_en']))
 		{
-			delete_option( 'car_webstep3_action');
-			add_option( 'car_webstep3_action',$_POST["car_webstep3_action"], '', 'yes' ); 
+			delete_option( 'car_webstep3_action_en');
+			add_option( 'car_webstep3_action_en',$_POST["car_webstep3_action_en"], '', 'yes' ); 
 		}
-		if(isset($_POST['car_emailquote_action']))
+		if(isset($_POST['car_emailquote_action_en']))
 		{
-			delete_option( 'car_emailquote_action');
-			add_option( 'car_emailquote_action',$_POST["car_emailquote_action"], '', 'yes' ); 
+			delete_option( 'car_emailquote_action_en');
+			add_option( 'car_emailquote_action_en',$_POST["car_emailquote_action_en"], '', 'yes' ); 
 		}
+			/*action page for french only*/	
+		if(isset($_POST['car_webstep2_action_fr']))
+		{
+			delete_option( 'car_webstep2_action_fr');
+			add_option( 'car_webstep2_action_fr',$_POST["car_webstep2_action_fr"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_webstep3_action_fr']))
+		{
+			delete_option( 'car_webstep3_action_fr');
+			add_option( 'car_webstep3_action_fr',$_POST["car_webstep3_action_fr"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_emailquote_action_fr']))
+		{
+			delete_option( 'car_emailquote_action_fr');
+			add_option( 'car_emailquote_action_fr',$_POST["car_emailquote_action_fr"], '', 'yes' ); 
+		}
+		/*action page for german only*/	
+		if(isset($_POST['car_webstep2_action_da']))
+		{
+			delete_option( 'car_webstep2_action_da');
+			add_option( 'car_webstep2_action_da',$_POST["car_webstep2_action_da"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_webstep3_action_da']))
+		{
+			delete_option( 'car_webstep3_action_da');
+			add_option( 'car_webstep3_action_da',$_POST["car_webstep3_action_da"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_emailquote_action_da']))
+		{
+			delete_option( 'car_emailquote_action_da');
+			add_option( 'car_emailquote_action_da',$_POST["car_emailquote_action_da"], '', 'yes' ); 
+		}
+		/*action page for netherlands only*/	
+		if(isset($_POST['car_webstep2_action_du']))
+		{
+			delete_option( 'car_webstep2_action_du');
+			add_option( 'car_webstep2_action_du',$_POST["car_webstep2_action_du"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_webstep3_action_du']))
+		{
+			delete_option( 'car_webstep3_action_du');
+			add_option( 'car_webstep3_action_du',$_POST["car_webstep3_action_du"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_emailquote_action_du']))
+		{
+			delete_option( 'car_emailquote_action_du');
+			add_option( 'car_emailquote_action_du',$_POST["car_emailquote_action_du"], '', 'yes' ); 
+		}
+		/*action page for portuguese only*/	
+		if(isset($_POST['car_webstep2_action_pt']))
+		{
+			delete_option( 'car_webstep2_action_pt');
+			add_option( 'car_webstep2_action_pt',$_POST["car_webstep2_action_pt"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_webstep3_action_pt']))
+		{
+			delete_option( 'car_webstep3_action_pt');
+			add_option( 'car_webstep3_action_pt',$_POST["car_webstep3_action_pt"], '', 'yes' ); 
+		}
+		if(isset($_POST['car_emailquote_action_pt']))
+		{
+			delete_option( 'car_emailquote_action_pt');
+			add_option( 'car_emailquote_action_pt',$_POST["car_emailquote_action_pt"], '', 'yes' ); 
+		}
+		
 		$msg="Setting has been saved successfully.";
 	}
 	if(isset($_POST['reset'])){
@@ -2387,13 +2453,31 @@ function rentalcar_settingfn() {
 				   ?>
                    </select>
                    </p>    
-                 <h2>Define Web Action</h2>                        
-                 <p>Web action step2 page&nbsp;&nbsp;<select name="car_webstep2_action">
+                 <h2>Define Web Action - English</h2>                        
+                 <p>Web action step2 page&nbsp;&nbsp;
+                 <select name="car_webstep2_action_en">
+                       <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+						 <?php 
+                          $pages = get_pages(); 
+                          foreach ( $pages as $page ) {
+                              if(get_option('car_webstep2_action_en') == $page->ID){
+                                $option = '<option selected value="' . $page->ID  . '">';
+                              } else {
+                                  $option = '<option value="' . $page->ID  . '">';
+                              }
+                            $option .= $page->post_title;
+                            $option .= '</option>';
+                            echo $option;
+                          }
+                         ?>
+                        </select>
+                   </p>
+            <p>Web action step3 page&nbsp;&nbsp;<select name="car_webstep3_action_en">
                         <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
                  <?php 
                   $pages = get_pages(); 
                   foreach ( $pages as $page ) {
-                      if(get_option('car_webstep2_action') == $page->ID){
+                      if(get_option('car_webstep3_action_en') == $page->ID){
                         $option = '<option selected value="' . $page->ID  . '">';
                       } else {
                           $option = '<option value="' . $page->ID  . '">';
@@ -2403,13 +2487,13 @@ function rentalcar_settingfn() {
                     echo $option;
                   }
                  ?>
-                        </select>&nbsp;&nbsp;place shortcode on page like [rcm_search_results lang="en"]</p>
-            <p>Web action step3(final step) page&nbsp;&nbsp;<select name="car_webstep3_action">
+                        </select></p>
+            <p>Web action for email quote page&nbsp;&nbsp;<select name="car_emailquote_action_en">
                         <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
                  <?php 
                   $pages = get_pages(); 
                   foreach ( $pages as $page ) {
-                      if(get_option('car_webstep3_action') == $page->ID){
+                      if(get_option('car_emailquote_action_en') == $page->ID){
                         $option = '<option selected value="' . $page->ID  . '">';
                       } else {
                           $option = '<option value="' . $page->ID  . '">';
@@ -2419,13 +2503,32 @@ function rentalcar_settingfn() {
                     echo $option;
                   }
                  ?>
-                        </select>&nbsp;&nbsp;place shortcode on page like [rcm_search_results lang="en"]</p>
-            <p>Web action for email quote page&nbsp;&nbsp;<select name="car_emailquote_action">
+                 </select></p>   
+                  <h2>Define Web Action - French</h2>                        
+                 <p>Web action step2 page&nbsp;&nbsp;
+                 <select name="car_webstep2_action_fr">
+                       <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+						 <?php 
+                          $pages = get_pages(); 
+                          foreach ( $pages as $page ) {
+                              if(get_option('car_webstep2_action_fr') == $page->ID){
+                                $option = '<option selected value="' . $page->ID  . '">';
+                              } else {
+                                  $option = '<option value="' . $page->ID  . '">';
+                              }
+                            $option .= $page->post_title;
+                            $option .= '</option>';
+                            echo $option;
+                          }
+                         ?>
+                        </select>
+                   </p>
+            <p>Web action step3 page&nbsp;&nbsp;<select name="car_webstep3_action_fr">
                         <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
                  <?php 
                   $pages = get_pages(); 
                   foreach ( $pages as $page ) {
-                      if(get_option('car_emailquote_action') == $page->ID){
+                      if(get_option('car_webstep3_action_fr') == $page->ID){
                         $option = '<option selected value="' . $page->ID  . '">';
                       } else {
                           $option = '<option value="' . $page->ID  . '">';
@@ -2435,7 +2538,176 @@ function rentalcar_settingfn() {
                     echo $option;
                   }
                  ?>
-                 </select>&nbsp;&nbsp;place shortcode on page like [rcm_search_results lang="en"]</p>                                                
+                        </select></p>
+            <p>Web action for email quote page&nbsp;&nbsp;<select name="car_emailquote_action_fr">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_emailquote_action_fr') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                 </select></p>  
+                 <h2>Define Web Action - German</h2>                        
+                 <p>Web action step2 page&nbsp;&nbsp;
+                 <select name="car_webstep2_action_da">
+                       <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+						 <?php 
+                          $pages = get_pages(); 
+                          foreach ( $pages as $page ) {
+                              if(get_option('car_webstep2_action_da') == $page->ID){
+                                $option = '<option selected value="' . $page->ID  . '">';
+                              } else {
+                                  $option = '<option value="' . $page->ID  . '">';
+                              }
+                            $option .= $page->post_title;
+                            $option .= '</option>';
+                            echo $option;
+                          }
+                         ?>
+                        </select>
+                   </p>
+            <p>Web action step3 page&nbsp;&nbsp;<select name="car_webstep3_action_da">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_webstep3_action_da') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                        </select></p>
+            <p>Web action for email quote page&nbsp;&nbsp;<select name="car_emailquote_action_da">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_emailquote_action_da') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                 </select></p> 
+                  <h2>Define Web Action - Netherlands</h2>                        
+                 <p>Web action step2 page&nbsp;&nbsp;
+                 <select name="car_webstep2_action_du">
+                       <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+						 <?php 
+                          $pages = get_pages(); 
+                          foreach ( $pages as $page ) {
+                              if(get_option('car_webstep2_action_du') == $page->ID){
+                                $option = '<option selected value="' . $page->ID  . '">';
+                              } else {
+                                  $option = '<option value="' . $page->ID  . '">';
+                              }
+                            $option .= $page->post_title;
+                            $option .= '</option>';
+                            echo $option;
+                          }
+                         ?>
+                        </select>
+                   </p>
+            <p>Web action step3 page&nbsp;&nbsp;<select name="car_webstep3_action_du">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_webstep3_action_du') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                        </select></p>
+            <p>Web action for email quote page&nbsp;&nbsp;<select name="car_emailquote_action_du">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_emailquote_action_du') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                 </select></p>   
+                  <h2>Define Web Action - Portuguese</h2>                        
+                 <p>Web action step2 page&nbsp;&nbsp;
+                 <select name="car_webstep2_action_pt">
+                       <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+						 <?php 
+                          $pages = get_pages(); 
+                          foreach ( $pages as $page ) {
+                              if(get_option('car_webstep2_action_pt') == $page->ID){
+                                $option = '<option selected value="' . $page->ID  . '">';
+                              } else {
+                                  $option = '<option value="' . $page->ID  . '">';
+                              }
+                            $option .= $page->post_title;
+                            $option .= '</option>';
+                            echo $option;
+                          }
+                         ?>
+                        </select>
+                   </p>
+            <p>Web action step3 page&nbsp;&nbsp;<select name="car_webstep3_action_pt">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_webstep3_action_pt') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                        </select></p>
+            <p>Web action for email quote page&nbsp;&nbsp;<select name="car_emailquote_action_pt">
+                        <option value=""><?php echo esc_attr( __( 'Select page' ) ); ?></option> 
+                 <?php 
+                  $pages = get_pages(); 
+                  foreach ( $pages as $page ) {
+                      if(get_option('car_emailquote_action_pt') == $page->ID){
+                        $option = '<option selected value="' . $page->ID  . '">';
+                      } else {
+                          $option = '<option value="' . $page->ID  . '">';
+                      }
+                    $option .= $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                  }
+                 ?>
+                 </select></p>                                                  
               <h2>Email Address</h2> 
                  <p>From&nbsp;&nbsp;&nbsp;<input type="text" name="rental_emails_from" value="<?php echo get_option('rental_emails_from');?>" style="width:800px;"/></p>
                  <span style="font-size:11px">Notes:You can fill the field on format like name&lt;emailaddress&gt; format.</span>
@@ -2915,6 +3187,9 @@ function rentalcarmanagementsearchresults($attr)
 		if($attr["lang"] !=""){$lang=$attr["lang"];}else{$lang='en';}
 		if($attr["only"] !=""){$resonly=$attr["only"];}else{$resonly='';}
 		
+		if($attr["header"]=='yes'){$header_style='';}else{$header_style='header{display:none;}';}
+		if($attr["navigation"]=='yes'){$nav_style='';}else{$nav_style='nav{display:none;}';}
+		
 		if($attr["pagetype"] == 'nonwp'){
 			$pagetype="nonwp";
 			$step2url=$attr["baseurl"]."/rcm";
@@ -2922,9 +3197,32 @@ function rentalcarmanagementsearchresults($attr)
 			$emailquoteurl=$attr["baseurl"]."/emailquote";
 		} else{
 			$pagetype="";
-			if(get_option('car_webstep2_action') != ''){$step2url=get_permalink(get_option('car_webstep2_action'));}else{$step2url='';}
-			if(get_option('car_webstep3_action') != ''){$step3url=get_permalink(get_option('car_webstep3_action'));}else{$step3url='';}
-			if(get_option('car_emailquote_action') != ''){$emailquoteurl=get_permalink(get_option('car_emailquote_action'));}else{$emailquoteurl='';}
+			
+			$langpack=array('en','da','du','fr','pt');
+			foreach($langpack as $lngval)
+			{
+				$langurl[$lngval]=array(get_option('car_webstep2_action_'.$lngval),get_option('car_webstep3_action_'.$lngval),get_option('car_emailquote_action_'.$lngval));				
+				
+				if(in_array(get_the_ID(),$langurl[$lngval])){			
+					if(get_option('car_webstep2_action_'.$lngval) != ''){
+						$step2url=get_permalink(get_option('car_webstep2_action_'.$lngval));}else{$step2url='';}
+					if(get_option('car_webstep3_action_'.$lngval) != ''){
+						$step3url=get_permalink(get_option('car_webstep3_action_'.$lngval));}else{$step3url='';}
+					if(get_option('car_emailquote_action_'.$lngval) != ''){
+						$emailquoteurl=get_permalink(get_option('car_emailquote_action_'.$lngval));}
+					else{$emailquoteurl='';}
+				}
+				else
+				{
+						if(get_option('car_webstep2_action_en') != ''){
+						$step2url=get_permalink(get_option('car_webstep2_action_en'));}else{$step2url='';}
+						if(get_option('car_webstep3_action_en') != ''){
+							$step3url=get_permalink(get_option('car_webstep3_action_en'));}else{$step3url='';}
+						if(get_option('car_emailquote_action_en') != ''){
+							$emailquoteurl=get_permalink(get_option('car_emailquote_action_en'));}
+						else{$emailquoteurl='';}
+				}
+			}
 		}
 	}
 	else
@@ -3305,10 +3603,7 @@ $searchout .='<div id="toggle_custom_div" style="'.$backstyle.'background-color:
 	elseif($_GET["action"] == 'detail')
 	{
 		$output=$searchout;
-		if($pagetype == 'nonwp'){$header_style='';$nav_style='';}else{
-		if($attr["header"]=='yes'){$header_style='';}else{$header_style='header{display:none;}';}
-		if($attr["navigation"]=='yes'){$nav_style='';}else{$nav_style='nav{display:none;}';}
-		}
+		if($pagetype == 'nonwp'){$header_style='';$nav_style='';}
 		if($nav_style!="" or $header_style!=""){$exstyle='<style>'.$header_style.$nav_style.'</style>';}
 		$output .=$common.$exstyle.'<style>.customgsearch{display:none;}</style>';
 		$url='http://secure.rentalcarmanager.com.au/ClientWebMobileAPI/RCMClientAPI.asmx/requestVehicleAvailability?PickupLocation='.urlencode($_GET["PickupLocationID"]).'&PickupDate='.urlencode($_GET["PickDate"]).'&PickupTime=12:00&DropOffLocation='.urlencode($_GET["DLocationID"]).'&DropOffDate='.urlencode($_GET["DropoffDate"]).'&DropOffTime=12:00&DriverAge=30&CategoryTypeID='.$CategoryTypeID.'&SecureKey='.urlencode($securekey).'&PromoCode='.urlencode($_GET["promo"]);	
